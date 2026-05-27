@@ -1,0 +1,144 @@
+{
+  "dinner_date": "2026-06-07",
+  "display_date": "Sunday, June 7, 2026",
+  "seated_covers": 26,
+  "party_count": 12,
+  "cancelled": [],
+  "guests": [
+    {
+      "id": "g-2026-06-07-001",
+      "purchaser": "Ethan Sargent",
+      "party_size": 2,
+      "email": "ethanrsargent@gmail.com",
+      "notes": "moved from 5/23",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-06-07-002",
+      "purchaser": "Jerry Masters",
+      "party_size": 2,
+      "email": "Jerrymasters@comcast.net",
+      "notes": "Anderson Group",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-06-07-003",
+      "purchaser": "Jerry Masters",
+      "party_size": 2,
+      "email": "Jerrymasters@comcast.net",
+      "notes": "Anderson Group",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-06-07-004",
+      "purchaser": "Oral J Taylor",
+      "party_size": 2,
+      "email": "Ojaft2001@gmail.com",
+      "notes": "Anderson Group",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-06-07-005",
+      "purchaser": "Laura Hitchens",
+      "party_size": 2,
+      "email": "hitchens@mac.com",
+      "notes": "Anderson Group",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-06-07-006",
+      "purchaser": "Janine Tarte",
+      "party_size": 2,
+      "email": "j_tarte@yahoo.com",
+      "notes": "Anderson Group",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-06-07-007",
+      "purchaser": "David Fournier",
+      "party_size": 2,
+      "email": "Winterhook@hotmail.com",
+      "notes": "Anderson Group, one GF",
+      "allergens": [
+        "GF"
+      ],
+      "returning": null,
+      "is_allergen_party": true
+    },
+    {
+      "id": "g-2026-06-07-008",
+      "purchaser": "Emily Barber",
+      "party_size": 2,
+      "email": "emilybarber93@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": {
+        "prior_count": 2,
+        "years": [
+          "2023",
+          "2024"
+        ],
+        "is_multi_year": true
+      },
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-06-07-009",
+      "purchaser": "AVIVA ELMAN",
+      "party_size": 2,
+      "email": "aviva.elman@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": {
+        "prior_count": 1,
+        "years": [
+          "2024"
+        ],
+        "is_multi_year": true
+      },
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-06-07-010",
+      "purchaser": "edward davis",
+      "party_size": 2,
+      "email": "QUEST.JLD@GMAIL.COM",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-06-07-011",
+      "purchaser": "Lisa A Pedigo",
+      "party_size": 2,
+      "email": "lpedigo2013@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-06-07-012",
+      "purchaser": "Matthew Huntley",
+      "party_size": 4,
+      "email": "huntmr1@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    }
+  ]
+}
