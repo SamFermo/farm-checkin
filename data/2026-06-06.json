@@ -1,0 +1,135 @@
+{
+  "dinner_date": "2026-06-06",
+  "display_date": "Saturday, June 6, 2026",
+  "seated_covers": 26,
+  "party_count": 11,
+  "cancelled": [],
+  "guests": [
+    {
+      "id": "g-2026-06-06-001",
+      "purchaser": "Izabella & Marcus Henry",
+      "party_size": 2,
+      "email": "",
+      "notes": "gift from Donna Winters",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-06-06-002",
+      "purchaser": "Nina Scheidegger",
+      "party_size": 2,
+      "email": "n.scheidegger2@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-06-06-003",
+      "purchaser": "Jon M Cook",
+      "party_size": 2,
+      "email": "aceingoal@gmail.com",
+      "notes": "2 times this summer",
+      "allergens": [],
+      "returning": {
+        "prior_count": 1,
+        "years": [
+          "2024"
+        ],
+        "is_multi_year": true
+      },
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-06-06-004",
+      "purchaser": "Mia Bergeron",
+      "party_size": 2,
+      "email": "miaber98@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-06-06-005",
+      "purchaser": "Ashley Baker",
+      "party_size": 2,
+      "email": "ashleyjbaker4@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": {
+        "prior_count": 1,
+        "years": [
+          "2024"
+        ],
+        "is_multi_year": true
+      },
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-06-06-006",
+      "purchaser": "katherine m diaz",
+      "party_size": 2,
+      "email": "diazkatie@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-06-06-007",
+      "purchaser": "Daniel R Wandsnider",
+      "party_size": 2,
+      "email": "daniel.wandsnider@gmail.com",
+      "notes": "she is gluten free, not celiac",
+      "allergens": [
+        "GF"
+      ],
+      "returning": null,
+      "is_allergen_party": true
+    },
+    {
+      "id": "g-2026-06-06-008",
+      "purchaser": "Julie Schuldt",
+      "party_size": 2,
+      "email": "julieschuldt2@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-06-06-009",
+      "purchaser": "Babak Shamsi",
+      "party_size": 2,
+      "email": "BabakS@beresfordlaw.com",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-06-06-010",
+      "purchaser": "Erica Joseph",
+      "party_size": 4,
+      "email": "Ejoseph5@me.com",
+      "notes": "One no wine pairing!",
+      "allergens": [
+        "NA"
+      ],
+      "returning": null,
+      "is_allergen_party": true
+    },
+    {
+      "id": "g-2026-06-06-011",
+      "purchaser": "sydney bottomley",
+      "party_size": 4,
+      "email": "sydneybottomley21@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    }
+  ]
+}
