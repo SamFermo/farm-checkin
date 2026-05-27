@@ -1,0 +1,88 @@
+{
+  "dinner_date": "2026-09-05",
+  "display_date": "Saturday, September 5, 2026",
+  "seated_covers": 16,
+  "party_count": 7,
+  "cancelled": [],
+  "guests": [
+    {
+      "id": "g-2026-09-05-001",
+      "purchaser": "Eden Redmond",
+      "party_size": 2,
+      "email": "eden.m.redmond@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-09-05-002",
+      "purchaser": "Padraic McGovern",
+      "party_size": 2,
+      "email": "PADRAIC.J.MCGOVERN@GMAIL.COM",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-09-05-003",
+      "purchaser": "Susannah Jacobs",
+      "party_size": 2,
+      "email": "susyjacobs@yahoo.com",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-09-05-004",
+      "purchaser": "Jesse Merlin",
+      "party_size": 2,
+      "email": "jwmerlin@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-09-05-005",
+      "purchaser": "Susan Kalles",
+      "party_size": 2,
+      "email": "susi.kalles@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-09-05-006",
+      "purchaser": "Marie Umetsu",
+      "party_size": 2,
+      "email": "Mariemumetsu@gmail.com",
+      "notes": "Walnut/peach/kiwi/cherry allergy",
+      "allergens": [
+        "tree nut",
+        "other allergen"
+      ],
+      "returning": null,
+      "is_allergen_party": true
+    },
+    {
+      "id": "g-2026-09-05-007",
+      "purchaser": "Emily J Gottschalk",
+      "party_size": 4,
+      "email": "gottsche@umich.edu",
+      "notes": "",
+      "allergens": [],
+      "returning": {
+        "prior_count": 2,
+        "years": [
+          "2024"
+        ],
+        "is_multi_year": true
+      },
+      "is_allergen_party": false
+    }
+  ]
+}
