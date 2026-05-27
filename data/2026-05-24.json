@@ -1,0 +1,151 @@
+{
+  "dinner_date": "2026-05-24",
+  "display_date": "Sunday, May 24, 2026",
+  "seated_covers": 27,
+  "party_count": 11,
+  "cancelled": [],
+  "guests": [
+    {
+      "id": "g-2026-05-24-001",
+      "purchaser": "Casandra Martin",
+      "party_size": 1,
+      "email": "casandrajmartin@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-05-24-002",
+      "purchaser": "Barbara Cinque Duff",
+      "party_size": 2,
+      "email": "barb@barbduff.com",
+      "notes": "strawberry alergy for Barb, also no raw beef",
+      "allergens": [
+        "strawberry",
+        "no raw"
+      ],
+      "returning": {
+        "prior_count": 4,
+        "years": [
+          "2023",
+          "2024"
+        ],
+        "is_multi_year": true
+      },
+      "is_allergen_party": true
+    },
+    {
+      "id": "g-2026-05-24-003",
+      "purchaser": "Maureen and Mit Harlan",
+      "party_size": 2,
+      "email": "maureenharlan@gmail.com",
+      "notes": "neighbors",
+      "allergens": [],
+      "returning": {
+        "prior_count": 1,
+        "years": [
+          "2024"
+        ],
+        "is_multi_year": true
+      },
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-05-24-004",
+      "purchaser": "Colin Dootson",
+      "party_size": 2,
+      "email": "colindootson@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-05-24-005",
+      "purchaser": "Megan Zell",
+      "party_size": 2,
+      "email": "megkzell@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": {
+        "prior_count": 1,
+        "years": [
+          "2024"
+        ],
+        "is_multi_year": true
+      },
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-05-24-006",
+      "purchaser": "Soyun Park",
+      "party_size": 2,
+      "email": "dianapark0@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-05-24-007",
+      "purchaser": "Kevin Grover",
+      "party_size": 2,
+      "email": "klgrover26@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-05-24-008",
+      "purchaser": "Alison Wingfield",
+      "party_size": 2,
+      "email": "awingfie@gmail.com",
+      "notes": "together one no beef, other meat fine",
+      "allergens": [
+        "no beef"
+      ],
+      "returning": null,
+      "is_allergen_party": true
+    },
+    {
+      "id": "g-2026-05-24-009",
+      "purchaser": "Brandon Tomashowski",
+      "party_size": 2,
+      "email": "bjtomski@gmail.com",
+      "notes": "together",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-05-24-010",
+      "purchaser": "Brittany k cafferty",
+      "party_size": 4,
+      "email": "cb356418@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": {
+        "prior_count": 1,
+        "years": [
+          "2025"
+        ],
+        "is_multi_year": true
+      },
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-05-24-011",
+      "purchaser": "Samantha Bomont",
+      "party_size": 6,
+      "email": "samanthasophiea@gmail.com",
+      "notes": "4 no tartare",
+      "allergens": [
+        "no tartare"
+      ],
+      "returning": null,
+      "is_allergen_party": true
+    }
+  ]
+}
