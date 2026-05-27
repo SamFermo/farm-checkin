@@ -1,0 +1,114 @@
+{
+  "dinner_date": "2026-08-15",
+  "display_date": "Saturday, August 15, 2026",
+  "seated_covers": 18,
+  "party_count": 8,
+  "cancelled": [],
+  "guests": [
+    {
+      "id": "g-2026-08-15-001",
+      "purchaser": "Emma N Peltz",
+      "party_size": 2,
+      "email": "emma.noelle18@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": {
+        "prior_count": 1,
+        "years": [
+          "2024"
+        ],
+        "is_multi_year": true
+      },
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-08-15-002",
+      "purchaser": "Sabrina K. Seward",
+      "party_size": 2,
+      "email": "sabrina.k.seward@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-08-15-003",
+      "purchaser": "Ellie M Christensen",
+      "party_size": 2,
+      "email": "Elliemort@comcast.net",
+      "notes": "",
+      "allergens": [],
+      "returning": {
+        "prior_count": 2,
+        "years": [
+          "2023",
+          "2024"
+        ],
+        "is_multi_year": true
+      },
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-08-15-004",
+      "purchaser": "Marcella Peek",
+      "party_size": 2,
+      "email": "marcella@peek.org",
+      "notes": "Peek, Olsen, Markaham/Whyte, Holt/Gartz",
+      "allergens": [],
+      "returning": {
+        "prior_count": 1,
+        "years": [
+          "2025"
+        ],
+        "is_multi_year": true
+      },
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-08-15-005",
+      "purchaser": "Catherine Markham",
+      "party_size": 2,
+      "email": "catmark57@yahoo.com",
+      "notes": "Peek, Olsen, Markaham/Whyte, Holt/Gartz",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-08-15-006",
+      "purchaser": "Susan Olsen",
+      "party_size": 2,
+      "email": "Susan@olsenassociates.net",
+      "notes": "Peek, Olsen, Markaham/Whyte, Holt/Gartz",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-08-15-007",
+      "purchaser": "Robin L Holt",
+      "party_size": 2,
+      "email": "bird.holt@gmail.com",
+      "notes": "Peek, Olsen, Markaham/Whyte, Holt/Gartz",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-08-15-008",
+      "purchaser": "Abraham Curry",
+      "party_size": 4,
+      "email": "abecurry@gmail.com",
+      "notes": "one purchase of 1800, split 2 dates",
+      "allergens": [],
+      "returning": {
+        "prior_count": 1,
+        "years": [
+          "2026"
+        ],
+        "is_multi_year": false
+      },
+      "is_allergen_party": false
+    }
+  ]
+}
