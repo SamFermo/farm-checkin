@@ -1,0 +1,131 @@
+{
+  "dinner_date": "2026-05-16",
+  "display_date": "Saturday, May 16, 2026",
+  "seated_covers": 24,
+  "party_count": 10,
+  "cancelled": [],
+  "guests": [
+    {
+      "id": "g-2026-05-16-001",
+      "purchaser": "Darwin J May",
+      "party_size": 2,
+      "email": "darwin.j.may@gmail.com",
+      "notes": "fish and shellfish allergies",
+      "allergens": [
+        "shellfish"
+      ],
+      "returning": {
+        "prior_count": 1,
+        "years": [
+          "2024"
+        ],
+        "is_multi_year": true
+      },
+      "is_allergen_party": true
+    },
+    {
+      "id": "g-2026-05-16-002",
+      "purchaser": "Julia King",
+      "party_size": 2,
+      "email": "j19a9k3@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-05-16-003",
+      "purchaser": "Paisley Muller",
+      "party_size": 2,
+      "email": "paisleymuller@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": {
+        "prior_count": 1,
+        "years": [
+          "2024"
+        ],
+        "is_multi_year": true
+      },
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-05-16-004",
+      "purchaser": "ANNE MARIE FERNANDES",
+      "party_size": 2,
+      "email": "afernandes1617@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-05-16-005",
+      "purchaser": "Nicole Marshall",
+      "party_size": 2,
+      "email": "Nicolecschwalbe@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": {
+        "prior_count": 1,
+        "years": [
+          "2024"
+        ],
+        "is_multi_year": true
+      },
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-05-16-006",
+      "purchaser": "Timothy Stephens",
+      "party_size": 2,
+      "email": "stephenstj@hotmail.com",
+      "notes": "one no beef or lamb",
+      "allergens": [
+        "no beef"
+      ],
+      "returning": null,
+      "is_allergen_party": true
+    },
+    {
+      "id": "g-2026-05-16-007",
+      "purchaser": "Claire Goveia",
+      "party_size": 2,
+      "email": "cgoveia16@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-05-16-008",
+      "purchaser": "Jessica Moody",
+      "party_size": 2,
+      "email": "jessica.jael.moody@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-05-16-009",
+      "purchaser": "Abraham Curry",
+      "party_size": 4,
+      "email": "abecurry@gmail.com",
+      "notes": "one purchase of 1800, split 2 dates",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-05-16-010",
+      "purchaser": "Sara Tarnvik",
+      "party_size": 4,
+      "email": "stvik2@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    }
+  ]
+}
