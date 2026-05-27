@@ -1,0 +1,77 @@
+{
+  "dinner_date": "2026-08-08",
+  "display_date": "Saturday, August 8, 2026",
+  "seated_covers": 24,
+  "party_count": 5,
+  "cancelled": [],
+  "guests": [
+    {
+      "id": "g-2026-08-08-001",
+      "purchaser": "Emily Mullen",
+      "party_size": 2,
+      "email": "emilylouisemullen@hotmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-08-08-002",
+      "purchaser": "Emily Lauryn Joe Masangcay",
+      "party_size": 2,
+      "email": "emmy.masangcay@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": {
+        "prior_count": 2,
+        "years": [
+          "2024"
+        ],
+        "is_multi_year": true
+      },
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-08-08-003",
+      "purchaser": "Connor Mara",
+      "party_size": 4,
+      "email": "Mariadaddeo@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": {
+        "prior_count": 1,
+        "years": [
+          "2024"
+        ],
+        "is_multi_year": true
+      },
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-08-08-004",
+      "purchaser": "M Barton Waring",
+      "party_size": 8,
+      "email": "barton.waring@aya.yale.edu",
+      "notes": "",
+      "allergens": [],
+      "returning": {
+        "prior_count": 1,
+        "years": [
+          "2025"
+        ],
+        "is_multi_year": true
+      },
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-08-08-005",
+      "purchaser": "Christopher Pynn",
+      "party_size": 8,
+      "email": "christopherpynn@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    }
+  ]
+}
