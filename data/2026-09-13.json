@@ -1,0 +1,97 @@
+{
+  "dinner_date": "2026-09-13",
+  "display_date": "Sunday, September 13, 2026",
+  "seated_covers": 20,
+  "party_count": 8,
+  "cancelled": [],
+  "guests": [
+    {
+      "id": "g-2026-09-13-001",
+      "purchaser": "Aditya Singhal",
+      "party_size": 2,
+      "email": "aditya277@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-09-13-002",
+      "purchaser": "Garima Aggarwal",
+      "party_size": 2,
+      "email": "Garima25aggarwal@gmail.com",
+      "notes": "purchased under Vivek Kumar",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-09-13-003",
+      "purchaser": "Dominika Ujlaky",
+      "party_size": 2,
+      "email": "ujlakyd@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-09-13-004",
+      "purchaser": "Hanna Basra",
+      "party_size": 2,
+      "email": "basrahanna@gmail.com",
+      "notes": "no shellfish",
+      "allergens": [
+        "shellfish"
+      ],
+      "returning": null,
+      "is_allergen_party": true
+    },
+    {
+      "id": "g-2026-09-13-005",
+      "purchaser": "Chelsea Lupo",
+      "party_size": 2,
+      "email": "lupo.chelsea@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-09-13-006",
+      "purchaser": "Sidney Wuellner",
+      "party_size": 2,
+      "email": "sidneywuellner@gmail.com",
+      "notes": "came on May 17th, bought another",
+      "allergens": [],
+      "returning": {
+        "prior_count": 1,
+        "years": [
+          "2026"
+        ],
+        "is_multi_year": false
+      },
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-09-13-007",
+      "purchaser": "Lark Kesterke",
+      "party_size": 4,
+      "email": "Lark.kesterke@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-09-13-008",
+      "purchaser": "Rachel Stull",
+      "party_size": 4,
+      "email": "rachel.m.stull@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    }
+  ]
+}
