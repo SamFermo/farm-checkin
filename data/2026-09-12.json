@@ -1,0 +1,95 @@
+{
+  "dinner_date": "2026-09-12",
+  "display_date": "Saturday, September 12, 2026",
+  "seated_covers": 24,
+  "party_count": 6,
+  "cancelled": [],
+  "guests": [
+    {
+      "id": "g-2026-09-12-001",
+      "purchaser": "Leah Levar",
+      "party_size": 2,
+      "email": "leah.levar@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-09-12-002",
+      "purchaser": "Allan Olson",
+      "party_size": 2,
+      "email": "allan98257@gmail.com",
+      "notes": "3 times this summer",
+      "allergens": [],
+      "returning": {
+        "prior_count": 2,
+        "years": [
+          "2026"
+        ],
+        "is_multi_year": false
+      },
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-09-12-003",
+      "purchaser": "Jon M Cook",
+      "party_size": 2,
+      "email": "aceingoal@gmail.com",
+      "notes": "2 times this summer",
+      "allergens": [],
+      "returning": {
+        "prior_count": 2,
+        "years": [
+          "2024",
+          "2026"
+        ],
+        "is_multi_year": true
+      },
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-09-12-004",
+      "purchaser": "Jennifer Foughner",
+      "party_size": 4,
+      "email": "jenniferfoughner@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": {
+        "prior_count": 2,
+        "years": [
+          "2023",
+          "2025"
+        ],
+        "is_multi_year": true
+      },
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-09-12-005",
+      "purchaser": "Felicity Wood",
+      "party_size": 6,
+      "email": "felicitywood@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": {
+        "prior_count": 1,
+        "years": [
+          "2024"
+        ],
+        "is_multi_year": true
+      },
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-09-12-006",
+      "purchaser": "Katie Clum",
+      "party_size": 8,
+      "email": "katielitz7@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    }
+  ]
+}
