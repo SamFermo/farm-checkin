@@ -1,0 +1,114 @@
+{
+  "dinner_date": "2026-07-12",
+  "display_date": "Sunday, July 12, 2026",
+  "seated_covers": 20,
+  "party_count": 9,
+  "cancelled": [],
+  "guests": [
+    {
+      "id": "g-2026-07-12-001",
+      "purchaser": "Angela Lewis",
+      "party_size": 2,
+      "email": "angelalewis@mba.berkeley.edu",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-07-12-002",
+      "purchaser": "Nicolina Berger",
+      "party_size": 2,
+      "email": "nicolina.siciliano18@gmail.com",
+      "notes": "Mild allergy to mango and pecan for 1",
+      "allergens": [
+        "tree nut",
+        "other allergen"
+      ],
+      "returning": null,
+      "is_allergen_party": true
+    },
+    {
+      "id": "g-2026-07-12-003",
+      "purchaser": "Tara Cunningham",
+      "party_size": 2,
+      "email": "tara@washingtonlettuce.com",
+      "notes": "husband Drew, together",
+      "allergens": [],
+      "returning": {
+        "prior_count": 1,
+        "years": [
+          "2024"
+        ],
+        "is_multi_year": true
+      },
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-07-12-004",
+      "purchaser": "Alison Schultz",
+      "party_size": 2,
+      "email": "Ali322schultz@gmail.com",
+      "notes": "together",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-07-12-005",
+      "purchaser": "Alana Morgan",
+      "party_size": 2,
+      "email": "alana@morganmedia.buzz",
+      "notes": "together",
+      "allergens": [],
+      "returning": {
+        "prior_count": 1,
+        "years": [
+          "2024"
+        ],
+        "is_multi_year": true
+      },
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-07-12-006",
+      "purchaser": "Susanna Daniel",
+      "party_size": 2,
+      "email": "scdaniel6@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-07-12-007",
+      "purchaser": "Marni Wright",
+      "party_size": 2,
+      "email": "marnihussong@hotmail.com",
+      "notes": "together",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-07-12-008",
+      "purchaser": "Katie Perkins",
+      "party_size": 2,
+      "email": "Katie.perkins@gmail.com",
+      "notes": "together",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-07-12-009",
+      "purchaser": "AMANDA NELSON",
+      "party_size": 4,
+      "email": "mailto:Mandeewong@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    }
+  ]
+}
