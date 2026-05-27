@@ -1,0 +1,121 @@
+{
+  "dinner_date": "2026-08-16",
+  "display_date": "Sunday, August 16, 2026",
+  "seated_covers": 18,
+  "party_count": 9,
+  "cancelled": [],
+  "guests": [
+    {
+      "id": "g-2026-08-16-001",
+      "purchaser": "Kelsey Pullar",
+      "party_size": 2,
+      "email": "Kelsey.pullar@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-08-16-002",
+      "purchaser": "MONICA SHERWOOD",
+      "party_size": 2,
+      "email": "monica.sherwood@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": {
+        "prior_count": 1,
+        "years": [
+          "2025"
+        ],
+        "is_multi_year": true
+      },
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-08-16-003",
+      "purchaser": "Lauren Marsan",
+      "party_size": 2,
+      "email": "lmarsan0103@comcast.net",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-08-16-004",
+      "purchaser": "Lauren C Peterson",
+      "party_size": 2,
+      "email": "thompson98011@gmail.com",
+      "notes": "1 mild allergy to green beans",
+      "allergens": [
+        "other allergen"
+      ],
+      "returning": null,
+      "is_allergen_party": true
+    },
+    {
+      "id": "g-2026-08-16-005",
+      "purchaser": "Cecilia beer",
+      "party_size": 2,
+      "email": "cvbeer@comcast.net",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-08-16-006",
+      "purchaser": "Bridget Jennings",
+      "party_size": 2,
+      "email": "Bridgetje23@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": {
+        "prior_count": 1,
+        "years": [
+          "2024"
+        ],
+        "is_multi_year": true
+      },
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-08-16-007",
+      "purchaser": "Chris Lee",
+      "party_size": 2,
+      "email": "chrisandcourtlee@gmail.com",
+      "notes": "Chris is Gluten Free",
+      "allergens": [
+        "GF"
+      ],
+      "returning": {
+        "prior_count": 1,
+        "years": [
+          "2024"
+        ],
+        "is_multi_year": true
+      },
+      "is_allergen_party": true
+    },
+    {
+      "id": "g-2026-08-16-008",
+      "purchaser": "Kevin Kennedy",
+      "party_size": 2,
+      "email": "kennedyseattle@comcast.net",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-08-16-009",
+      "purchaser": "Isabelle K Bruns",
+      "party_size": 2,
+      "email": "isabellekh14@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    }
+  ]
+}
