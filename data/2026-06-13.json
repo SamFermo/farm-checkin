@@ -1,0 +1,111 @@
+{
+  "dinner_date": "2026-06-13",
+  "display_date": "Saturday, June 13, 2026",
+  "seated_covers": 26,
+  "party_count": 10,
+  "cancelled": [],
+  "guests": [
+    {
+      "id": "g-2026-06-13-001",
+      "purchaser": "Lisa M Schaefbauer",
+      "party_size": 2,
+      "email": "lisa_schaefbauer@hotmail.com",
+      "notes": "together",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-06-13-002",
+      "purchaser": "Tamara Schaefbauer",
+      "party_size": 2,
+      "email": "Yourpersonaleditor@hotmail.com",
+      "notes": "together",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-06-13-003",
+      "purchaser": "John Shields",
+      "party_size": 2,
+      "email": "pointbobgirl@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-06-13-004",
+      "purchaser": "Kate Ulicky",
+      "party_size": 2,
+      "email": "kulicky@gmail.com",
+      "notes": "together",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-06-13-005",
+      "purchaser": "Kelsey Keizur",
+      "party_size": 2,
+      "email": "Kelseykeizur@gmail.com",
+      "notes": "together",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-06-13-006",
+      "purchaser": "Marianne Ide",
+      "party_size": 2,
+      "email": "drmarianneide@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-06-13-007",
+      "purchaser": "Brandon Wood",
+      "party_size": 2,
+      "email": "lunodragon@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-06-13-008",
+      "purchaser": "Jenifer Sandstrom",
+      "party_size": 4,
+      "email": "Jeniferb_11@yahoo.com",
+      "notes": "1 shellfish, knows they may skip a course",
+      "allergens": [
+        "shellfish"
+      ],
+      "returning": null,
+      "is_allergen_party": true
+    },
+    {
+      "id": "g-2026-06-13-009",
+      "purchaser": "Amanda Edris",
+      "party_size": 4,
+      "email": "AmandaE.020@hotmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-06-13-010",
+      "purchaser": "Sahar Banijamali",
+      "party_size": 4,
+      "email": "Sbanijamali@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    }
+  ]
+}
