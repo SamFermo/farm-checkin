@@ -1,0 +1,133 @@
+{
+  "dinner_date": "2026-06-14",
+  "display_date": "Sunday, June 14, 2026",
+  "seated_covers": 26,
+  "party_count": 10,
+  "cancelled": [],
+  "guests": [
+    {
+      "id": "g-2026-06-14-001",
+      "purchaser": "Elizabeth A Kutcipal",
+      "party_size": 2,
+      "email": "libbykuts@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": {
+        "prior_count": 1,
+        "years": [
+          "2024"
+        ],
+        "is_multi_year": true
+      },
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-06-14-002",
+      "purchaser": "Laura E Rudolph",
+      "party_size": 2,
+      "email": "lauraemily.rudolph@gmail.com",
+      "notes": "together",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-06-14-003",
+      "purchaser": "Huilin Xu",
+      "party_size": 2,
+      "email": "huilinxulynn@gmail.com",
+      "notes": "one n/a pairing",
+      "allergens": [
+        "NA"
+      ],
+      "returning": null,
+      "is_allergen_party": true
+    },
+    {
+      "id": "g-2026-06-14-004",
+      "purchaser": "ANGIE  WANG",
+      "party_size": 2,
+      "email": "Acwang80@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-06-14-005",
+      "purchaser": "Michael Cort",
+      "party_size": 2,
+      "email": "Michael.cort@outlook.com",
+      "notes": "",
+      "allergens": [],
+      "returning": {
+        "prior_count": 1,
+        "years": [
+          "2024"
+        ],
+        "is_multi_year": true
+      },
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-06-14-006",
+      "purchaser": "Gavin Darcey",
+      "party_size": 2,
+      "email": "gavin.darcey@gmail.com",
+      "notes": "together",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-06-14-007",
+      "purchaser": "Bruce C Burley",
+      "party_size": 2,
+      "email": "brucecburley@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-06-14-008",
+      "purchaser": "Sophia Houghton",
+      "party_size": 4,
+      "email": "sophia.houghton@gmail.com",
+      "notes": "fish and shellfish allergies",
+      "allergens": [
+        "shellfish"
+      ],
+      "returning": null,
+      "is_allergen_party": true
+    },
+    {
+      "id": "g-2026-06-14-009",
+      "purchaser": "Panji Wisesa",
+      "party_size": 4,
+      "email": "panji.wisesa@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": {
+        "prior_count": 1,
+        "years": [
+          "2024"
+        ],
+        "is_multi_year": true
+      },
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-06-14-010",
+      "purchaser": "Kaan Yarar",
+      "party_size": 4,
+      "email": "kaanyarar@gmail.com",
+      "notes": "one no lamb, risotto sub",
+      "allergens": [
+        "no lamb"
+      ],
+      "returning": null,
+      "is_allergen_party": true
+    }
+  ]
+}
