@@ -1,0 +1,143 @@
+{
+  "dinner_date": "2026-05-17",
+  "display_date": "Sunday, May 17, 2026",
+  "seated_covers": 24,
+  "party_count": 11,
+  "cancelled": [],
+  "guests": [
+    {
+      "id": "g-2026-05-17-001",
+      "purchaser": "Aimee Taylor Martini",
+      "party_size": 2,
+      "email": "aimeetm96@yahoo.com",
+      "notes": "",
+      "allergens": [],
+      "returning": {
+        "prior_count": 2,
+        "years": [
+          "2024"
+        ],
+        "is_multi_year": true
+      },
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-05-17-002",
+      "purchaser": "Lauren Morelli",
+      "party_size": 2,
+      "email": "lauren.morelli615@gmail.com",
+      "notes": "purchased with 100 gift card",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-05-17-003",
+      "purchaser": "William Aufhammer",
+      "party_size": 2,
+      "email": "kellyaufhammer@gmail.com",
+      "notes": "together",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-05-17-004",
+      "purchaser": "kristal lowe",
+      "party_size": 2,
+      "email": "lowekristal@gmail.com",
+      "notes": "together one no raw beef)",
+      "allergens": [
+        "no raw"
+      ],
+      "returning": null,
+      "is_allergen_party": true
+    },
+    {
+      "id": "g-2026-05-17-005",
+      "purchaser": "Lisa Rinker",
+      "party_size": 2,
+      "email": "theotherrinker@comcast.net",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-05-17-006",
+      "purchaser": "caroline capoun",
+      "party_size": 2,
+      "email": "carolinecapoun@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": {
+        "prior_count": 1,
+        "years": [
+          "2024"
+        ],
+        "is_multi_year": true
+      },
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-05-17-007",
+      "purchaser": "Erika Fairman and Vico Rust",
+      "party_size": 2,
+      "email": "Erika.fairman@gmail.com",
+      "notes": "Vico and Erika from Snowgoose One lactose free (dairy free) butter & goat cheese are ok!",
+      "allergens": [
+        "dairy"
+      ],
+      "returning": null,
+      "is_allergen_party": true
+    },
+    {
+      "id": "g-2026-05-17-008",
+      "purchaser": "Sidney Wuellner",
+      "party_size": 2,
+      "email": "sidneywuellner@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-05-17-009",
+      "purchaser": "Thomas Finley",
+      "party_size": 2,
+      "email": "tomfinley1@comcast.net",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-05-17-010",
+      "purchaser": "Rekha Ravindran",
+      "party_size": 2,
+      "email": "rravin22@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-05-17-011",
+      "purchaser": "Shema Rezanejad",
+      "party_size": 4,
+      "email": "shemareza@outlook.com",
+      "notes": "One guest has a seafood allergy",
+      "allergens": [
+        "no fish"
+      ],
+      "returning": {
+        "prior_count": 1,
+        "years": [
+          "2024"
+        ],
+        "is_multi_year": true
+      },
+      "is_allergen_party": true
+    }
+  ]
+}
