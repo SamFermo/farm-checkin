@@ -1,0 +1,123 @@
+{
+  "dinner_date": "2026-07-11",
+  "display_date": "Saturday, July 11, 2026",
+  "seated_covers": 26,
+  "party_count": 10,
+  "cancelled": [],
+  "guests": [
+    {
+      "id": "g-2026-07-11-001",
+      "purchaser": "Keriann Y Snider",
+      "party_size": 2,
+      "email": "ky2wong@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-07-11-002",
+      "purchaser": "Henry Baba-Weiss",
+      "party_size": 2,
+      "email": "henry.babaweiss@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-07-11-003",
+      "purchaser": "Johnathan Davis",
+      "party_size": 2,
+      "email": "farm@sanepost.com",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-07-11-004",
+      "purchaser": "Allan Olson",
+      "party_size": 2,
+      "email": "allan98257@gmail.com",
+      "notes": "3 times this summer",
+      "allergens": [],
+      "returning": {
+        "prior_count": 1,
+        "years": [
+          "2026"
+        ],
+        "is_multi_year": false
+      },
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-07-11-005",
+      "purchaser": "Katelan Halgren",
+      "party_size": 2,
+      "email": "Katelan.halgren@gmail.com",
+      "notes": "1- gluten free",
+      "allergens": [
+        "GF"
+      ],
+      "returning": null,
+      "is_allergen_party": true
+    },
+    {
+      "id": "g-2026-07-11-006",
+      "purchaser": "Alan Chen",
+      "party_size": 2,
+      "email": "alanchen1st@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-07-11-007",
+      "purchaser": "Scott Shapiro",
+      "party_size": 2,
+      "email": "",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-07-11-008",
+      "purchaser": "Jenilee  Caldwell",
+      "party_size": 4,
+      "email": "jenileecaldwell@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-07-11-009",
+      "purchaser": "Robert Ashby",
+      "party_size": 4,
+      "email": "ashbymail@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-07-11-010",
+      "purchaser": "Lucilania m da Paz",
+      "party_size": 4,
+      "email": "Lucilania.net@hotmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": {
+        "prior_count": 1,
+        "years": [
+          "2025"
+        ],
+        "is_multi_year": true
+      },
+      "is_allergen_party": false
+    }
+  ]
+}
