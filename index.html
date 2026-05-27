@@ -858,16 +858,18 @@
   <span id="sync-status" class="sync-status local">localStorage only — set FIREBASE_CONFIG in window for multi-device sync</span>
 </div>
 
-<!-- Optional Firebase config — paste your project config here to enable realtime sync -->
+<!-- Firebase config — project: swan-house-checkin (sanfermoseattle.com workspace) -->
+<!-- Web API keys are intentionally embedded; security is enforced by Firestore Rules
+     (auth required) and Anonymous auth. Locked down 2026-05-27. -->
 <script>
-  // To enable multi-device sync, set this with your Firebase project config:
-  // window.FIREBASE_CONFIG = {
-  //   apiKey: "...",
-  //   authDomain: "...",
-  //   projectId: "...",
-  //   appId: "...",
-  // };
-  // Until set, the app falls back to localStorage (single-device only).
+  window.FIREBASE_CONFIG = {
+    apiKey: "AIzaSyDEOMCOO0EH1RV4vogLF4aOWD0e52dsOOI",
+    authDomain: "swan-house-checkin.firebaseapp.com",
+    projectId: "swan-house-checkin",
+    storageBucket: "swan-house-checkin.firebasestorage.app",
+    messagingSenderId: "743743999844",
+    appId: "1:743743999844:web:e124dd6fa5f791f87b7471"
+  };
 </script>
 
 <!-- Firebase SDK (only loaded if config is present) -->
@@ -899,7 +901,7 @@
   // ====================================================================
   // CONFIG + STATE
   // ====================================================================
-  const VERSION = "v1.4";
+  const VERSION = "v1.5";
   const DATA_PATH = "data";
   const params = new URLSearchParams(window.location.search);
   const today = new Date().toISOString().split('T')[0];
