@@ -759,6 +759,32 @@
     font-style: italic;
   }
   .error { color: var(--rust); }
+
+  /* ===== PHONE LAYOUT ===== */
+  /* Narrow viewports stack the three tables vertically instead of cramming
+     C-B-A side-by-side. Each table then has the full width to itself, so seats
+     stay readable instead of compressing into illegibility.
+     Order top→bottom matches the original left→right: C (fence) → B → A (driveway). */
+  @media (max-width: 600px) {
+    .seating-view { padding: 12px 10px 80px; }
+    .tables-canvas {
+      padding: 14px 8px 18px;
+      min-height: 0;
+    }
+    /* Horizontal fence/driveway labels don't apply when stacked — hide them
+       and label each table with its own micro-orientation hint instead. */
+    .canvas-row-labels { display: none; }
+    .tables-row {
+      grid-template-columns: 1fr;
+      gap: 22px;
+    }
+    /* Picker tightens up too — 130px min instead of 160px gets one extra column. */
+    .picker-grid {
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    }
+    .endcap-col .seat { width: 44px; height: 44px; }
+    .table-rect { height: 48px; font-size: 22px; }
+  }
 </style>
 </head>
 <body>
@@ -873,7 +899,7 @@
   // ====================================================================
   // CONFIG + STATE
   // ====================================================================
-  const VERSION = "v1.3";
+  const VERSION = "v1.4";
   const DATA_PATH = "data";
   const params = new URLSearchParams(window.location.search);
   const today = new Date().toISOString().split('T')[0];
