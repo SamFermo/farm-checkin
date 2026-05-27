@@ -1,0 +1,147 @@
+{
+  "dinner_date": "2026-05-23",
+  "display_date": "Saturday, May 23, 2026",
+  "seated_covers": 26,
+  "party_count": 11,
+  "cancelled": [
+    {
+      "id": "g-2026-05-23-003",
+      "purchaser": "Manuela Giese",
+      "party_size": 2,
+      "email": "manuela.giese@icloud.com",
+      "notes": "missed dinner",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    }
+  ],
+  "guests": [
+    {
+      "id": "g-2026-05-23-001",
+      "purchaser": "Aaron Stephens",
+      "party_size": 2,
+      "email": "aaronjst93@gmail.com",
+      "notes": "I missed this purchase",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-05-23-002",
+      "purchaser": "Allan Olson",
+      "party_size": 2,
+      "email": "allan98257@gmail.com",
+      "notes": "3 times this summer",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-05-23-004",
+      "purchaser": "TROY PHILP",
+      "party_size": 2,
+      "email": "troyphilp@hotmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": {
+        "prior_count": 3,
+        "years": [
+          "2023",
+          "2024",
+          "2025"
+        ],
+        "is_multi_year": true
+      },
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-05-23-005",
+      "purchaser": "Teresa Nehls",
+      "party_size": 2,
+      "email": "Tnehls5@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-05-23-006",
+      "purchaser": "Robert Snyder",
+      "party_size": 2,
+      "email": "robert@cmswa.com",
+      "notes": "together",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-05-23-007",
+      "purchaser": "Lillian Henkel",
+      "party_size": 2,
+      "email": "Lilyhenkel@hotmail.com",
+      "notes": "Kate McDonald Party",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-05-23-008",
+      "purchaser": "Kate Mcdonald",
+      "party_size": 2,
+      "email": "Katemcdonald7@yahoo.com",
+      "notes": "Kate McDonald Party (this party N/A)",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-05-23-009",
+      "purchaser": "Thomas Snyder",
+      "party_size": 2,
+      "email": "snyders1234@msn.com",
+      "notes": "together",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-05-23-010",
+      "purchaser": "katelyn a kline",
+      "party_size": 2,
+      "email": "katelyn.kline02@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-05-23-011",
+      "purchaser": "Haley McColgan",
+      "party_size": 4,
+      "email": "Haley.mccolgan@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": {
+        "prior_count": 1,
+        "years": [
+          "2024"
+        ],
+        "is_multi_year": true
+      },
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-05-23-012",
+      "purchaser": "Catherine J Trogdon",
+      "party_size": 4,
+      "email": "Trogdon.cj@gmail.com",
+      "notes": "one (GF), one NA Heidi Swartz may bing crackers and may also be a pain in the ass",
+      "allergens": [
+        "GF",
+        "NA"
+      ],
+      "returning": null,
+      "is_allergen_party": true
+    }
+  ]
+}
