@@ -1,0 +1,81 @@
+{
+  "dinner_date": "2026-07-19",
+  "display_date": "Sunday, July 19, 2026",
+  "seated_covers": 22,
+  "party_count": 6,
+  "cancelled": [],
+  "guests": [
+    {
+      "id": "g-2026-07-19-001",
+      "purchaser": "Charles Eberhardt",
+      "party_size": 2,
+      "email": "c.n.eberhardt@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-07-19-002",
+      "purchaser": "Carol Herrick",
+      "party_size": 2,
+      "email": "herrickfamily@comcast.net",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-07-19-003",
+      "purchaser": "Yaskara Reyna",
+      "party_size": 2,
+      "email": "Gjcardenas@live.com",
+      "notes": "",
+      "allergens": [],
+      "returning": {
+        "prior_count": 2,
+        "years": [
+          "2024"
+        ],
+        "is_multi_year": true
+      },
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-07-19-004",
+      "purchaser": "AMANDA NELSON",
+      "party_size": 4,
+      "email": "amnelly206@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-07-19-005",
+      "purchaser": "Alana Roozen",
+      "party_size": 6,
+      "email": "Alana.Rospond@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": {
+        "prior_count": 1,
+        "years": [
+          "2024"
+        ],
+        "is_multi_year": true
+      },
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-07-19-006",
+      "purchaser": "Leah Churinskas",
+      "party_size": 6,
+      "email": "Leahe314@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    }
+  ]
+}
