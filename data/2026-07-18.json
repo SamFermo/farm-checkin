@@ -1,0 +1,104 @@
+{
+  "dinner_date": "2026-07-18",
+  "display_date": "Saturday, July 18, 2026",
+  "seated_covers": 24,
+  "party_count": 8,
+  "cancelled": [],
+  "guests": [
+    {
+      "id": "g-2026-07-18-001",
+      "purchaser": "Kasey Ewing",
+      "party_size": 2,
+      "email": "Kaseyewing1969@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-07-18-002",
+      "purchaser": "Andrew Preston",
+      "party_size": 2,
+      "email": "contact@andrewsimonpreston.com",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-07-18-003",
+      "purchaser": "Leo Gauthier",
+      "party_size": 2,
+      "email": "soxfan0138@yahoo.com",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-07-18-004",
+      "purchaser": "Amanda Ogus Cook",
+      "party_size": 2,
+      "email": "amanda.ogus@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-07-18-005",
+      "purchaser": "Todd Rosin",
+      "party_size": 2,
+      "email": "joepinstripe@hotmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": {
+        "prior_count": 2,
+        "years": [
+          "2023",
+          "2024"
+        ],
+        "is_multi_year": true
+      },
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-07-18-006",
+      "purchaser": "Thomas Mulvey",
+      "party_size": 4,
+      "email": "Tjmulvey@gmail.com",
+      "notes": "One guest is dairy intolerant, asked them to reach out",
+      "allergens": [
+        "dairy"
+      ],
+      "returning": null,
+      "is_allergen_party": true
+    },
+    {
+      "id": "g-2026-07-18-007",
+      "purchaser": "Sara M Wainwright",
+      "party_size": 4,
+      "email": "saramwj@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-07-18-008",
+      "purchaser": "Lindi D Wood",
+      "party_size": 6,
+      "email": "lindiwood55@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": {
+        "prior_count": 2,
+        "years": [
+          "2024"
+        ],
+        "is_multi_year": true
+      },
+      "is_allergen_party": false
+    }
+  ]
+}
