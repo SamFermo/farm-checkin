@@ -1,0 +1,1771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Farm Dinner Check-in">
+<title>Farm Dinner Check-in</title>
+<style>
+  :root {
+    /* Palette pulled from the pergola: candle-cream paper, wood-stained beams,
+       garden green foliage, rust throws over dark woven chairs. */
+    --bg: #f4ede0;             /* warm candlelit cream */
+    --bg-deeper: #ece2cc;      /* slight wood-shadow on edges */
+    --card: #fbf6ea;           /* linen page */
+    --card-edge: #d8c8a8;      /* subtle aged-paper border */
+    --border: #d8c8a8;
+    --border-soft: #e6d8b8;
+    --text: #2a2418;           /* warm near-black */
+    --text-soft: #6a5e48;      /* aged ink */
+    --text-mute: #a89a78;
+    --accent: #4a6a3a;         /* deep garden green */
+    --accent-dark: #2e4624;
+    --accent-soft: #c8d6b8;
+    --rust: #b04a1a;           /* the throw-blanket accent */
+    --rust-soft: #f4dec8;
+    --gold: #a8842c;           /* candle-flame gold */
+    --gold-soft: #f0e4c4;
+    --wood: #5a3a22;           /* table-and-beam stain */
+    --wood-soft: #8a6a4a;
+    --allergen-bg: #fae0c8;
+    --allergen-border: var(--rust);
+    --returning-bg: var(--gold-soft);
+    --returning-border: var(--gold);
+    --cancel-bg: #e8e0d0;
+    --cancel-border: #998a70;
+    --selected-bg: #fff0c8;
+    --selected-border: #c8a040;
+    --shadow: 0 1px 2px rgba(58, 42, 22, 0.06);
+    --shadow-lift: 0 2px 6px rgba(58, 42, 22, 0.12);
+    --radius: 6px;
+  }
+
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.4;
+    overscroll-behavior: contain;
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  header {
+    background:
+      linear-gradient(to bottom, var(--card) 0%, var(--card) 88%, var(--bg) 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 18px 10px;
+    position: sticky; top: 0; z-index: 10;
+    box-shadow: var(--shadow);
+    text-align: center;
+  }
+  .farm-name {
+    font-family: 'Caladea', Georgia, 'Times New Roman', serif;
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--wood-soft);
+    margin: 0 0 2px;
+    font-weight: 600;
+  }
+  .farm-name::before,
+  .farm-name::after {
+    content: '·'; margin: 0 8px; color: var(--text-mute);
+  }
+  .dinner-date {
+    font-family: 'Caladea', Georgia, serif;
+    font-size: 22px; font-weight: 700;
+    color: var(--text);
+    margin: 0 0 6px;
+    letter-spacing: 0.3px;
+  }
+  .dinner-switcher {
+    display: flex; align-items: center; justify-content: center;
+    gap: 6px;
+    margin: 0 0 8px;
+    font-family: 'Caladea', Georgia, serif;
+  }
+  .dinner-switcher[hidden] { display: none; }
+  .dinner-nav {
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--accent-dark);
+    width: 28px; height: 28px;
+    border-radius: 999px;
+    font-size: 16px; line-height: 1;
+    cursor: pointer;
+    -webkit-appearance: none;
+    font-family: 'Caladea', Georgia, serif;
+    padding: 0;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
+  .dinner-nav:disabled { opacity: 0.3; cursor: default; }
+  .dinner-nav:not(:disabled):active { background: var(--gold-soft); }
+  .dinner-select {
+    font-family: 'Caladea', Georgia, serif;
+    font-size: 12px; font-style: italic;
+    color: var(--text-soft);
+    background-color: transparent;
+    border: 1px solid var(--gold);
+    border-radius: 999px;
+    padding: 4px 24px 4px 12px;
+    -webkit-appearance: none;
+    appearance: none;
+    background-image:
+      linear-gradient(45deg,  transparent 50%, var(--accent-dark) 50%),
+      linear-gradient(135deg, var(--accent-dark) 50%, transparent 50%);
+    background-position: calc(100% - 12px) 50%, calc(100% - 8px) 50%;
+    background-size: 4px 4px, 4px 4px;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    max-width: 260px;
+    text-overflow: ellipsis;
+  }
+  .dinner-select:focus { outline: 1.5px solid var(--accent); }
+  .counts {
+    display: flex; gap: 14px;
+    font-size: 13px; color: var(--text-soft);
+    flex-wrap: wrap;
+    justify-content: center;
+    font-family: 'Caladea', Georgia, serif;
+    font-style: italic;
+  }
+  .counts strong { color: var(--text); font-weight: 700; font-style: normal; }
+  .counts .live { color: var(--accent); font-weight: 700; font-style: normal; }
+  .sync-status {
+    font-size: 11px; color: var(--text-mute);
+    margin-left: auto;
+  }
+  .sync-status.online::before { content: '● '; color: var(--accent); }
+  .sync-status.offline::before { content: '● '; color: #c04040; }
+  .sync-status.local::before { content: '◌ '; color: var(--text-mute); }
+
+  /* View toggle (List <-> Seating) */
+  .view-toggle {
+    display: flex;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    position: sticky; top: 92px; z-index: 9;
+  }
+  .vtab {
+    flex: 1;
+    background: transparent; border: 0;
+    padding: 12px 8px;
+    font-size: 11px; font-weight: 700;
+    color: var(--text-soft);
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    font-family: 'Caladea', Georgia, serif;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+  }
+  .vtab.active {
+    color: var(--accent-dark);
+    border-bottom-color: var(--accent);
+  }
+
+  /* Tabs within list view */
+  .tabs {
+    display: flex;
+    background: var(--card);
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .tab {
+    flex: 1; background: transparent; border: 0;
+    padding: 12px 8px;
+    font-size: 13px; font-weight: 600;
+    color: var(--text-soft);
+    border-bottom: 2px solid transparent;
+    cursor: pointer; font-family: inherit;
+  }
+  .tab.active { color: var(--text); border-bottom-color: var(--accent); }
+  .tab .count {
+    display: inline-block; margin-left: 6px;
+    padding: 1px 8px; border-radius: 10px;
+    background: var(--bg-deeper); font-size: 12px; color: var(--text-soft);
+    font-variant-numeric: tabular-nums;
+  }
+  .tab.active .count { background: var(--accent); color: var(--card); }
+
+  .filter-bar { padding: 10px 18px 0; background: var(--bg); }
+  .filter-input {
+    width: 100%; padding: 10px 14px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--card);
+    font-size: 15px; font-family: 'Caladea', Georgia, serif;
+    font-style: italic;
+    color: var(--text);
+    -webkit-appearance: none;
+  }
+  .filter-input::placeholder { color: var(--text-mute); }
+  .filter-input:focus {
+    outline: 1.5px solid var(--accent);
+    outline-offset: -1px;
+    font-style: normal;
+  }
+
+  .list { padding: 12px 18px 80px; }
+  .empty-state {
+    text-align: center; color: var(--text-mute);
+    padding: 60px 20px;
+    font-family: 'Caladea', Georgia, serif;
+    font-style: italic; font-size: 15px;
+  }
+
+  .guest-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin-bottom: 8px;
+    padding: 12px 14px;
+    box-shadow: var(--shadow);
+    cursor: pointer;
+    transition: transform 0.12s, box-shadow 0.12s;
+    user-select: none;
+  }
+  .guest-card:active { transform: scale(0.985); box-shadow: none; }
+  .guest-card.checked-in {
+    background: #ebe6d4;
+    border-color: #c8b88a;
+  }
+  .guest-card.cancelled {
+    background: var(--cancel-bg); opacity: 0.55;
+  }
+  .guest-card.selected {
+    background: var(--selected-bg);
+    border-color: var(--selected-border);
+    box-shadow: 0 0 0 2px var(--selected-border);
+  }
+  .guest-card.fully-seated {
+    opacity: 0.55;
+  }
+
+  .guest-row1 {
+    display: flex; justify-content: space-between;
+    align-items: baseline; gap: 10px;
+  }
+  .guest-name {
+    font-family: 'Caladea', Georgia, serif;
+    font-size: 18px; font-weight: 700; margin: 0;
+    letter-spacing: 0.1px;
+  }
+  .guest-card.cancelled .guest-name {
+    text-decoration: line-through; text-decoration-color: #888;
+  }
+  .party-badge {
+    display: inline-block;
+    background: var(--bg-deeper); color: var(--text);
+    padding: 3px 10px; border-radius: 12px;
+    font-size: 13px; font-weight: 600;
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+  .party-badge.partial {
+    background: var(--gold-soft); color: var(--gold);
+    border: 1px solid var(--gold);
+  }
+  .party-badge.full {
+    background: var(--accent-soft); color: var(--accent-dark);
+    border: 1px solid var(--accent);
+  }
+
+  .guest-badges {
+    margin-top: 6px;
+    display: flex; flex-wrap: wrap; gap: 5px;
+  }
+  .badge {
+    display: inline-block;
+    padding: 2px 7px; border-radius: 8px;
+    font-size: 10.5px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.6px;
+  }
+  .badge-allergen {
+    background: var(--allergen-bg); color: var(--allergen-border);
+    border: 1px solid var(--allergen-border);
+  }
+  .badge-returning {
+    background: var(--returning-bg); color: var(--gold);
+    border: 1px solid var(--gold);
+  }
+  .badge-checked-in {
+    background: var(--accent-soft); color: var(--accent-dark);
+    border: 1px solid var(--accent);
+  }
+  .badge-seated {
+    background: #d8c8a8; color: var(--wood);
+    border: 1px solid var(--wood);
+  }
+
+  .guest-notes {
+    margin-top: 6px;
+    font-size: 13px; color: var(--text-soft);
+    font-family: 'Caladea', Georgia, serif;
+    font-style: italic; line-height: 1.4;
+  }
+  .timestamp {
+    margin-top: 5px; font-size: 11px; color: var(--text-mute);
+    font-family: 'Caladea', Georgia, serif;
+    font-style: italic;
+  }
+
+  /* Modal */
+  .modal-backdrop {
+    position: fixed; inset: 0;
+    background: rgba(42, 36, 24, 0.55);
+    display: none; align-items: center; justify-content: center;
+    z-index: 100; padding: 20px;
+  }
+  .modal-backdrop.open { display: flex; }
+  .modal {
+    background: var(--card);
+    border: 1px solid var(--card-edge);
+    border-radius: 10px;
+    max-width: 460px; width: 100%;
+    padding: 26px 26px 22px;
+    box-shadow: 0 20px 60px rgba(42, 30, 18, 0.4);
+    max-height: 90vh; overflow-y: auto;
+  }
+  .modal-title {
+    font-family: 'Caladea', Georgia, serif;
+    font-size: 24px; font-weight: 700; margin: 0 0 4px;
+    color: var(--text);
+  }
+  .modal-sub {
+    color: var(--text-soft);
+    font-family: 'Caladea', Georgia, serif;
+    font-style: italic;
+    font-size: 14px; margin: 0 0 18px;
+  }
+  .modal-section { margin: 12px 0; }
+  .modal-section h4 {
+    font-size: 10px; text-transform: uppercase; letter-spacing: 1.4px;
+    color: var(--wood-soft); margin: 0 0 5px;
+    font-family: 'Caladea', Georgia, serif;
+    font-weight: 700;
+  }
+  .modal-section .body { font-size: 14.5px; line-height: 1.45; }
+  .modal-section .body.allergen {
+    background: var(--allergen-bg); border-left: 3px solid var(--allergen-border);
+    padding: 9px 12px; border-radius: 3px;
+  }
+  .modal-section .body.returning {
+    background: var(--returning-bg); border-left: 3px solid var(--returning-border);
+    padding: 9px 12px; border-radius: 3px;
+  }
+  .modal-section .seats-list {
+    background: #ebdfc4; border-left: 3px solid var(--wood);
+    color: var(--wood);
+    padding: 9px 12px; border-radius: 3px; font-size: 14px;
+    font-weight: 600;
+  }
+  .modal-note-input {
+    width: 100%; min-height: 60px;
+    padding: 10px 12px;
+    border: 1px solid var(--border); border-radius: 6px;
+    background: var(--bg);
+    font-family: 'Caladea', Georgia, serif;
+    font-size: 14.5px; font-style: italic;
+    resize: vertical; -webkit-appearance: none;
+    color: var(--text);
+  }
+  .modal-note-input::placeholder { color: var(--text-mute); }
+  .modal-note-input:focus { outline: 1.5px solid var(--accent); outline-offset: -1px; font-style: normal; }
+  .modal-actions {
+    display: flex; gap: 8px; margin-top: 16px;
+  }
+  .btn {
+    flex: 1;
+    padding: 13px 16px;
+    border: 0; border-radius: 6px;
+    font-size: 14px; font-weight: 700;
+    cursor: pointer;
+    font-family: 'Caladea', Georgia, serif;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+  }
+  .btn-primary { background: var(--accent); color: var(--card); }
+  .btn-primary:active { background: var(--accent-dark); }
+  .btn-secondary {
+    background: var(--bg-deeper); color: var(--text-soft);
+    border: 1px solid var(--border);
+  }
+  .btn-danger { background: var(--rust); color: var(--card); }
+
+  /* Toast */
+  .toast {
+    position: fixed; bottom: 40px; left: 50%;
+    transform: translateX(-50%);
+    background: var(--wood); color: var(--card);
+    padding: 10px 18px; border-radius: 6px;
+    font-size: 13px; z-index: 200;
+    box-shadow: 0 4px 20px rgba(42, 30, 18, 0.35);
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.2s;
+    font-family: 'Caladea', Georgia, serif;
+    font-style: italic;
+    letter-spacing: 0.3px;
+  }
+  .toast.show { opacity: 1; }
+
+  /* ===== SEATING VIEW ===== */
+  .seating-view {
+    padding: 14px 18px 80px;
+  }
+  .seating-help {
+    background: var(--gold-soft); border: 1px solid var(--gold);
+    border-left: 3px solid var(--gold);
+    border-radius: 4px;
+    padding: 9px 14px;
+    margin-bottom: 12px;
+    font-size: 13px; color: var(--text-soft);
+    font-family: 'Caladea', Georgia, serif;
+    font-style: italic;
+    line-height: 1.5;
+  }
+  .seating-help strong {
+    color: var(--text); font-style: normal; font-weight: 700;
+  }
+
+  .endcap-controls {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 8px 14px;
+    margin-bottom: 14px;
+    display: flex; gap: 14px; flex-wrap: wrap;
+    font-size: 12px; color: var(--text-soft);
+    align-items: center;
+    font-family: 'Caladea', Georgia, serif;
+  }
+  .endcap-controls > span:first-child {
+    font-weight: 700; color: var(--wood);
+    text-transform: uppercase; letter-spacing: 1.2px;
+    font-size: 11px;
+  }
+  .endcap-controls label {
+    display: inline-flex; align-items: center; gap: 6px;
+    cursor: pointer; user-select: none;
+  }
+  .endcap-controls input[type="checkbox"] {
+    width: 16px; height: 16px; cursor: pointer;
+    accent-color: var(--accent);
+  }
+  #seat-totals {
+    font-family: 'Caladea', Georgia, serif;
+    font-style: italic;
+    color: var(--wood-soft);
+  }
+
+  /* Picker is a horizontal grid above the tables (full-width). */
+  .guest-picker {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 10px 12px 12px;
+    margin-bottom: 14px;
+  }
+  .guest-picker .picker-head {
+    display: flex; align-items: baseline; justify-content: space-between;
+    margin-bottom: 8px; gap: 12px; flex-wrap: wrap;
+  }
+  .guest-picker h3 {
+    font-family: 'Caladea', Georgia, serif;
+    font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px;
+    color: var(--wood); margin: 0;
+    font-weight: 700;
+  }
+  .guest-picker .picker-help {
+    font-family: 'Caladea', Georgia, serif;
+    font-size: 11.5px; color: var(--text-mute);
+    margin: 0; font-style: italic;
+    line-height: 1.4;
+  }
+  .picker-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 6px;
+  }
+  .picker-card {
+    padding: 7px 9px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: background 0.1s, border-color 0.1s, transform 0.1s;
+    background: var(--bg);
+    min-width: 0;
+  }
+  .picker-card:active { transform: scale(0.97); }
+  .picker-card.fully-seated {
+    background: var(--bg-deeper); opacity: 0.45;
+  }
+  .picker-card.selected {
+    background: var(--selected-bg);
+    border-color: var(--selected-border);
+    box-shadow: 0 0 0 2px var(--selected-border);
+  }
+  .picker-card .name {
+    font-family: 'Caladea', Georgia, serif;
+    font-weight: 700;
+    color: var(--text);
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  .picker-card .meta {
+    font-size: 10.5px; color: var(--text-soft);
+    margin-top: 3px;
+    font-family: 'Caladea', Georgia, serif;
+    font-style: italic;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  .picker-card .pill {
+    display: inline-block; padding: 1px 5px;
+    border-radius: 5px; font-size: 9px;
+    font-weight: 700; margin-right: 3px;
+    text-transform: uppercase; letter-spacing: 0.4px;
+    font-style: normal;
+    vertical-align: 1px;
+  }
+  .pill-allergen { background: var(--allergen-bg); color: var(--allergen-border); border: 0.5px solid var(--allergen-border); }
+  .pill-returning { background: var(--returning-bg); color: var(--gold); border: 0.5px solid var(--gold); }
+
+  /* Tables canvas — styled like the actual pergola (top-down view) */
+  .tables-canvas {
+    background:
+      radial-gradient(ellipse at center, #ebe0c8 0%, #d8c8a8 100%);
+    border: 1px solid var(--wood-soft);
+    border-radius: var(--radius);
+    padding: 18px 14px 22px;
+    min-height: 600px;
+    position: relative;
+  }
+  .tables-canvas::before {
+    content: '';
+    position: absolute; inset: 8px;
+    border: 1px dashed var(--card-edge);
+    border-radius: 4px;
+    pointer-events: none;
+  }
+  .canvas-row-labels {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 6px 10px;
+    color: var(--wood);
+    font-size: 10px;
+    text-transform: uppercase; letter-spacing: 2px;
+    font-family: 'Caladea', Georgia, serif;
+    font-weight: 700;
+  }
+  .canvas-row-labels .row-label-spacer { flex: 1; }
+
+  /* Three tables in a single horizontal row across the screen: C left, B middle, A right.
+     Column widths weighted by seat count so they look proportionally correct (8/10/8). */
+  .tables-row {
+    display: grid;
+    grid-template-columns: 8fr 10fr 8fr;
+    gap: 10px;
+    align-items: center;
+  }
+
+  /* Each table is a horizontal block (long axis horizontal). End-caps sit at the LEFT
+     short edge of C and the RIGHT short edge of A — outer ends of the whole row. */
+  .table-block {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 4px;
+    align-items: center;
+  }
+  .table-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+  }
+  .seat-row {
+    display: flex;
+    gap: 4px;
+    min-width: 0;
+  }
+  .seat-row .seat { flex: 1; }
+
+  /* The actual wood table — long plank, dark stain, horizontal */
+  .table-rect {
+    border: 1.5px solid #2a1a0e;
+    border-radius: 2px;
+    height: 56px;
+    display: flex; align-items: center; justify-content: center;
+    background:
+      linear-gradient(to bottom,
+        #6a4628 0%,
+        #4a2e18 35%,
+        #5a3a22 65%,
+        #3a2412 100%);
+    font-family: 'Caladea', Georgia, serif;
+    font-size: 26px; font-weight: 700;
+    color: #f4dec8;
+    letter-spacing: 4px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+    box-shadow:
+      inset 0 1px 2px rgba(255, 220, 180, 0.15),
+      inset 0 -2px 4px rgba(0, 0, 0, 0.3),
+      0 2px 4px rgba(42, 30, 18, 0.3);
+    position: relative;
+  }
+  .table-rect::before,
+  .table-rect::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; height: 1px;
+    background: rgba(255, 220, 180, 0.08);
+  }
+  .table-rect::before { top: 30%; }
+  .table-rect::after { top: 60%; }
+
+  /* End-cap column (left of C, right of A) — single seat, vertically centered */
+  .endcap-col {
+    display: flex; align-items: center;
+  }
+  .endcap-col .seat {
+    width: 56px;
+    height: 56px;
+  }
+  /* Chairs: woven dark wicker look */
+  .seat {
+    flex: 1;
+    min-width: 0;
+    height: 38px;
+    border: 1px solid #6a4a32;
+    border-radius: 4px;
+    background:
+      repeating-linear-gradient(
+        45deg,
+        #6a4a32 0px,
+        #6a4a32 1px,
+        #5a3a22 1px,
+        #5a3a22 3px
+      );
+    color: #c8b89a;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    font-size: 10px;
+    cursor: pointer;
+    transition: transform 0.1s, box-shadow 0.1s, background 0.15s;
+    position: relative;
+    user-select: none;
+  }
+  .seat:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(42, 30, 18, 0.3);
+  }
+  .seat-num {
+    font-size: 9px; opacity: 0.7;
+    font-family: 'Caladea', Georgia, serif;
+  }
+  .seat-name {
+    font-size: 10.5px; font-weight: 700;
+    white-space: nowrap; overflow: hidden;
+    text-overflow: ellipsis; max-width: 100%;
+    padding: 0 2px;
+    font-family: 'Caladea', Georgia, serif;
+  }
+  .seat.occupied {
+    background: var(--accent-soft);
+    border-color: var(--accent);
+    color: var(--accent-dark);
+  }
+  .seat.occupied .seat-num {
+    color: var(--accent-dark);
+  }
+  /* When occupied: chair has a "linen napkin folded on it" feel — pale, warm */
+  /* Allergen seats get a rust band — like the orange throws on the chairs */
+  .seat.occupied.allergen-here {
+    background: var(--allergen-bg);
+    border-color: var(--allergen-border);
+    color: var(--allergen-border);
+  }
+  .seat.occupied.allergen-here::before {
+    content: '';
+    position: absolute; top: 0; bottom: 0; left: 0; width: 3px;
+    background: var(--rust);
+    border-radius: 2px 0 0 2px;
+  }
+  .seat.occupied.returning-here::after {
+    content: '★';
+    position: absolute; top: 2px; right: 3px;
+    color: var(--gold);
+    font-size: 10px;
+    text-shadow: 0 0 2px rgba(168, 132, 44, 0.4);
+  }
+  /* End-cap chairs */
+  .seat.endcap {
+    border-style: dashed;
+    background:
+      repeating-linear-gradient(
+        45deg,
+        #8a6a4a 0px, #8a6a4a 1px,
+        #7a5a3a 1px, #7a5a3a 3px
+      );
+    color: #c8b89a;
+  }
+  .seat.endcap.disabled {
+    opacity: 0.25;
+    pointer-events: none;
+  }
+  /* Natural-dye party colors — soften linens on a wood table */
+  .seat.occupied.party-1  { background: #c8d8b8; border-color: #6a8a4a; color: #2a4a1a; }   /* sage */
+  .seat.occupied.party-2  { background: #f0d0b8; border-color: #b04a1a; color: #6a2a10; }   /* rust */
+  .seat.occupied.party-3  { background: #c8c8d4; border-color: #5a6a90; color: #2a3a5a; }   /* slate */
+  .seat.occupied.party-4  { background: #ecd896; border-color: #a08438; color: #5a4818; }   /* mustard */
+  .seat.occupied.party-5  { background: #d8c0d4; border-color: #806080; color: #4a2a4a; }   /* eggplant */
+  .seat.occupied.party-6  { background: #e4c4a8; border-color: #946a4a; color: #5a3a22; }   /* terracotta */
+  .seat.occupied.party-7  { background: #c0d8b0; border-color: #5a7a3a; color: #2a4a18; }   /* fern */
+  .seat.occupied.party-8  { background: #ecc8c8; border-color: #a06868; color: #5a3030; }   /* dusty rose */
+  .seat.occupied.party-9  { background: #d8d4a8; border-color: #807548; color: #3a3818; }   /* olive */
+  .seat.occupied.party-10 { background: #e8c8a4; border-color: #8a5838; color: #4a2a14; }   /* sienna */
+  .seat.occupied.party-11 { background: #c0d4d8; border-color: #5a808a; color: #2a4a5a; }   /* sky */
+  .seat.occupied.party-12 { background: #d8b8c4; border-color: #805868; color: #403040; }   /* plum */
+
+  .status-footer {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    background: var(--card);
+    border-top: 1px solid var(--border);
+    padding: 6px 18px;
+    font-size: 10.5px; color: var(--wood-soft);
+    text-align: center;
+    padding-bottom: max(6px, env(safe-area-inset-bottom));
+    font-family: 'Caladea', Georgia, serif;
+    font-style: italic;
+  }
+
+  .date-switcher {
+    text-align: center; padding: 8px;
+    background: var(--gold-soft); border-bottom: 1px solid var(--gold);
+    font-size: 13px; color: var(--text-soft);
+    font-family: 'Caladea', Georgia, serif;
+  }
+  .date-switcher a {
+    color: var(--accent-dark); font-weight: 700;
+    text-decoration: none; margin: 0 4px;
+  }
+
+  .loading, .error {
+    text-align: center; padding: 80px 20px;
+    color: var(--text-soft);
+    font-family: 'Caladea', Georgia, serif;
+    font-style: italic;
+  }
+  .error { color: var(--rust); }
+</style>
+</head>
+<body>
+
+<header>
+  <p class="farm-name">Swan House Farm</p>
+  <h1 class="dinner-date" id="dinner-date">Loading…</h1>
+  <div class="dinner-switcher" id="dinner-switcher" hidden>
+    <button class="dinner-nav" id="dinner-prev" aria-label="Previous dinner" type="button">‹</button>
+    <select class="dinner-select" id="dinner-select" aria-label="Switch dinner"></select>
+    <button class="dinner-nav" id="dinner-next" aria-label="Next dinner" type="button">›</button>
+  </div>
+  <div class="counts" id="counts"></div>
+</header>
+
+<div id="date-switcher-container"></div>
+
+<div class="view-toggle">
+  <button class="vtab active" data-view="list">Check-in</button>
+  <button class="vtab" data-view="seating">Seating</button>
+</div>
+
+<div id="list-view">
+  <div class="tabs">
+    <button class="tab active" data-tab="arriving">Arriving <span class="count" id="count-arriving">0</span></button>
+    <button class="tab" data-tab="checked">Checked in <span class="count" id="count-checked">0</span></button>
+    <button class="tab" data-tab="all">All <span class="count" id="count-all">0</span></button>
+  </div>
+  <div class="filter-bar">
+    <input type="text" class="filter-input" id="filter" placeholder="Filter by name or note…" autocomplete="off" autocorrect="off" autocapitalize="off">
+  </div>
+  <div class="list" id="list">
+    <div class="loading">Loading dinner data…</div>
+  </div>
+</div>
+
+<div id="seating-view" style="display:none;">
+  <div class="seating-view">
+    <div class="seating-help">
+      <strong>How to seat:</strong> tap a guest on the left to select them, then tap an open seat on a table. The system will auto-fill the rest of their party in adjacent seats. Tap an occupied seat to clear it.
+    </div>
+    <div class="endcap-controls">
+      <span>End caps:</span>
+      <label><input type="checkbox" id="endcap-A-END"> A · seat 9 (driveway end)</label>
+      <label><input type="checkbox" id="endcap-C-END"> C · seat 5 (fence end)</label>
+      <span style="margin-left:auto;" id="seat-totals"></span>
+    </div>
+    <div class="guest-picker" id="guest-picker"></div>
+    <div class="tables-canvas">
+      <div class="canvas-row-labels">
+        <div class="row-label">← Fence</div>
+        <div class="row-label-spacer"></div>
+        <div class="row-label">Driveway →</div>
+      </div>
+      <div class="tables-row">
+        <div id="table-C"></div>
+        <div id="table-B"></div>
+        <div id="table-A"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="modal-backdrop">
+  <div class="modal" id="modal"></div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<div class="status-footer">
+  <span id="sync-status" class="sync-status local">localStorage only — set FIREBASE_CONFIG in window for multi-device sync</span>
+</div>
+
+<!-- Optional Firebase config — paste your project config here to enable realtime sync -->
+<script>
+  // To enable multi-device sync, set this with your Firebase project config:
+  // window.FIREBASE_CONFIG = {
+  //   apiKey: "...",
+  //   authDomain: "...",
+  //   projectId: "...",
+  //   appId: "...",
+  // };
+  // Until set, the app falls back to localStorage (single-device only).
+</script>
+
+<!-- Firebase SDK (only loaded if config is present) -->
+<script type="module">
+  if (window.FIREBASE_CONFIG) {
+    try {
+      const { initializeApp } = await import('https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js');
+      const { getFirestore, doc, onSnapshot, setDoc, updateDoc, deleteField, serverTimestamp } =
+        await import('https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js');
+      const { getAuth, signInAnonymously } =
+        await import('https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js');
+      window._firebase = { initializeApp, getFirestore, doc, onSnapshot, setDoc, updateDoc, deleteField, serverTimestamp, getAuth, signInAnonymously };
+      const app = initializeApp(window.FIREBASE_CONFIG);
+      window._firebase.app = app;
+      window._firebase.db = getFirestore(app);
+      const auth = getAuth(app);
+      await signInAnonymously(auth);
+      window._firebase.ready = true;
+    } catch (err) {
+      console.error('Firebase init failed, falling back to localStorage:', err);
+    }
+  }
+  // Signal that we're done attempting Firebase init
+  window._firebaseInitialized = true;
+  window.dispatchEvent(new Event('firebase-init-done'));
+</script>
+
+<script>
+  // ====================================================================
+  // CONFIG + STATE
+  // ====================================================================
+  const VERSION = "v1.3";
+  const DATA_PATH = "data";
+  const params = new URLSearchParams(window.location.search);
+  const today = new Date().toISOString().split('T')[0];
+  const initialDateParam = params.get('date');   // explicit user request, may be null
+  let dinnerDate = initialDateParam || today;    // refined after index.json loads
+  let availableDinners = [];                     // populated from data/index.json
+
+  let dinnerData = null;
+  let activeView = 'list';
+  let activeTab = 'arriving';
+  let filterText = '';
+  let selectedGuestId = null;        // for seating mode
+
+  // Unified state: { checkins: {gid: {...}}, seats: {seatId: gid}, endcaps: {seatId: true} }
+  let state = { checkins: {}, seats: {}, endcaps: {} };
+  let stateBackend = 'localStorage';
+  let unsubscribe = null;
+
+  // ====================================================================
+  // TABLE LAYOUT MODEL
+  // ====================================================================
+  // Pergola from Sam's hand-drawn layout:
+  //   C is furthest from service entrance (closest to the fence).
+  //   B is middle. No end-cap possible (sandwiched between A and C).
+  //   A is closest to service entrance (driveway end).
+  //
+  // Seats run around the perimeter of each table. Seat IDs:
+  //   {table}-T{n}  — top long side (seats 5/6/7/... for A/C, 6/7/8/.../10 for B)
+  //   {table}-B{n}  — bottom long side (seats 1/2/3/4 for A/C, 1-5 for B)
+  //   {table}-END   — the single end-cap (only A and C; sits at one specific short edge)
+  //
+  // Visual rendering is "longways" — each table is drawn horizontally on screen.
+  // The bottomSeats array DESCENDS left-to-right so that seats 1+8 (A) and 4+5 (C)
+  // are physically adjacent at the correct short edge.
+  //
+  // For A: end-cap is on the RIGHT (where seat 1 + seat 8 meet — between bottom-right
+  //   and top-right). Functionally seat 9.
+  // For C: end-cap is on the LEFT (where seat 4 + seat 5 meet — between bottom-left
+  //   and top-left). When enabled, it's effectively seat 5, with old 5/6/7/8 bumping
+  //   to 6/7/8/9 (display only; internal seat IDs stay stable).
+  // Tables form a single horizontal row across the screen — C left, B middle, A right.
+  // Each table is a long horizontal rectangle with seats on the top and bottom long
+  // sides; end-caps sit at the OUTER short edges (far left of C, far right of A).
+  //
+  //   topSeats    = the TOP long side, left-to-right (ascending numbers)
+  //   bottomSeats = the BOTTOM long side, left-to-right (DESCENDING numbers)
+  //   endcapSide  = 'left' | 'right' | null
+  //
+  // Perimeter loop (clockwise from bottom-right):
+  //   1 (BR) → 2 → 3 → 4 (BL)
+  //   → 5 (TL) → 6 → 7 → 8 (TR)
+  //   → back to 1
+  // So "4 and 5" short edge = LEFT; "1 and 8" short edge = RIGHT.
+  // C's end-cap at "4 and 5" → LEFT (far left of the row, fence end).
+  // A's end-cap at "1 and 8" → RIGHT (far right of the row, driveway end).
+  const TABLES = [
+    { id: 'C', topSeats: [5, 6, 7, 8],     bottomSeats: [4, 3, 2, 1],     endcapSide: 'left',  label: 'Fence end' },
+    { id: 'B', topSeats: [6, 7, 8, 9, 10], bottomSeats: [5, 4, 3, 2, 1],  endcapSide: null,    label: 'Middle' },
+    { id: 'A', topSeats: [5, 6, 7, 8],     bottomSeats: [4, 3, 2, 1],     endcapSide: 'right', label: 'Driveway end' },
+  ];
+
+  function endcapId(t) { return t.endcapSide ? `${t.id}-END` : null; }
+
+  function seatIdsForTable(t) {
+    const ids = [];
+    if (t.endcapSide === 'left') ids.push(`${t.id}-END`);
+    t.topSeats.forEach(n => ids.push(`${t.id}-T${n}`));
+    t.bottomSeats.forEach(n => ids.push(`${t.id}-B${n}`));
+    if (t.endcapSide === 'right') ids.push(`${t.id}-END`);
+    return ids;
+  }
+
+  function allSeatIds() {
+    return TABLES.flatMap(seatIdsForTable);
+  }
+
+  function isEndcap(seatId) {
+    return seatId.endsWith('-END');
+  }
+
+  // Display label for an end-cap once enabled. For C the end-cap renumbers as "5"
+  // (bumping old 5/6/7/8 to 6/7/8/9 in display only). For A it's seat "9".
+  function endcapLabel(tableId) {
+    return tableId === 'A' ? '9' : '5';
+  }
+  // For C, when end-cap is enabled, original top-row seat N displays as N+1.
+  // Bottom row (1-4) stays the same.
+  function displaySeatNum(tableId, side, originalNum) {
+    if (tableId === 'C' && state.endcaps[`${tableId}-END`] && side === 'T' && originalNum >= 5) {
+      return String(originalNum + 1);
+    }
+    return String(originalNum);
+  }
+
+  function availableSeats() {
+    return allSeatIds().filter(s => {
+      if (state.seats[s]) return false;
+      if (isEndcap(s) && !state.endcaps[s]) return false;
+      return true;
+    });
+  }
+
+  // ====================================================================
+  // STATE BACKEND (localStorage OR Firebase)
+  // ====================================================================
+  function lsKey() { return `farm-checkin-${dinnerDate}`; }
+
+  function loadLocal() {
+    try {
+      const raw = localStorage.getItem(lsKey());
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        state = { checkins: parsed.checkins || {}, seats: parsed.seats || {}, endcaps: parsed.endcaps || {} };
+      }
+    } catch (e) { /* fresh state */ }
+  }
+
+  function saveLocal() {
+    localStorage.setItem(lsKey(), JSON.stringify(state));
+  }
+
+  async function initFirebase() {
+    if (!window._firebase?.ready) return false;
+    const fb = window._firebase;
+    const docRef = fb.doc(fb.db, 'dinners', dinnerDate);
+    // Realtime listener
+    unsubscribe = fb.onSnapshot(docRef, (snap) => {
+      const data = snap.data();
+      if (data) {
+        state = {
+          checkins: data.checkins || {},
+          seats: data.seats || {},
+          endcaps: data.endcaps || {},
+        };
+      } else {
+        // First time on this dinner — write our local state up
+        fb.setDoc(docRef, state, { merge: true });
+      }
+      refresh();
+    }, (err) => {
+      console.error('Firestore listener error:', err);
+      setSyncStatus('offline', 'sync error — local writes will not propagate');
+    });
+    return true;
+  }
+
+  async function pushState() {
+    if (stateBackend === 'firebase') {
+      try {
+        const fb = window._firebase;
+        const docRef = fb.doc(fb.db, 'dinners', dinnerDate);
+        await fb.setDoc(docRef, state, { merge: true });
+        setSyncStatus('online', 'synced');
+      } catch (err) {
+        console.error('Firestore write failed:', err);
+        // Cache locally as a fallback
+        saveLocal();
+        setSyncStatus('offline', 'offline — changes queued locally');
+      }
+    } else {
+      saveLocal();
+    }
+  }
+
+  function setSyncStatus(cls, text) {
+    const el = document.getElementById('sync-status');
+    el.className = `sync-status ${cls}`;
+    el.textContent = text;
+  }
+
+  // ====================================================================
+  // DATA LOADING
+  // ====================================================================
+  async function loadDinner(date) {
+    const url = `${DATA_PATH}/${date}.json`;
+    try {
+      const r = await fetch(url);
+      if (!r.ok) throw new Error(`No dinner data for ${date} (${r.status})`);
+      return await r.json();
+    } catch (err) {
+      try {
+        const idx = await fetch(`${DATA_PATH}/index.json`);
+        if (!idx.ok) throw err;
+        const idxData = await idx.json();
+        return { _missing: true, _index: idxData, _requested: date };
+      } catch (e2) { throw err; }
+    }
+  }
+
+  // ====================================================================
+  // RENDERING — HEADER
+  // ====================================================================
+  function escape(s) {
+    return String(s || '').replace(/[&<>"']/g, c => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;',
+    })[c]);
+  }
+
+  function partyColor(guestId) {
+    // Deterministic color index 1..12 from guest_id
+    const guests = dinnerData?.guests || [];
+    const idx = guests.findIndex(g => g.id === guestId);
+    if (idx < 0) return 1;
+    return (idx % 12) + 1;
+  }
+
+  function partyOf(guestId) {
+    return dinnerData?.guests.find(g => g.id === guestId);
+  }
+
+  function seatsAssignedTo(guestId) {
+    return Object.entries(state.seats)
+      .filter(([_, gid]) => gid === guestId)
+      .map(([s, _]) => s);
+  }
+
+  function isFullySeated(guestId) {
+    const g = partyOf(guestId);
+    return g && seatsAssignedTo(guestId).length >= g.party_size;
+  }
+
+  function renderHeader(d) {
+    document.getElementById('dinner-date').textContent = d.display_date;
+    const total = d.guests.length;
+    const checked = Object.keys(state.checkins).filter(id => state.checkins[id]?.checked_in_at).length;
+    const seated = new Set(Object.values(state.seats)).size;
+    document.getElementById('counts').innerHTML = `
+      <span><strong>${d.seated_covers}</strong> covers · <strong>${d.party_count}</strong> parties</span>
+      <span><span class="live">${checked}</span> / ${total} checked in</span>
+      <span><span class="live">${seated}</span> / ${total} seated</span>
+    `;
+    document.getElementById('count-arriving').textContent = total - checked;
+    document.getElementById('count-checked').textContent = checked;
+    document.getElementById('count-all').textContent = total;
+  }
+
+  // ====================================================================
+  // RENDERING — LIST VIEW
+  // ====================================================================
+  function renderList() {
+    if (!dinnerData) return;
+    const list = document.getElementById('list');
+    let filtered = dinnerData.guests;
+
+    if (activeTab === 'arriving') {
+      filtered = filtered.filter(g => !state.checkins[g.id]?.checked_in_at);
+    } else if (activeTab === 'checked') {
+      filtered = filtered.filter(g => state.checkins[g.id]?.checked_in_at);
+    }
+
+    if (filterText) {
+      const ft = filterText.toLowerCase();
+      filtered = filtered.filter(g =>
+        g.purchaser.toLowerCase().includes(ft) ||
+        (g.notes || '').toLowerCase().includes(ft) ||
+        (g.email || '').toLowerCase().includes(ft)
+      );
+    }
+
+    if (activeTab === 'checked') {
+      filtered = [...filtered].sort((a, b) =>
+        (state.checkins[b.id]?.checked_in_at || '').localeCompare(state.checkins[a.id]?.checked_in_at || '')
+      );
+    } else {
+      filtered = [...filtered].sort((a, b) =>
+        surname(a.purchaser).localeCompare(surname(b.purchaser))
+      );
+    }
+
+    if (filtered.length === 0) {
+      list.innerHTML = `<div class="empty-state">${
+        activeTab === 'arriving' ? 'All guests are checked in.' :
+        activeTab === 'checked' ? 'No one checked in yet.' :
+        'No guests found.'
+      }</div>`;
+      return;
+    }
+
+    list.innerHTML = filtered.map(g => guestCardHTML(g)).join('');
+    list.querySelectorAll('.guest-card').forEach(el =>
+      el.addEventListener('click', () => openGuestModal(el.dataset.id))
+    );
+
+    if (activeTab === 'all' && dinnerData.cancelled?.length) {
+      const cxHtml = dinnerData.cancelled.map(g => `
+        <div class="guest-card cancelled" data-id="${g.id}">
+          <div class="guest-row1">
+            <h3 class="guest-name">${escape(g.purchaser)}</h3>
+            <span class="party-badge">${g.party_size} cx · cancelled</span>
+          </div>
+          <div class="guest-notes">${escape(g.notes)}</div>
+        </div>
+      `).join('');
+      list.innerHTML += cxHtml;
+    }
+  }
+
+  function surname(name) {
+    const parts = (name || '').trim().split(/\s+/);
+    return parts.length ? parts[parts.length - 1].toLowerCase() : '';
+  }
+
+  function guestCardHTML(g) {
+    const ci = state.checkins[g.id] || {};
+    const isCheckedIn = !!ci.checked_in_at;
+    const seatedCount = seatsAssignedTo(g.id).length;
+    const isFull = seatedCount >= g.party_size;
+    const isPartial = seatedCount > 0 && !isFull;
+
+    const badges = [];
+    if (isCheckedIn) badges.push(`<span class="badge badge-checked-in">✓ Checked in</span>`);
+    if (seatedCount > 0) {
+      badges.push(`<span class="badge badge-seated">▦ ${seatedCount}/${g.party_size} seated</span>`);
+    }
+    g.allergens?.forEach(a => badges.push(`<span class="badge badge-allergen">${escape(a)}</span>`));
+    if (g.returning) {
+      const r = g.returning;
+      const tag = r.is_multi_year
+        ? `★ Returning (${r.prior_count}× · ${r.years.join(', ')})`
+        : `Returning (${r.prior_count}×)`;
+      badges.push(`<span class="badge badge-returning">${escape(tag)}</span>`);
+    }
+
+    const noteHTML = g.notes ? `<div class="guest-notes">${escape(g.notes)}</div>` : '';
+    const stateNote = ci.note ? `<div class="guest-notes" style="color:var(--accent-dark);">📝 ${escape(ci.note)}</div>` : '';
+    const stamp = ci.checked_in_at ? `<div class="timestamp">Checked in at ${formatTime(ci.checked_in_at)}</div>` : '';
+    const partyClass = isFull ? 'full' : (isPartial ? 'partial' : '');
+
+    return `
+      <div class="guest-card ${isCheckedIn ? 'checked-in' : ''}" data-id="${g.id}">
+        <div class="guest-row1">
+          <h3 class="guest-name">${escape(g.purchaser)}</h3>
+          <span class="party-badge ${partyClass}">${g.party_size} cx</span>
+        </div>
+        ${badges.length ? `<div class="guest-badges">${badges.join('')}</div>` : ''}
+        ${noteHTML}
+        ${stateNote}
+        ${stamp}
+      </div>
+    `;
+  }
+
+  function formatTime(iso) {
+    try {
+      const d = new Date(iso);
+      return d.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+    } catch (e) { return iso; }
+  }
+
+  // ====================================================================
+  // RENDERING — SEATING VIEW
+  // ====================================================================
+  function renderSeating() {
+    if (!dinnerData) return;
+
+    // Endcap checkboxes reflect current state
+    ['A-END', 'C-END'].forEach(id => {
+      const cb = document.getElementById(`endcap-${id}`);
+      if (cb) cb.checked = !!state.endcaps[id];
+    });
+    const enabledSeats = allSeatIds().filter(s => !isEndcap(s) || state.endcaps[s]).length;
+    const occupied = Object.keys(state.seats).length;
+    document.getElementById('seat-totals').textContent =
+      `${occupied} / ${enabledSeats} seats filled · ${dinnerData.seated_covers} covers expected`;
+
+    renderGuestPicker();
+    TABLES.forEach(t => renderTable(t));
+  }
+
+  function renderGuestPicker() {
+    const picker = document.getElementById('guest-picker');
+    const guests = [...dinnerData.guests].sort((a, b) =>
+      surname(a.purchaser).localeCompare(surname(b.purchaser))
+    );
+    const cards = guests.map(g => {
+      const seated = seatsAssignedTo(g.id).length;
+      const full = seated >= g.party_size;
+      const isSelected = selectedGuestId === g.id;
+      const remaining = g.party_size - seated;
+      const pills = [];
+      if (g.allergens?.length) pills.push(`<span class="pill pill-allergen">${escape(g.allergens.join('·'))}</span>`);
+      if (g.returning) pills.push(`<span class="pill pill-returning">★ ${g.returning.prior_count}×</span>`);
+      return `
+        <div class="picker-card ${full ? 'fully-seated' : ''} ${isSelected ? 'selected' : ''}" data-id="${g.id}">
+          <div class="name">${escape(g.purchaser)}</div>
+          <div class="meta">
+            ${pills.join(' ')}
+            ${full ? '✓ seated' : `${remaining}/${g.party_size}`}
+          </div>
+        </div>
+      `;
+    }).join('');
+    picker.innerHTML = `
+      <div class="picker-head">
+        <h3>Guests · tap to select, then tap a seat</h3>
+        <p class="picker-help">Selecting a 4-top auto-fills the adjacent open seats on the same side.</p>
+      </div>
+      <div class="picker-grid">${cards}</div>
+    `;
+    picker.querySelectorAll('.picker-card').forEach(el =>
+      el.addEventListener('click', () => selectGuest(el.dataset.id))
+    );
+  }
+
+  function renderTable(t) {
+    const seatRow = (seats, side) =>
+      seats.map(n => seatHTML(`${t.id}-${side}${n}`, displaySeatNum(t.id, side, n))).join('');
+    const capHTML = t.endcapSide ? seatHTML(`${t.id}-END`, endcapLabel(t.id), true) : '';
+    const leftCap = t.endcapSide === 'left'
+      ? `<div class="endcap-col">${capHTML}</div>` : '<div></div>';
+    const rightCap = t.endcapSide === 'right'
+      ? `<div class="endcap-col">${capHTML}</div>` : '<div></div>';
+    document.getElementById(`table-${t.id}`).innerHTML = `
+      <div class="table-block">
+        ${leftCap}
+        <div class="table-stack">
+          <div class="seat-row">${seatRow(t.topSeats, 'T')}</div>
+          <div class="table-rect">${t.id}</div>
+          <div class="seat-row">${seatRow(t.bottomSeats, 'B')}</div>
+        </div>
+        ${rightCap}
+      </div>
+    `;
+    document.querySelectorAll(`#table-${t.id} .seat`).forEach(el =>
+      el.addEventListener('click', () => tapSeat(el.dataset.seat))
+    );
+  }
+
+  function seatHTML(seatId, label, isCap) {
+    const occGuestId = state.seats[seatId];
+    const occ = occGuestId ? partyOf(occGuestId) : null;
+    const capEnabled = !isCap || state.endcaps[seatId];
+    const classes = ['seat'];
+    if (isCap) classes.push('endcap');
+    if (isCap && !capEnabled) classes.push('disabled');
+    if (occ) {
+      classes.push('occupied', `party-${partyColor(occGuestId)}`);
+      if (occ.allergens?.length) classes.push('allergen-here');
+      if (occ.returning) classes.push('returning-here');
+    }
+    const inner = occ
+      ? `<div class="seat-num">${escape(String(label))}</div><div class="seat-name">${escape(occ.purchaser.split(' ').slice(-1)[0])}</div>`
+      : `<div class="seat-num">${escape(String(label))}</div>`;
+    return `<div class="${classes.join(' ')}" data-seat="${seatId}">${inner}</div>`;
+  }
+
+  function selectGuest(guestId) {
+    selectedGuestId = (selectedGuestId === guestId) ? null : guestId;
+    renderGuestPicker();
+  }
+
+  async function tapSeat(seatId) {
+    // If seat is occupied → clear it
+    if (state.seats[seatId]) {
+      delete state.seats[seatId];
+      await pushState();
+      refresh();
+      return;
+    }
+    // If no guest selected → do nothing (or show hint)
+    if (!selectedGuestId) {
+      showToast('Tap a guest first');
+      return;
+    }
+    // Check endcap is enabled
+    if (isEndcap(seatId) && !state.endcaps[seatId]) {
+      showToast('End cap not enabled for this dinner');
+      return;
+    }
+    // Check guest still has open seats
+    const g = partyOf(selectedGuestId);
+    if (!g) return;
+    const seated = seatsAssignedTo(selectedGuestId).length;
+    if (seated >= g.party_size) {
+      showToast(`${g.purchaser} is fully seated`);
+      selectedGuestId = null;
+      renderGuestPicker();
+      return;
+    }
+
+    // Place at tapped seat
+    state.seats[seatId] = selectedGuestId;
+
+    // Auto-fill remaining party members in adjacent seats on the same table side
+    const remaining = g.party_size - seated - 1;
+    if (remaining > 0) {
+      const candidates = adjacentOpenSeats(seatId, remaining);
+      for (const sid of candidates) {
+        state.seats[sid] = selectedGuestId;
+      }
+    }
+
+    await pushState();
+    // If now fully seated, clear selection
+    if (seatsAssignedTo(selectedGuestId).length >= g.party_size) {
+      selectedGuestId = null;
+    }
+    refresh();
+  }
+
+  function adjacentOpenSeats(seatId, count) {
+    // End-cap: fill out from the two long-side seats at that short edge.
+    // For 'left' (C): topRow[0] + bottomRow[0] (top-left + bottom-left).
+    // For 'right' (A): topRow[last] + bottomRow[last] (top-right + bottom-right).
+    if (isEndcap(seatId)) {
+      const tableId = seatId.split('-')[0];
+      const t = TABLES.find(x => x.id === tableId);
+      if (!t) return [];
+      const topIds = t.topSeats.map(n => `${t.id}-T${n}`);
+      const botIds = t.bottomSeats.map(n => `${t.id}-B${n}`);
+      const seatOrder = t.endcapSide === 'left'
+        ? [topIds[0], botIds[0], ...topIds.slice(1), ...botIds.slice(1)]
+        : [topIds[topIds.length - 1], botIds[botIds.length - 1],
+           ...topIds.slice(0, -1).reverse(), ...botIds.slice(0, -1).reverse()];
+      return seatOrder.filter(s => !state.seats[s] && s !== seatId).slice(0, count);
+    }
+
+    const [tableId, sidx] = seatId.split('-');
+    const sideLetter = sidx[0];     // 'T' or 'B'
+    const t = TABLES.find(x => x.id === tableId);
+    if (!t) return [];
+    const seats = (sideLetter === 'T' ? t.topSeats : t.bottomSeats).map(n => `${t.id}-${sideLetter}${n}`);
+    const myIdx = seats.indexOf(seatId);
+
+    const out = [];
+    let i = myIdx + 1, j = myIdx - 1;
+    while (out.length < count && (i < seats.length || j >= 0)) {
+      if (i < seats.length) {
+        if (!state.seats[seats[i]]) out.push(seats[i]);
+        i++;
+        if (out.length === count) break;
+      }
+      if (j >= 0) {
+        if (!state.seats[seats[j]]) out.push(seats[j]);
+        j--;
+      }
+    }
+    if (out.length < count) {
+      const otherSide = sideLetter === 'T' ? 'B' : 'T';
+      const otherSeats = (otherSide === 'T' ? t.topSeats : t.bottomSeats).map(n => `${t.id}-${otherSide}${n}`);
+      for (const s of otherSeats) {
+        if (out.length === count) break;
+        if (!state.seats[s]) out.push(s);
+      }
+    }
+    return out;
+  }
+
+  // Endcap toggle handler
+  document.querySelectorAll('.endcap-controls input[type="checkbox"]').forEach(cb => {
+    cb.addEventListener('change', async () => {
+      const seatId = cb.id.replace('endcap-', '');
+      if (cb.checked) {
+        state.endcaps[seatId] = true;
+      } else {
+        delete state.endcaps[seatId];
+        // If a guest was at this endcap, unseat them
+        if (state.seats[seatId]) delete state.seats[seatId];
+      }
+      await pushState();
+      refresh();
+    });
+  });
+
+  // ====================================================================
+  // MODAL (check-in flow from list view)
+  // ====================================================================
+  function openGuestModal(guestId) {
+    const g = partyOf(guestId);
+    if (!g) return;
+    const ci = state.checkins[guestId] || {};
+    const isCheckedIn = !!ci.checked_in_at;
+    const assigned = seatsAssignedTo(guestId);
+
+    const allergenSection = g.allergens?.length ? `
+      <div class="modal-section">
+        <h4>Allergens / restrictions</h4>
+        <div class="body allergen">
+          <strong>${g.allergens.join(' · ')}</strong>
+          ${g.notes ? `<br/><span style="font-style:italic">${escape(g.notes)}</span>` : ''}
+        </div>
+      </div>` : '';
+
+    const returningSection = g.returning ? `
+      <div class="modal-section">
+        <h4>Returning guest</h4>
+        <div class="body returning">
+          ${g.returning.prior_count} prior dinner${g.returning.prior_count > 1 ? 's' : ''} —
+          years: ${g.returning.years.join(', ')}${g.returning.is_multi_year ? ' (multi-year)' : ''}
+        </div>
+      </div>` : '';
+
+    const notesSection = (g.notes && !g.allergens?.length) ? `
+      <div class="modal-section">
+        <h4>Notes</h4>
+        <div class="body">${escape(g.notes)}</div>
+      </div>` : '';
+
+    const seatsSection = assigned.length ? `
+      <div class="modal-section">
+        <h4>Seats</h4>
+        <div class="seats-list">${assigned.map(s => formatSeat(s)).join(' · ')}</div>
+      </div>` : '';
+
+    const noteInput = `
+      <div class="modal-section">
+        <h4>Add a quick note (optional)</h4>
+        <textarea class="modal-note-input" id="note-input" placeholder="e.g. waiting on +1, parked down road…">${escape(ci.note || '')}</textarea>
+      </div>`;
+
+    const actions = isCheckedIn
+      ? `<button class="btn btn-secondary" id="close-btn">Close</button>
+         <button class="btn btn-danger" id="undo-btn">Undo check-in</button>`
+      : `<button class="btn btn-secondary" id="close-btn">Cancel</button>
+         <button class="btn btn-primary" id="checkin-btn">Check in</button>`;
+
+    document.getElementById('modal').innerHTML = `
+      <h2 class="modal-title">${escape(g.purchaser)}</h2>
+      <p class="modal-sub">Party of ${g.party_size}${g.email ? ` · ${escape(g.email)}` : ''}</p>
+      ${allergenSection}${returningSection}${notesSection}${seatsSection}${noteInput}
+      <div class="modal-actions">${actions}</div>
+    `;
+    document.getElementById('modal-backdrop').classList.add('open');
+
+    document.getElementById('close-btn').onclick = closeModal;
+    if (!isCheckedIn) {
+      document.getElementById('checkin-btn').onclick = () => doCheckIn(guestId);
+    } else {
+      document.getElementById('undo-btn').onclick = () => doUndo(guestId);
+    }
+  }
+
+  function formatSeat(seatId) {
+    if (seatId.endsWith('-END')) return `${seatId[0]} · end-cap`;
+    const [t, rest] = seatId.split('-');
+    const side = rest[0] === 'T' ? 'top' : 'btm';
+    return `${t}${rest.slice(1)} (${side})`;
+  }
+
+  function closeModal() { document.getElementById('modal-backdrop').classList.remove('open'); }
+
+  async function doCheckIn(guestId) {
+    const note = document.getElementById('note-input').value.trim();
+    state.checkins[guestId] = {
+      checked_in_at: new Date().toISOString(),
+      note: note || null,
+    };
+    await pushState();
+    showToast('✓ Checked in');
+    closeModal();
+    refresh();
+  }
+
+  async function doUndo(guestId) {
+    const note = document.getElementById('note-input').value.trim();
+    if (note) {
+      state.checkins[guestId] = { note };
+    } else {
+      delete state.checkins[guestId];
+    }
+    await pushState();
+    showToast('Check-in undone');
+    closeModal();
+    refresh();
+  }
+
+  // ====================================================================
+  // TOAST
+  // ====================================================================
+  let toastTimer = null;
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => t.classList.remove('show'), 1800);
+  }
+
+  // ====================================================================
+  // EVENT WIRING
+  // ====================================================================
+  document.getElementById('modal-backdrop').addEventListener('click', (e) => {
+    if (e.target === e.currentTarget) closeModal();
+  });
+
+  document.querySelectorAll('.vtab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.vtab').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeView = btn.dataset.view;
+      document.getElementById('list-view').style.display = activeView === 'list' ? '' : 'none';
+      document.getElementById('seating-view').style.display = activeView === 'seating' ? '' : 'none';
+      refresh();
+    });
+  });
+
+  document.querySelectorAll('.tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeTab = btn.dataset.tab;
+      renderList();
+    });
+  });
+
+  document.getElementById('filter').addEventListener('input', (e) => {
+    filterText = e.target.value;
+    renderList();
+  });
+
+  // ====================================================================
+  // REFRESH ENTRY
+  // ====================================================================
+  function refresh() {
+    if (!dinnerData) return;
+    renderHeader(dinnerData);
+    if (activeView === 'list') renderList();
+    else renderSeating();
+  }
+
+  function renderDateSwitcher(d) {
+    // Legacy fallback strip — kept simple now that the header switcher
+    // is the primary navigation. Only shows a small message on missing data.
+    const container = document.getElementById('date-switcher-container');
+    if (d && d._missing) {
+      container.innerHTML = `<div class="date-switcher">No data for ${escape(d._requested)} — pick a dinner above.</div>`;
+    } else {
+      container.innerHTML = '';
+    }
+  }
+
+  // ====================================================================
+  // DINNER SWITCHER (header)
+  // ====================================================================
+  // Default-pick rule:
+  //   1. If the URL explicitly asked for a date that exists in the index, honor it.
+  //   2. Otherwise, if today is a dinner day, use today.
+  //   3. Otherwise, use the next non-past dinner.
+  //   4. Otherwise, the most recent past dinner.
+  function pickDefaultDinner(dinners, preferred) {
+    if (!dinners.length) return preferred || today;
+    if (preferred && dinners.some(d => d.date === preferred)) return preferred;
+    const todayMatch = dinners.find(d => d.date === today);
+    if (todayMatch) return todayMatch.date;
+    const upcoming = dinners.find(d => !d.is_past);
+    if (upcoming) return upcoming.date;
+    return dinners[dinners.length - 1].date;
+  }
+
+  function renderDinnerSwitcher() {
+    const wrapper = document.getElementById('dinner-switcher');
+    const sel = document.getElementById('dinner-select');
+    const prev = document.getElementById('dinner-prev');
+    const next = document.getElementById('dinner-next');
+    if (!availableDinners.length) {
+      wrapper.hidden = true;
+      return;
+    }
+    wrapper.hidden = false;
+    sel.innerHTML = availableDinners.map(d => {
+      const tag = d.is_past ? ' (past)' : '';
+      const label = `${d.display_date} · ${d.seated_covers} cx${tag}`;
+      const sel_attr = d.date === dinnerDate ? ' selected' : '';
+      return `<option value="${d.date}"${sel_attr}>${escape(label)}</option>`;
+    }).join('');
+    const idx = availableDinners.findIndex(d => d.date === dinnerDate);
+    prev.disabled = idx <= 0;
+    next.disabled = idx < 0 || idx >= availableDinners.length - 1;
+  }
+
+  function updateUrlDate(date) {
+    try {
+      const url = new URL(window.location.href);
+      url.searchParams.set('date', date);
+      history.replaceState({}, '', url.toString());
+    } catch (e) { /* old browsers: skip */ }
+  }
+
+  async function switchDinner(newDate) {
+    if (!newDate || newDate === dinnerDate) return;
+    // Drop any live Firebase listener for the prior dinner
+    if (typeof unsubscribe === 'function') {
+      try { unsubscribe(); } catch (e) {}
+      unsubscribe = null;
+    }
+    dinnerDate = newDate;
+    state = { checkins: {}, seats: {}, endcaps: {} };
+    selectedGuestId = null;
+    updateUrlDate(newDate);
+
+    try {
+      dinnerData = await loadDinner(dinnerDate);
+      renderDinnerSwitcher();
+      if (dinnerData._missing) {
+        renderDateSwitcher(dinnerData);
+        document.getElementById('list').innerHTML =
+          `<div class="error">No data for ${escape(dinnerData._requested)}.</div>`;
+        document.getElementById('dinner-date').textContent = '—';
+        return;
+      }
+      renderDateSwitcher(dinnerData);
+
+      if (stateBackend === 'firebase') {
+        const ok = await initFirebase();
+        if (ok) {
+          setSyncStatus('online', `synced via Firebase · dinner ${dinnerDate}`);
+        } else {
+          stateBackend = 'localStorage';
+          loadLocal();
+          setSyncStatus('local', `localStorage only · dinner ${dinnerDate}`);
+          refresh();
+        }
+      } else {
+        loadLocal();
+        setSyncStatus('local', `localStorage only · dinner ${dinnerDate}`);
+        refresh();
+      }
+    } catch (err) {
+      document.getElementById('list').innerHTML =
+        `<div class="error">Failed to load: ${escape(err.message)}</div>`;
+    }
+  }
+
+  // Wire switcher controls
+  document.getElementById('dinner-select').addEventListener('change', (e) => {
+    switchDinner(e.target.value);
+  });
+  document.getElementById('dinner-prev').addEventListener('click', () => {
+    const idx = availableDinners.findIndex(d => d.date === dinnerDate);
+    if (idx > 0) switchDinner(availableDinners[idx - 1].date);
+  });
+  document.getElementById('dinner-next').addEventListener('click', () => {
+    const idx = availableDinners.findIndex(d => d.date === dinnerDate);
+    if (idx >= 0 && idx < availableDinners.length - 1) {
+      switchDinner(availableDinners[idx + 1].date);
+    }
+  });
+
+  // ====================================================================
+  // INIT
+  // ====================================================================
+  async function init() {
+    try {
+      // Load the index first so we can resolve a sensible default and
+      // populate the switcher even before the per-dinner JSON arrives.
+      try {
+        const idxResp = await fetch(`${DATA_PATH}/index.json`);
+        if (idxResp.ok) {
+          const idxData = await idxResp.json();
+          availableDinners = idxData.dinners || [];
+        }
+      } catch (e) { /* index unavailable; fall back to URL/today */ }
+
+      dinnerDate = pickDefaultDinner(availableDinners, initialDateParam);
+      if (dinnerDate !== initialDateParam) updateUrlDate(dinnerDate);
+
+      dinnerData = await loadDinner(dinnerDate);
+      renderDinnerSwitcher();
+      if (dinnerData._missing) {
+        renderDateSwitcher(dinnerData);
+        document.getElementById('list').innerHTML = `<div class="error">No data for ${escape(dinnerData._requested)}.</div>`;
+        document.getElementById('dinner-date').textContent = '—';
+        return;
+      }
+      renderDateSwitcher(dinnerData);
+
+      // Try Firebase if available, otherwise localStorage
+      const fbAttempt = await initFirebase();
+      if (fbAttempt) {
+        stateBackend = 'firebase';
+        setSyncStatus('online', `synced via Firebase · dinner ${dinnerDate}`);
+        // refresh() is called by the onSnapshot listener
+      } else {
+        stateBackend = 'localStorage';
+        loadLocal();
+        setSyncStatus('local', `localStorage only · dinner ${dinnerDate}`);
+        refresh();
+      }
+    } catch (err) {
+      document.getElementById('list').innerHTML = `<div class="error">Failed to load: ${escape(err.message)}</div>`;
+      document.getElementById('dinner-date').textContent = 'Error';
+    }
+  }
+
+  // Wait for the Firebase module-loader script to finish (success or fail)
+  if (window._firebaseInitialized) {
+    init();
+  } else {
+    window.addEventListener('firebase-init-done', init, { once: true });
+    // safety timeout: if the Firebase script hangs, init anyway after 1.5s
+    setTimeout(() => { if (!dinnerData) init(); }, 1500);
+  }
+</script>
+</body>
+</html>
