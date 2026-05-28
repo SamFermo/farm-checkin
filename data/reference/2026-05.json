@@ -1,0 +1,137 @@
+{
+  "series_id": "2026-05",
+  "series_label": "May 2026 series",
+  "header": {
+    "title": "Swan House Farm",
+    "subtitle": "Spring",
+    "tagline": "thank you so much for joining us on this humble journey through everything skagit and swan house has to offer"
+  },
+  "courses": [
+    {
+      "label": "Antipasti",
+      "subtitle": "welcome bites — passed together at sit-down",
+      "plateware": "Large trays for passing the tartare and the asparagus. 8\" bread plate set at each place. Cutlery for all following courses already preset on the table.",
+      "dishes": [
+        {
+          "name": "Beef Tenderloin Tartare",
+          "pronunciation": "tar-TAR",
+          "components": "grilled breadfarm focaccia, calabrian, giardiniera, lovage, lemon",
+          "story": "Raw beef tenderloin from Swan House, hand-mixed with Calabrian chili aioli, pickled vegetables, lovage, and lemon. Spooned onto a slice of grilled rosemary focaccia from Breadfarm in Edison. Topped with a microplane of meyer lemon zest and a lovage leaf.",
+          "ingredients": [
+            { "term": "Calabrian", "pronunciation": "kah-LAH-bree-ahn", "note": "a spicy red chili paste from the Calabria region of southern Italy; we use it in the aioli for heat and depth" },
+            { "term": "Giardiniera", "pronunciation": "jar-din-YEH-rah", "note": "Italian pickled vegetables (peppers, cauliflower, carrots, celery) brined in vinegar; here mixed straight into the tartare" },
+            { "term": "Aioli", "pronunciation": "ay-OH-lee", "note": "emulsion of garlic, egg yolk, and oil, like a richer garlic mayonnaise" },
+            { "term": "Lovage", "pronunciation": "LUH-vij", "note": "leafy herb with a flavor like celery and parsley combined, more intense" },
+            { "term": "Tartare", "pronunciation": "tar-TAR", "note": "preparation of raw, finely chopped or minced meat" }
+          ]
+        },
+        {
+          "name": "Asparagus on Endive",
+          "pronunciation": "ON-deev",
+          "components": "sorrel, crème fraîche, radish, chive blossom, lovage honey",
+          "story": "Inner endive leaves used as a small vessel. Filled with sliced asparagus folded into sorrel chiffonade, crème fraîche, olive oil, and Maldon salt. Topped with radish batons, a chive blossom, an asparagus tip, and a drizzle of lovage honey.",
+          "ingredients": [
+            { "term": "Endive", "pronunciation": "ON-deev", "note": "crisp leafy vegetable with a slight pleasant bitterness; we use the smaller inner leaves as a one-bite vessel" },
+            { "term": "Sorrel", "pronunciation": "SOR-rel", "note": "leafy herb with bright lemony tartness, like spinach with a citrus punch" },
+            { "term": "Chiffonade", "pronunciation": "shif-on-AHD", "note": "herbs or leafy greens cut into thin ribbons" },
+            { "term": "Crème fraîche", "pronunciation": "krem FRESH", "note": "French cultured cream, thicker and tangier than sour cream, milder" },
+            { "term": "Maldon", "pronunciation": null, "note": "flaky English finishing salt, prized for its crunch" },
+            { "term": "Lovage honey", "pronunciation": null, "note": "local honey infused with lovage; herbaceous and floral" }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Zuppa",
+      "subtitle": "Course 1",
+      "plateware": "Small bowl. Soup spoon.",
+      "dishes": [
+        {
+          "name": "Warm Nettle Vichyssoise",
+          "pronunciation": "vish-ee-SWAHZ",
+          "components": "crème fraîche, chive oil, meyer lemon, lovage",
+          "story": "A classic French chilled leek-and-potato soup, served warm at our table for spring. We blend in stinging nettles harvested at Swan House for a deep green color and a fresh, almost spinach-like character. Garnished with a swirl of crème fraîche, a ring of chive oil, microplaned meyer lemon zest, and chiffonaded lovage.",
+          "ingredients": [
+            { "term": "Vichyssoise", "pronunciation": "vish-ee-SWAHZ", "note": "traditionally a chilled potato-and-leek soup invented by a French chef in New York in the early 1900s. Ours is served warm." },
+            { "term": "Nettles", "pronunciation": null, "note": "stinging plant whose leaves lose their sting once blanched or cooked; flavor is dark green, herbaceous, like spinach with more body" },
+            { "term": "Chive oil", "pronunciation": null, "note": "neutral oil infused with chives (blanched and blended); used for color and a mild allium hit" }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Primi",
+      "subtitle": "Course 2",
+      "plateware": "Pasta bowl. Fork. Knife. Spoon.",
+      "dishes": [
+        {
+          "name": "Mafaldine",
+          "pronunciation": "mah-fahl-DEE-neh",
+          "components": "smoked lamb sausage, black morels, ramps, lemon balm, parmigiano",
+          "story": "A wide ribbon pasta with ruffled edges, named after Princess Mafalda of Savoy. Tossed in a butter emulsion that we build pre-service by cooking lemon balm and chopped ramp bulbs into melted butter. To-order, we cook the morels in that infused butter, then fold in sausage coins and ramp greens with the cooked pasta and a splash of pasta water. Finished with grated parmigiano and a chiffonade of raw lemon balm at the pass.",
+          "ingredients": [
+            { "term": "Mafaldine", "pronunciation": "mah-fahl-DEE-neh", "note": "flat ribbon pasta with curly edges on both sides" },
+            { "term": "Smoked lamb sausage", "pronunciation": null, "note": "sweet/spicy Italian-style sausage smoked at the farm from Tim's lamb" },
+            { "term": "Black morels", "pronunciation": null, "note": "prized wild mushroom, honeycomb-shaped cap, deep earthy nutty flavor; in season only spring" },
+            { "term": "Ramps", "pronunciation": null, "note": "wild leek; appears only in early spring; tastes like a cross between garlic and a young onion" },
+            { "term": "Lemon balm", "pronunciation": null, "note": "citrusy mint-family herb; bright lemon perfume without the acid" },
+            { "term": "Parmigiano", "pronunciation": "par-mee-JAH-noh", "note": "short for Parmigiano-Reggiano, the aged hard Italian cheese from the Parma region; nutty and salty" }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Secondi",
+      "subtitle": "Course 3",
+      "plateware": "Entrée plate. Fork. Knife.",
+      "dishes": [
+        {
+          "name": "Smoked Swan House Pork Chop",
+          "pronunciation": null,
+          "components": "rhubarb mostarda, charred spring onion, oregano oil, sorrel",
+          "story": "Bone-in pork chops from Swan House Farm, smoked in two stages on the Big Green Egg during service (first smoke during Course 1 plate-up; second smoke + finish during Course 2 plate-up). Plated with rhubarb mostarda, a spring onion that's been charred in oregano oil, pork jus, a drizzle of chive oil, and a finishing chiffonade of sorrel.",
+          "ingredients": [
+            { "term": "Big Green Egg", "pronunciation": null, "note": "a kamado-style ceramic smoker/grill we use for live-fire cooking" },
+            { "term": "Mostarda", "pronunciation": "moh-STAR-dah", "note": "Italian condiment of fruit cooked in a mustard-spiked syrup; sweet and pungent at once, a classic pairing with rich meats. Ours is rhubarb-based, with white wine vinegar, dry mustard, lemon zest, and whole grain mustard." },
+            { "term": "Rhubarb", "pronunciation": null, "note": "tart pink stalk vegetable used as a fruit in our kitchen" },
+            { "term": "Spring onion", "pronunciation": null, "note": "young onion harvested before the bulb fully forms; sweeter and milder than a mature onion" },
+            { "term": "Oregano oil", "pronunciation": null, "note": "neutral oil infused with oregano" },
+            { "term": "Pork jus", "pronunciation": "zhoo", "note": "pan-juice-based sauce, lightly reduced; the natural drippings concentrated" }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Dolce",
+      "subtitle": "Course 4",
+      "plateware": "Small bowl. Small spoon.",
+      "dishes": [
+        {
+          "name": "Rhubarb Pavlova",
+          "pronunciation": "pav-LOH-vah",
+          "components": "lemon balm pastry cream, edible flowers",
+          "story": "A meringue-based dessert named after the Russian ballerina Anna Pavlova who toured Australia and New Zealand in the 1920s. The meringue is crisp on the outside, marshmallow-soft inside — baked low and slow (200°F for 2 hours, cooled in the turned-off oven). Topped with a spoonful of rhubarb compote, a loose dollop of lemon balm pastry cream, edible flowers, and finished with a pinch of Maldon and a drizzle of olive oil.",
+          "ingredients": [
+            { "term": "Pavlova", "pronunciation": "pav-LOH-vah", "note": "meringue dessert, baked egg whites + sugar + a touch of vinegar and cornstarch for the marshmallow center" },
+            { "term": "Pastry cream", "pronunciation": null, "note": "classic French custard made of egg yolks, sugar, cornstarch, and dairy, thickened on the stove. Ours is infused with lemon balm via a 24-hour cold steep." },
+            { "term": "Rhubarb compote", "pronunciation": null, "note": "rhubarb cooked briefly with sugar and lemon, just until softened, still holding shape; loose and juicy, not jammy" }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Caffé",
+      "subtitle": "to close",
+      "plateware": null,
+      "dishes": [
+        {
+          "name": "Cafe Umbria",
+          "pronunciation": null,
+          "components": null,
+          "story": "Locally roasted espresso from Seattle's Cafe Umbria. Served to close the meal.",
+          "ingredients": []
+        }
+      ]
+    }
+  ]
+}
