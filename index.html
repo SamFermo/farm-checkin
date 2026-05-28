@@ -691,11 +691,142 @@
   .freshtalk-view .ref-dish {
     border-color: var(--gold-soft);
   }
-  .freshtalk-view .ref-dish .ref-dish-details {
+  .freshtalk-view .ref-dish .ref-dish-details,
+  .freshtalk-view .ref-wine .ref-wine-details {
     display: block !important;
   }
-  .freshtalk-view .ref-dish .ref-dish-head {
+  .freshtalk-view .ref-dish .ref-dish-head,
+  .freshtalk-view .ref-wine .ref-wine-head {
     cursor: default;
+  }
+
+  /* ===== WINE CARDS (v1.9) — used in both Reference and Fresh-talk ===== */
+  .ref-wine {
+    background: var(--bg);
+    border: 0.5px solid var(--border);
+    border-radius: 8px;
+    margin: 0 0 10px;
+    overflow: hidden;
+    transition: border-color 0.15s ease;
+  }
+  .ref-wine.expanded { border-color: var(--gold); }
+  .ref-wine-head {
+    padding: 14px 16px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+  }
+  .ref-wine-type {
+    display: inline-block;
+    font-size: 10.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 3px 8px;
+    border-radius: 999px;
+    margin-bottom: 6px;
+  }
+  .wine-type-white { background: #f5ead0; color: var(--wood); }
+  .wine-type-red { background: #e8d4cc; color: #6b2818; }
+  .wine-type-sparkling { background: #e8e8d4; color: #5f5a2a; }
+  .wine-type-na { background: #e0e8de; color: #3a5a3a; }
+  .ref-wine-name {
+    font-family: 'Caladea', 'Cambria', Georgia, serif;
+    font-size: 16.5px;
+    font-weight: 700;
+    color: var(--wood);
+  }
+  .ref-wine-vintage {
+    font-size: 13px;
+    color: var(--gold);
+    font-style: italic;
+    margin-left: 4px;
+  }
+  .ref-wine-origin {
+    font-size: 12.5px;
+    color: var(--text-mute);
+    margin-top: 2px;
+  }
+  .ref-wine-pour {
+    margin-top: 8px;
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.5;
+  }
+  .ref-wine-specs {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 0.5px dashed var(--border);
+  }
+  .ref-wine-spec {
+    text-align: center;
+  }
+  .ref-wine-spec-label {
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-mute);
+    margin-bottom: 3px;
+  }
+  .ref-wine-dots {
+    display: inline-flex;
+    gap: 3px;
+    align-items: center;
+  }
+  .ref-wine-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--border);
+  }
+  .ref-wine-dot.on { background: var(--gold); }
+  .ref-wine-spec-range {
+    font-size: 9.5px;
+    color: var(--text-mute);
+    margin-top: 2px;
+    letter-spacing: 0.02em;
+  }
+  .ref-wine-na-badge {
+    display: inline-block;
+    margin-left: 6px;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: var(--bg);
+    border: 0.5px solid #3a5a3a;
+    color: #3a5a3a;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+  .ref-wine-details {
+    display: none;
+    padding: 4px 18px 18px;
+    border-top: 0.5px dashed var(--border);
+  }
+  .ref-wine.expanded .ref-wine-details { display: block; }
+  .ref-wine-section-label {
+    font-family: 'Caladea', 'Cambria', Georgia, serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin: 14px 0 6px;
+  }
+  .ref-wine-section-body {
+    font-family: 'Caladea', 'Cambria', Georgia, serif;
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.55;
+  }
+  .ref-wine-grapes {
+    margin-top: 6px;
+    font-size: 12.5px;
+    color: var(--text-mute);
+    font-style: italic;
   }
   @media (max-width: 600px) {
     .ft-glance { grid-template-columns: repeat(2, 1fr); }
@@ -1257,7 +1388,7 @@
   // ====================================================================
   // CONFIG + STATE
   // ====================================================================
-  const VERSION = "v1.8";
+  const VERSION = "v1.9";
   const DATA_PATH = "data";
   const params = new URLSearchParams(window.location.search);
   const today = new Date().toISOString().split('T')[0];
@@ -1266,8 +1397,9 @@
   let availableDinners = [];                     // populated from data/index.json
 
   let dinnerData = null;
-  let referenceData = null;       // series-level reference content (menu + server ref + plateware)
+  let referenceData = null;       // series-level reference content (menu + server ref + plateware + wines)
   const expandedDishes = new Set(); // dish names currently expanded in the Reference view
+  const expandedWines = new Set();  // wine names currently expanded in the Reference view
   let activeView = 'list';
   let activeTab = 'arriving';
   let filterText = '';
@@ -2116,7 +2248,13 @@
         `).join('')}
       </section>`;
 
-    container.innerHTML = headerHTML + glanceHTML + allergenHTML + returningHTML + menuHTML;
+    const wineHTML = (r.wines && r.wines.length) ? `
+      <section class="ft-section">
+        <p class="ft-section-label">Wine · ${r.wines.length} pour${r.wines.length === 1 ? '' : 's'}</p>
+        ${r.wines.map(w => refWineHTML(w)).join('')}
+      </section>` : '';
+
+    container.innerHTML = headerHTML + glanceHTML + allergenHTML + returningHTML + menuHTML + wineHTML;
   }
 
   // Show/hide the Fresh-talk vtab — needs both dinnerData AND referenceData.
@@ -2166,9 +2304,10 @@
       </section>
     `).join('');
 
+    const wineSectionHTML = refWineSectionHTML(r.wines, { subtitle: 'tap a wine for the deeper dive' });
     const taglineHTML = r.header.tagline ? `<p class="ref-tagline">${escape(r.header.tagline)}</p>` : '';
 
-    container.innerHTML = headerHTML + coursesHTML + taglineHTML;
+    container.innerHTML = headerHTML + coursesHTML + wineSectionHTML + taglineHTML;
 
     container.querySelectorAll('.ref-dish-head').forEach(el => {
       el.addEventListener('click', () => {
@@ -2183,6 +2322,85 @@
         }
       });
     });
+    container.querySelectorAll('.ref-wine-head').forEach(el => {
+      el.addEventListener('click', () => {
+        const wineEl = el.parentElement;
+        const name = wineEl.dataset.wine;
+        if (expandedWines.has(name)) {
+          expandedWines.delete(name);
+          wineEl.classList.remove('expanded');
+        } else {
+          expandedWines.add(name);
+          wineEl.classList.add('expanded');
+        }
+      });
+    });
+  }
+
+  // Render a single wine card. Collapsed = pour notes + spec dots; expanded
+  // also reveals producer + winemaking sections.
+  function refWineHTML(w) {
+    const isExpanded = expandedWines.has(w.name);
+    const typeClass = w.type && w.type.includes('NA') ? 'wine-type-na'
+      : w.type === 'sparkling' ? 'wine-type-sparkling'
+      : w.type === 'red' ? 'wine-type-red'
+      : 'wine-type-white';
+    const isNA = (w.type || '').toLowerCase().includes('na');
+    const vintage = w.vintage ? `<span class="ref-wine-vintage">${escape(w.vintage)}</span>` : '';
+    const naBadge = isNA ? `<span class="ref-wine-na-badge">NA · 0%</span>` : '';
+    const alcoholPct = (!isNA && w.alcohol_pct != null) ? `<span class="ref-wine-na-badge" style="border-color:var(--gold);color:var(--gold);">${escape(String(w.alcohol_pct))}%</span>` : '';
+
+    const specsHTML = (w.specs || []).map(s => {
+      const max = 5;
+      const dots = Array.from({length: max}, (_, i) =>
+        `<span class="ref-wine-dot ${i < s.rating ? 'on' : ''}"></span>`
+      ).join('');
+      return `
+        <div class="ref-wine-spec">
+          <div class="ref-wine-spec-label">${escape(s.label)}</div>
+          <div class="ref-wine-dots">${dots}</div>
+          <div class="ref-wine-spec-range">${escape(s.low)} · ${escape(s.high)}</div>
+        </div>
+      `;
+    }).join('');
+
+    const producer = w.producer ? `
+      <p class="ref-wine-section-label">Producer</p>
+      <p class="ref-wine-section-body">${escape(w.producer)}</p>` : '';
+    const winemaking = w.winemaking ? `
+      <p class="ref-wine-section-label">Winemaking</p>
+      <p class="ref-wine-section-body">${escape(w.winemaking)}</p>` : '';
+
+    return `
+      <div class="ref-wine ${isExpanded ? 'expanded' : ''}" data-wine="${escape(w.name)}">
+        <div class="ref-wine-head">
+          <span class="ref-wine-type ${typeClass}">${escape(w.type || 'wine')}</span>${naBadge}${alcoholPct}
+          <div class="ref-wine-name">${escape(w.name)}${vintage}</div>
+          ${w.region || w.grapes ? `<div class="ref-wine-origin">${escape([w.region, w.grapes].filter(Boolean).join(' · '))}</div>` : ''}
+          ${w.pour_notes ? `<p class="ref-wine-pour">${escape(w.pour_notes)}</p>` : ''}
+          ${specsHTML ? `<div class="ref-wine-specs">${specsHTML}</div>` : ''}
+        </div>
+        <div class="ref-wine-details">
+          ${producer}
+          ${winemaking}
+        </div>
+      </div>
+    `;
+  }
+
+  // Render the wine section. Returns a complete <section> HTML block.
+  // forceExpand=true is used in Fresh-talk so all wines read open by default.
+  function refWineSectionHTML(wines, opts = {}) {
+    if (!wines || !wines.length) return '';
+    const heading = opts.heading || 'Wine';
+    return `
+      <section class="ref-course">
+        <div class="ref-course-head">
+          <p class="ref-course-label">${escape(heading)}</p>
+          ${opts.subtitle ? `<p class="ref-course-sub">${escape(opts.subtitle)}</p>` : ''}
+        </div>
+        ${wines.map(w => refWineHTML(w)).join('')}
+      </section>`;
   }
 
   function refDishHTML(d) {
@@ -2296,6 +2514,7 @@
       renderDateSwitcher(dinnerData);
       referenceData = await loadReference(dinnerDate);
       expandedDishes.clear();
+      expandedWines.clear();
       updateReferenceTabVisibility();
       updateFreshTalkTabVisibility();
 
@@ -2364,6 +2583,7 @@
       renderDateSwitcher(dinnerData);
       referenceData = await loadReference(dinnerDate);
       expandedDishes.clear();
+      expandedWines.clear();
       updateReferenceTabVisibility();
       updateFreshTalkTabVisibility();
 
