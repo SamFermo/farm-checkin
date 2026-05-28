@@ -379,6 +379,182 @@
     color: var(--text-mute);
     font-style: italic;
   }
+
+  /* ===== REFERENCE TAB (v1.7) ===== */
+  .reference-view {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 24px 22px 80px;
+    font-family: 'Caladea', 'Cambria', Georgia, serif;
+  }
+  .ref-header {
+    text-align: center;
+    margin: 0 0 28px;
+    padding-bottom: 18px;
+    border-bottom: 0.5px solid var(--border);
+  }
+  .ref-title {
+    font-family: 'Caladea', 'Cambria', Georgia, serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--wood);
+    letter-spacing: -0.01em;
+    margin: 0;
+  }
+  .ref-subtitle {
+    font-family: 'Caladea', 'Cambria', Georgia, serif;
+    font-size: 15px;
+    font-style: italic;
+    color: var(--text-mute);
+    margin: 4px 0 0;
+  }
+  .ref-course {
+    margin: 0 0 28px;
+  }
+  .ref-course-head {
+    text-align: center;
+    margin: 0 0 14px;
+  }
+  .ref-course-label {
+    font-family: 'Caladea', 'Cambria', Georgia, serif;
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--wood);
+    margin: 0;
+    letter-spacing: 0.005em;
+  }
+  .ref-course-sub {
+    font-size: 12px;
+    color: var(--text-mute);
+    font-style: italic;
+    margin: 2px 0 0;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .ref-dish {
+    background: var(--bg);
+    border: 0.5px solid var(--border);
+    border-radius: 8px;
+    margin: 0 0 10px;
+    overflow: hidden;
+    transition: border-color 0.15s ease;
+  }
+  .ref-dish.expanded {
+    border-color: var(--gold);
+  }
+  .ref-dish-head {
+    padding: 14px 16px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+  }
+  .ref-dish-name-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .ref-dish-name {
+    font-family: 'Caladea', 'Cambria', Georgia, serif;
+    font-size: 16.5px;
+    font-weight: 700;
+    color: var(--wood);
+    text-align: center;
+  }
+  .ref-dish-pron {
+    font-family: 'Caladea', 'Cambria', Georgia, serif;
+    font-size: 13px;
+    font-style: italic;
+    color: var(--gold);
+  }
+  .ref-dish-components {
+    font-family: 'Caladea', 'Cambria', Georgia, serif;
+    font-size: 14px;
+    font-style: italic;
+    color: var(--text-mute);
+    text-align: center;
+    margin-top: 4px;
+    line-height: 1.4;
+  }
+  .ref-dish-details {
+    display: none;
+    padding: 4px 18px 18px;
+    border-top: 0.5px dashed var(--border);
+  }
+  .ref-dish.expanded .ref-dish-details {
+    display: block;
+  }
+  .ref-dish-story {
+    font-family: 'Caladea', 'Cambria', Georgia, serif;
+    font-size: 14.5px;
+    color: var(--text);
+    line-height: 1.55;
+    margin: 14px 0 16px;
+  }
+  .ref-ingredients-label {
+    font-family: 'Caladea', 'Cambria', Georgia, serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin: 0 0 8px;
+  }
+  .ref-ingredient {
+    margin: 0 0 8px;
+    padding-left: 14px;
+    position: relative;
+    font-family: 'Caladea', 'Cambria', Georgia, serif;
+    font-size: 13.5px;
+    line-height: 1.5;
+    color: var(--text);
+  }
+  .ref-ingredient::before {
+    content: '·';
+    position: absolute;
+    left: 4px;
+    color: var(--gold);
+    font-weight: 700;
+  }
+  .ref-ingredient .term {
+    font-weight: 700;
+    color: var(--wood);
+  }
+  .ref-ingredient .pron {
+    font-style: italic;
+    color: var(--gold);
+    margin-left: 4px;
+    font-size: 12.5px;
+  }
+  .ref-plateware {
+    margin-top: 10px;
+    padding: 10px 14px;
+    background: #ebdfc4;
+    border-left: 3px solid var(--wood);
+    border-radius: 3px;
+    font-family: 'Caladea', 'Cambria', Georgia, serif;
+    font-size: 13px;
+    color: var(--wood);
+  }
+  .ref-plateware-label {
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 11px;
+    margin-right: 6px;
+  }
+  .ref-tagline {
+    text-align: center;
+    margin: 32px 0 0;
+    padding-top: 22px;
+    border-top: 0.5px solid var(--border);
+    font-family: 'Caladea', 'Cambria', Georgia, serif;
+    font-size: 13.5px;
+    font-style: italic;
+    color: var(--text-mute);
+    line-height: 1.55;
+  }
   .modal-section .seats-list {
     background: #ebdfc4; border-left: 3px solid var(--wood);
     color: var(--wood);
@@ -826,6 +1002,7 @@
 <div class="view-toggle">
   <button class="vtab active" data-view="list">Check-in</button>
   <button class="vtab" data-view="seating">Seating</button>
+  <button class="vtab" data-view="reference" id="vtab-reference" hidden>Reference</button>
 </div>
 
 <div id="list-view">
@@ -866,6 +1043,12 @@
         <div id="table-A"></div>
       </div>
     </div>
+  </div>
+</div>
+
+<div id="reference-view" style="display:none;">
+  <div class="reference-view" id="reference-content">
+    <div class="loading">Loading reference…</div>
   </div>
 </div>
 
@@ -922,7 +1105,7 @@
   // ====================================================================
   // CONFIG + STATE
   // ====================================================================
-  const VERSION = "v1.6";
+  const VERSION = "v1.7";
   const DATA_PATH = "data";
   const params = new URLSearchParams(window.location.search);
   const today = new Date().toISOString().split('T')[0];
@@ -931,6 +1114,8 @@
   let availableDinners = [];                     // populated from data/index.json
 
   let dinnerData = null;
+  let referenceData = null;       // series-level reference content (menu + server ref + plateware)
+  const expandedDishes = new Set(); // dish names currently expanded in the Reference view
   let activeView = 'list';
   let activeTab = 'arriving';
   let filterText = '';
@@ -1109,6 +1294,37 @@
         const idxData = await idx.json();
         return { _missing: true, _index: idxData, _requested: date };
       } catch (e2) { throw err; }
+    }
+  }
+
+  // Load series-level reference content (menu + server ref + plateware) for a dinner.
+  // Series ID is the YYYY-MM prefix of the dinner date. 404 = no reference for this
+  // series yet; the Reference tab stays hidden in that case.
+  async function loadReference(date) {
+    const seriesId = date.slice(0, 7); // YYYY-MM
+    try {
+      const r = await fetch(`${DATA_PATH}/reference/${seriesId}.json`);
+      if (!r.ok) return null;
+      return await r.json();
+    } catch (e) { return null; }
+  }
+
+  // Show/hide the Reference vtab button based on whether reference data loaded.
+  // If we're on the Reference view and the new dinner has no reference, snap back to Check-in.
+  function updateReferenceTabVisibility() {
+    const btn = document.getElementById('vtab-reference');
+    if (!btn) return;
+    if (referenceData) {
+      btn.hidden = false;
+    } else {
+      btn.hidden = true;
+      if (activeView === 'reference') {
+        activeView = 'list';
+        document.querySelectorAll('.vtab').forEach(b => b.classList.toggle('active', b.dataset.view === 'list'));
+        document.getElementById('list-view').style.display = '';
+        document.getElementById('seating-view').style.display = 'none';
+        document.getElementById('reference-view').style.display = 'none';
+      }
     }
   }
 
@@ -1629,6 +1845,7 @@
       activeView = btn.dataset.view;
       document.getElementById('list-view').style.display = activeView === 'list' ? '' : 'none';
       document.getElementById('seating-view').style.display = activeView === 'seating' ? '' : 'none';
+      document.getElementById('reference-view').style.display = activeView === 'reference' ? '' : 'none';
       refresh();
     });
   });
@@ -1654,7 +1871,82 @@
     if (!dinnerData) return;
     renderHeader(dinnerData);
     if (activeView === 'list') renderList();
-    else renderSeating();
+    else if (activeView === 'seating') renderSeating();
+    else if (activeView === 'reference') renderReference();
+  }
+
+  // ====================================================================
+  // RENDERING — REFERENCE VIEW (Feature 2, v1.7)
+  // ====================================================================
+  function renderReference() {
+    const container = document.getElementById('reference-content');
+    if (!referenceData) {
+      container.innerHTML = `<div class="loading">No reference content available for this series yet.</div>`;
+      return;
+    }
+    const r = referenceData;
+    const headerHTML = `
+      <div class="ref-header">
+        <p class="ref-title">${escape(r.header.title)}</p>
+        ${r.header.subtitle ? `<p class="ref-subtitle">${escape(r.header.subtitle)}</p>` : ''}
+      </div>`;
+
+    const coursesHTML = (r.courses || []).map(c => `
+      <section class="ref-course">
+        <div class="ref-course-head">
+          <p class="ref-course-label">${escape(c.label)}</p>
+          ${c.subtitle ? `<p class="ref-course-sub">${escape(c.subtitle)}</p>` : ''}
+        </div>
+        ${(c.dishes || []).map(d => refDishHTML(d)).join('')}
+        ${c.plateware ? `<div class="ref-plateware"><span class="ref-plateware-label">Plateware</span>${escape(c.plateware)}</div>` : ''}
+      </section>
+    `).join('');
+
+    const taglineHTML = r.header.tagline ? `<p class="ref-tagline">${escape(r.header.tagline)}</p>` : '';
+
+    container.innerHTML = headerHTML + coursesHTML + taglineHTML;
+
+    container.querySelectorAll('.ref-dish-head').forEach(el => {
+      el.addEventListener('click', () => {
+        const dishEl = el.parentElement;
+        const name = dishEl.dataset.dish;
+        if (expandedDishes.has(name)) {
+          expandedDishes.delete(name);
+          dishEl.classList.remove('expanded');
+        } else {
+          expandedDishes.add(name);
+          dishEl.classList.add('expanded');
+        }
+      });
+    });
+  }
+
+  function refDishHTML(d) {
+    const isExpanded = expandedDishes.has(d.name);
+    const pron = d.pronunciation ? `<span class="ref-dish-pron">${escape(d.pronunciation)}</span>` : '';
+    const components = d.components ? `<p class="ref-dish-components">${escape(d.components)}</p>` : '';
+    const story = d.story ? `<p class="ref-dish-story">${escape(d.story)}</p>` : '';
+    const ingredients = (d.ingredients || []).length
+      ? `<p class="ref-ingredients-label">Ingredients to know</p>` +
+        d.ingredients.map(i =>
+          `<div class="ref-ingredient"><span class="term">${escape(i.term)}</span>${i.pronunciation ? `<span class="pron">${escape(i.pronunciation)}</span>` : ''} — ${escape(i.note)}</div>`
+        ).join('')
+      : '';
+    return `
+      <div class="ref-dish ${isExpanded ? 'expanded' : ''}" data-dish="${escape(d.name)}">
+        <div class="ref-dish-head">
+          <div class="ref-dish-name-row">
+            <span class="ref-dish-name">${escape(d.name)}</span>
+            ${pron}
+          </div>
+          ${components}
+        </div>
+        <div class="ref-dish-details">
+          ${story}
+          ${ingredients}
+        </div>
+      </div>
+    `;
   }
 
   function renderDateSwitcher(d) {
@@ -1738,6 +2030,9 @@
         return;
       }
       renderDateSwitcher(dinnerData);
+      referenceData = await loadReference(dinnerDate);
+      expandedDishes.clear();
+      updateReferenceTabVisibility();
 
       if (stateBackend === 'firebase') {
         const ok = await initFirebase();
@@ -1802,6 +2097,9 @@
         return;
       }
       renderDateSwitcher(dinnerData);
+      referenceData = await loadReference(dinnerDate);
+      expandedDishes.clear();
+      updateReferenceTabVisibility();
 
       // Try Firebase if available, otherwise localStorage
       const fbAttempt = await initFirebase();
