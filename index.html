@@ -687,17 +687,11 @@
     background: var(--bg);
     border-radius: 8px;
   }
-  /* Fresh-talk menu walkthrough re-uses .ref-* styles but forces dishes open */
+  /* Fresh-talk uses the same .ref-* card styles as the (retired) Reference view.
+     Cards default-open via expandedDishes/expandedWines being pre-seeded in JS;
+     they remain tap-collapsible just like Reference cards used to be. */
   .freshtalk-view .ref-dish {
     border-color: var(--gold-soft);
-  }
-  .freshtalk-view .ref-dish .ref-dish-details,
-  .freshtalk-view .ref-wine .ref-wine-details {
-    display: block !important;
-  }
-  .freshtalk-view .ref-dish .ref-dish-head,
-  .freshtalk-view .ref-wine .ref-wine-head {
-    cursor: default;
   }
 
   /* ===== WINE CARDS (v1.9) — used in both Reference and Fresh-talk ===== */
@@ -1278,7 +1272,6 @@
 <div class="view-toggle">
   <button class="vtab active" data-view="list">Check-in</button>
   <button class="vtab" data-view="seating">Seating</button>
-  <button class="vtab" data-view="reference" id="vtab-reference" hidden>Reference</button>
   <button class="vtab" data-view="freshtalk" id="vtab-freshtalk" hidden>Fresh talk</button>
 </div>
 
@@ -1320,12 +1313,6 @@
         <div id="table-A"></div>
       </div>
     </div>
-  </div>
-</div>
-
-<div id="reference-view" style="display:none;">
-  <div class="reference-view" id="reference-content">
-    <div class="loading">Loading reference…</div>
   </div>
 </div>
 
@@ -1388,7 +1375,7 @@
   // ====================================================================
   // CONFIG + STATE
   // ====================================================================
-  const VERSION = "v1.9";
+  const VERSION = "v1.10";
   const DATA_PATH = "data";
   const params = new URLSearchParams(window.location.search);
   const today = new Date().toISOString().split('T')[0];
@@ -1593,23 +1580,21 @@
     } catch (e) { return null; }
   }
 
-  // Show/hide the Reference vtab button based on whether reference data loaded.
-  // If we're on the Reference view and the new dinner has no reference, snap back to Check-in.
-  function updateReferenceTabVisibility() {
-    const btn = document.getElementById('vtab-reference');
-    if (!btn) return;
-    if (referenceData) {
-      btn.hidden = false;
-    } else {
-      btn.hidden = true;
-      if (activeView === 'reference') {
-        activeView = 'list';
-        document.querySelectorAll('.vtab').forEach(b => b.classList.toggle('active', b.dataset.view === 'list'));
-        document.getElementById('list-view').style.display = '';
-        document.getElementById('seating-view').style.display = 'none';
-        document.getElementById('reference-view').style.display = 'none';
-      }
-    }
+  // (updateReferenceTabVisibility removed in v1.10 — Fresh-talk's visibility
+  // function now handles the only menu/wine surface.)
+
+  // After referenceData loads (or changes), seed every dish and wine name into
+  // the expanded sets so the Fresh-talk view defaults to fully open. User taps
+  // collapse individual cards; state persists across view switches within a
+  // dinner and resets when the dinner changes (loadDinner calls this).
+  function seedExpandedSetsFromReference() {
+    expandedDishes.clear();
+    expandedWines.clear();
+    if (!referenceData) return;
+    (referenceData.courses || []).forEach(c =>
+      (c.dishes || []).forEach(d => expandedDishes.add(d.name))
+    );
+    (referenceData.wines || []).forEach(w => expandedWines.add(w.name));
   }
 
   // ====================================================================
@@ -2129,7 +2114,6 @@
       activeView = btn.dataset.view;
       document.getElementById('list-view').style.display = activeView === 'list' ? '' : 'none';
       document.getElementById('seating-view').style.display = activeView === 'seating' ? '' : 'none';
-      document.getElementById('reference-view').style.display = activeView === 'reference' ? '' : 'none';
       document.getElementById('freshtalk-view').style.display = activeView === 'freshtalk' ? '' : 'none';
       refresh();
     });
@@ -2157,12 +2141,11 @@
     renderHeader(dinnerData);
     if (activeView === 'list') renderList();
     else if (activeView === 'seating') renderSeating();
-    else if (activeView === 'reference') renderReference();
     else if (activeView === 'freshtalk') renderFreshTalk();
   }
 
   // ====================================================================
-  // RENDERING — FRESH TALK VIEW (Feature 3, v1.8)
+  // RENDERING — FRESH TALK VIEW (Feature 3, v1.8 · consolidated v1.10)
   // ====================================================================
   // The 1pm pre-service brief. Pulls dinnerData (covers, allergen parties,
   // returning guests) and referenceData (menu walkthrough), arranges in a
@@ -2255,6 +2238,25 @@
       </section>` : '';
 
     container.innerHTML = headerHTML + glanceHTML + allergenHTML + returningHTML + menuHTML + wineHTML;
+
+    // Bind dish + wine accordion handlers so cards can be tap-collapsed.
+    // (Cards default-open because seedExpandedSetsFromReference seeded the sets.)
+    container.querySelectorAll('.ref-dish-head').forEach(el => {
+      el.addEventListener('click', () => {
+        const dishEl = el.parentElement;
+        const name = dishEl.dataset.dish;
+        if (expandedDishes.has(name)) { expandedDishes.delete(name); dishEl.classList.remove('expanded'); }
+        else { expandedDishes.add(name); dishEl.classList.add('expanded'); }
+      });
+    });
+    container.querySelectorAll('.ref-wine-head').forEach(el => {
+      el.addEventListener('click', () => {
+        const wineEl = el.parentElement;
+        const name = wineEl.dataset.wine;
+        if (expandedWines.has(name)) { expandedWines.delete(name); wineEl.classList.remove('expanded'); }
+        else { expandedWines.add(name); wineEl.classList.add('expanded'); }
+      });
+    });
   }
 
   // Show/hide the Fresh-talk vtab — needs both dinnerData AND referenceData.
@@ -2271,15 +2273,14 @@
         document.querySelectorAll('.vtab').forEach(b => b.classList.toggle('active', b.dataset.view === 'list'));
         document.getElementById('list-view').style.display = '';
         document.getElementById('seating-view').style.display = 'none';
-        document.getElementById('reference-view').style.display = 'none';
         document.getElementById('freshtalk-view').style.display = 'none';
       }
     }
   }
 
-  // ====================================================================
-  // RENDERING — REFERENCE VIEW (Feature 2, v1.7)
-  // ====================================================================
+  // (Reference view phased out in v1.10 — Fresh-talk now serves both
+  // pre-service walkthrough and mid-service lookup via tap-to-collapse cards.)
+  /*
   function renderReference() {
     const container = document.getElementById('reference-content');
     if (!referenceData) {
@@ -2336,6 +2337,7 @@
       });
     });
   }
+  */
 
   // Render a single wine card. Collapsed = pour notes + spec dots; expanded
   // also reveals producer + winemaking sections.
@@ -2513,9 +2515,7 @@
       }
       renderDateSwitcher(dinnerData);
       referenceData = await loadReference(dinnerDate);
-      expandedDishes.clear();
-      expandedWines.clear();
-      updateReferenceTabVisibility();
+      seedExpandedSetsFromReference();
       updateFreshTalkTabVisibility();
 
       if (stateBackend === 'firebase') {
@@ -2582,9 +2582,7 @@
       }
       renderDateSwitcher(dinnerData);
       referenceData = await loadReference(dinnerDate);
-      expandedDishes.clear();
-      expandedWines.clear();
-      updateReferenceTabVisibility();
+      seedExpandedSetsFromReference();
       updateFreshTalkTabVisibility();
 
       // Try Firebase if available, otherwise localStorage
