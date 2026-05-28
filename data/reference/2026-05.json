@@ -133,5 +133,75 @@
         }
       ]
     }
+  ],
+  "wines": [
+    {
+      "name": "Antica Tenuta Pietramore Passerina",
+      "vintage": null,
+      "type": "white",
+      "region": "Abruzzo, Italy",
+      "grapes": "100% Passerina",
+      "alcohol_pct": null,
+      "pour_notes": "A salty, mineral Italian white from the Abruzzo coast. Pear, yellow peach, white flowers. Indigenous grape, biodynamic estate, stainless-aged on the lees.",
+      "specs": [
+        { "label": "Body", "rating": 3, "low": "light", "high": "full" },
+        { "label": "Dryness", "rating": 5, "low": "off-dry", "high": "bone dry" },
+        { "label": "Acidity", "rating": 4, "low": "soft", "high": "bright" },
+        { "label": "Tannins", "rating": 1, "low": "none", "high": "grippy" }
+      ],
+      "producer": "Antica Tenuta Pietramore was started in 2011 by Maria Pia Leone and her partner Massimiliano. The name reflects Maria's reverence for the soil — pietra (stone) + amore (love). The 70-hectare estate is certified organic and biodynamic, nestled between the Maiella mountains and the Adriatic Sea in the Province of Chieti. Maria works exclusively with indigenous Abruzzo grape varieties, and the estate has become a benchmark for what's possible from this corner of Italy.",
+      "winemaking": "Hand-harvested at deliberately low yields (~4 tons/hectare). Vines are grown on medium-textured soils tending to chalk and limestone with south-east exposure. The fruit is gently pressed under dry-ice protection to preserve aromatics, followed by a soft pressing and free-run juice only. The wine is aged on its fine lees in stainless steel, which gives it body and a saline, mineral signature."
+    },
+    {
+      "name": "Corte Scaletta Valpolicella",
+      "vintage": "2022",
+      "type": "red",
+      "region": "Marcellise, Veneto, Italy",
+      "grapes": "40% Corvina · 30% Corvinone · 30% Rondinella",
+      "alcohol_pct": null,
+      "pour_notes": "Light, pretty Valpolicella from a family estate near Verona. Tart cherry, raspberry preserves, a flicker of green peppercorn. Hand-harvested, stainless-aged, solar-powered cellar.",
+      "specs": [
+        { "label": "Body", "rating": 2, "low": "light", "high": "full" },
+        { "label": "Dryness", "rating": 5, "low": "off-dry", "high": "bone dry" },
+        { "label": "Acidity", "rating": 4, "low": "soft", "high": "bright" },
+        { "label": "Tannins", "rating": 2, "low": "none", "high": "grippy" }
+      ],
+      "producer": "Corte Scaletta was founded in 2011 by the Cavedini family, who have made wine for generations and farm with deep respect for the unique character of Valpolicella DOC. The estate sits in the Valley of Marcellise a few kilometers from Verona, near the Musella estate, where surrounding mountains and hills moderate the climate. The cellar runs entirely on solar power.",
+      "winemaking": "Wild grasses are left long between rows to maintain soil biology, with careful cutting under the vines so no chemical herbicides are needed. Grapes are hand-harvested. Vinification is in stainless-steel vats with a cold maceration phase followed by slow, spontaneous, temperature-controlled fermentation — no inoculated yeasts, no rushing it. The result is a Valpolicella that reads lifted and red-fruited rather than dark and brooding."
+    },
+    {
+      "name": "Les Marées Non-Alcoholic Sparkling Blanc de Blancs",
+      "vintage": null,
+      "type": "sparkling NA",
+      "region": "Southern France",
+      "grapes": "100% organic Chardonnay",
+      "alcohol_pct": 0,
+      "pour_notes": "A real sparkling NA wine, not soda. Organic Chardonnay from Southern France. Green apple, mineral, bright. Treat it like a Blanc de Blancs — chill it, pour it tall, toast with it.",
+      "specs": [
+        { "label": "Body", "rating": 2, "low": "light", "high": "full" },
+        { "label": "Dryness", "rating": 5, "low": "off-dry", "high": "bone dry" },
+        { "label": "Acidity", "rating": 5, "low": "soft", "high": "bright" },
+        { "label": "Tannins", "rating": 1, "low": "none", "high": "grippy" }
+      ],
+      "producer": "Les Marées is made from organic Chardonnay grown on the sunlit shores of Southern France. The maker takes the Blanc de Blancs idea (Chardonnay-only sparkling, the same backbone as Champagne) and removes the alcohol while preserving the structure.",
+      "winemaking": "Made in the spirit of a real sparkling wine — bright, refined, structured around green apple and mineral. Aimed at slow café afternoons, easy celebrations, and any moment that calls for sparkle without alcohol."
+    },
+    {
+      "name": "Cantina Zaccagnini Alcohol-Removed White",
+      "vintage": null,
+      "type": "white NA",
+      "region": "Abruzzo, Italy",
+      "grapes": "Italian white grapes",
+      "alcohol_pct": 0,
+      "pour_notes": "A premium alcohol-removed Italian white from Abruzzo. Bright straw color, yellow fruits, white flowers, delicate and balanced. Made from a real wine that's had the alcohol gently distilled out — full character, zero buzz.",
+      "specs": [
+        { "label": "Body", "rating": 3, "low": "light", "high": "full" },
+        { "label": "Dryness", "rating": 4, "low": "off-dry", "high": "bone dry" },
+        { "label": "Acidity", "rating": 3, "low": "soft", "high": "bright" },
+        { "label": "Tannins", "rating": 1, "low": "none", "high": "grippy" }
+      ],
+      "producer": "The Ciccio Zaccagnini estate sits on 500 acres in Bolognano, about 30 miles from the Adriatic coast and 8 miles from the Maiella mountains (which rise to 9,000 ft). The vineyards are in the cru section 'Colle Morto di Bolognano.' Marcello Zaccagnini and winemaker Concezio Marulli are central figures in the modern Abruzzo wine renaissance, and every bottle of this line carries a small piece of tralcetto — grape vine — as the estate's signature.",
+      "winemaking": "A first-class wine is the starting point — quality in, quality out. The alcohol is removed in a two-step distillation in a vacuum evaporator: the first pass captures the volatile aromas (which evaporate first), and those aromas are condensed and held aside. The second pass evaporates the ethanol. Finally the preserved aromas are returned to the dealcoholized wine, so the finished bottle retains the original wine's character without the alcohol."
+    }
   ]
 }
