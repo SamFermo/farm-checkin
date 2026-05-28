@@ -2346,7 +2346,7 @@
       : w.type === 'red' ? 'wine-type-red'
       : 'wine-type-white';
     const isNA = (w.type || '').toLowerCase().includes('na');
-    const vintage = w.vintage ? `<span class="ref-wine-vintage">${escape(w.vintage)}</span>` : '';
+    const vintage = w.vintage ? ` <span class="ref-wine-vintage">${escape(w.vintage)}</span>` : '';
     const naBadge = isNA ? `<span class="ref-wine-na-badge">NA · 0%</span>` : '';
     const alcoholPct = (!isNA && w.alcohol_pct != null) ? `<span class="ref-wine-na-badge" style="border-color:var(--gold);color:var(--gold);">${escape(String(w.alcohol_pct))}%</span>` : '';
 
