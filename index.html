@@ -555,6 +555,151 @@
     color: var(--text-mute);
     line-height: 1.55;
   }
+
+  /* ===== FRESH TALK VIEW (v1.8) ===== */
+  .freshtalk-view {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 24px 22px 80px;
+  }
+  .ft-header {
+    text-align: center;
+    margin: 0 0 26px;
+    padding-bottom: 18px;
+    border-bottom: 0.5px solid var(--border);
+  }
+  .ft-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+    margin: 0 0 4px;
+  }
+  .ft-title {
+    font-family: 'Caladea', 'Cambria', Georgia, serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--wood);
+    margin: 0;
+  }
+  .ft-sub {
+    margin: 4px 0 0;
+    font-size: 14px;
+    color: var(--text-mute);
+  }
+  .ft-section {
+    margin: 0 0 28px;
+  }
+  .ft-section-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+    margin: 0 0 10px;
+    padding-bottom: 6px;
+    border-bottom: 0.5px solid var(--border);
+  }
+  .ft-glance {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+  .ft-stat {
+    background: var(--bg);
+    border: 0.5px solid var(--border);
+    border-radius: 8px;
+    padding: 12px;
+    text-align: center;
+  }
+  .ft-stat-num {
+    font-family: 'Caladea', 'Cambria', Georgia, serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--wood);
+    line-height: 1;
+  }
+  .ft-stat-label {
+    margin-top: 4px;
+    font-size: 11px;
+    color: var(--text-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .ft-party {
+    background: var(--bg);
+    border-radius: 8px;
+    padding: 12px 14px;
+    margin: 0 0 10px;
+  }
+  .ft-party.allergen {
+    border-left: 3px solid var(--allergen-border);
+    background: var(--allergen-bg);
+  }
+  .ft-party.returning {
+    border-left: 3px solid var(--gold);
+    background: var(--returning-bg);
+  }
+  .ft-party-name {
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--wood);
+  }
+  .ft-party-meta {
+    display: inline-block;
+    margin-left: 8px;
+    font-size: 12.5px;
+    color: var(--text-mute);
+  }
+  .ft-party-flags {
+    margin-top: 4px;
+    font-size: 13.5px;
+    color: var(--text);
+  }
+  .ft-party-flags strong {
+    color: var(--allergen-border);
+    margin-right: 8px;
+  }
+  .ft-party-note {
+    margin-top: 4px;
+    font-size: 13px;
+    font-style: italic;
+    color: var(--text-mute);
+  }
+  .ft-returning-ord {
+    font-family: 'Caladea', 'Cambria', Georgia, serif;
+    font-size: 13.5px;
+    color: var(--wood);
+    margin-top: 2px;
+  }
+  .ft-returning-years {
+    font-size: 12.5px;
+    color: var(--text-mute);
+    font-style: italic;
+  }
+  .ft-empty {
+    padding: 14px;
+    text-align: center;
+    color: var(--text-mute);
+    font-style: italic;
+    font-size: 14px;
+    background: var(--bg);
+    border-radius: 8px;
+  }
+  /* Fresh-talk menu walkthrough re-uses .ref-* styles but forces dishes open */
+  .freshtalk-view .ref-dish {
+    border-color: var(--gold-soft);
+  }
+  .freshtalk-view .ref-dish .ref-dish-details {
+    display: block !important;
+  }
+  .freshtalk-view .ref-dish .ref-dish-head {
+    cursor: default;
+  }
+  @media (max-width: 600px) {
+    .ft-glance { grid-template-columns: repeat(2, 1fr); }
+  }
   .modal-section .seats-list {
     background: #ebdfc4; border-left: 3px solid var(--wood);
     color: var(--wood);
@@ -1003,6 +1148,7 @@
   <button class="vtab active" data-view="list">Check-in</button>
   <button class="vtab" data-view="seating">Seating</button>
   <button class="vtab" data-view="reference" id="vtab-reference" hidden>Reference</button>
+  <button class="vtab" data-view="freshtalk" id="vtab-freshtalk" hidden>Fresh talk</button>
 </div>
 
 <div id="list-view">
@@ -1049,6 +1195,12 @@
 <div id="reference-view" style="display:none;">
   <div class="reference-view" id="reference-content">
     <div class="loading">Loading reference…</div>
+  </div>
+</div>
+
+<div id="freshtalk-view" style="display:none;">
+  <div class="freshtalk-view" id="freshtalk-content">
+    <div class="loading">Loading fresh talk…</div>
   </div>
 </div>
 
@@ -1105,7 +1257,7 @@
   // ====================================================================
   // CONFIG + STATE
   // ====================================================================
-  const VERSION = "v1.7";
+  const VERSION = "v1.8";
   const DATA_PATH = "data";
   const params = new URLSearchParams(window.location.search);
   const today = new Date().toISOString().split('T')[0];
@@ -1846,6 +1998,7 @@
       document.getElementById('list-view').style.display = activeView === 'list' ? '' : 'none';
       document.getElementById('seating-view').style.display = activeView === 'seating' ? '' : 'none';
       document.getElementById('reference-view').style.display = activeView === 'reference' ? '' : 'none';
+      document.getElementById('freshtalk-view').style.display = activeView === 'freshtalk' ? '' : 'none';
       refresh();
     });
   });
@@ -1873,6 +2026,117 @@
     if (activeView === 'list') renderList();
     else if (activeView === 'seating') renderSeating();
     else if (activeView === 'reference') renderReference();
+    else if (activeView === 'freshtalk') renderFreshTalk();
+  }
+
+  // ====================================================================
+  // RENDERING — FRESH TALK VIEW (Feature 3, v1.8)
+  // ====================================================================
+  // The 1pm pre-service brief. Pulls dinnerData (covers, allergen parties,
+  // returning guests) and referenceData (menu walkthrough), arranges in a
+  // guided reading order. App surfaces who/what; Sam delivers the talk.
+  function renderFreshTalk() {
+    const container = document.getElementById('freshtalk-content');
+    if (!dinnerData || !referenceData) {
+      container.innerHTML = `<div class="loading">Fresh talk needs both dinner data and reference content for this series.</div>`;
+      return;
+    }
+    const d = dinnerData;
+    const guests = d.guests || [];
+    const allergenParties = guests.filter(g => g.is_allergen_party || (g.allergens && g.allergens.length));
+    const returningGuests = guests.filter(g => g.returning).sort((a, b) => (b.returning.prior_count || 0) - (a.returning.prior_count || 0));
+    const multiYearCount = returningGuests.filter(g => g.returning.is_multi_year).length;
+
+    const headerHTML = `
+      <div class="ft-header">
+        <p class="ft-eyebrow">Fresh talk · 1pm</p>
+        <p class="ft-title">${escape(d.display_date || d.dinner_date)}</p>
+        <p class="ft-sub">${d.seated_covers} covers booked · ${d.party_count || guests.length} parties</p>
+      </div>`;
+
+    const glanceHTML = `
+      <section class="ft-section">
+        <p class="ft-section-label">Tonight at a glance</p>
+        <div class="ft-glance">
+          <div class="ft-stat"><div class="ft-stat-num">${d.seated_covers}</div><div class="ft-stat-label">covers</div></div>
+          <div class="ft-stat"><div class="ft-stat-num">${d.party_count || guests.length}</div><div class="ft-stat-label">parties</div></div>
+          <div class="ft-stat"><div class="ft-stat-num">${allergenParties.length}</div><div class="ft-stat-label">allergen flags</div></div>
+          <div class="ft-stat"><div class="ft-stat-num">${returningGuests.length}</div><div class="ft-stat-label">returning</div></div>
+        </div>
+      </section>`;
+
+    const allergenHTML = `
+      <section class="ft-section">
+        <p class="ft-section-label">Allergen parties (${allergenParties.length})</p>
+        ${allergenParties.length === 0
+          ? `<div class="ft-empty">No allergen or restriction flags tonight.</div>`
+          : allergenParties.map(g => `
+            <div class="ft-party allergen">
+              <span class="ft-party-name">${escape(g.purchaser)}</span>
+              <span class="ft-party-meta">party of ${g.party_size}${g.email ? ' · ' + escape(g.email) : ''}</span>
+              ${g.allergens && g.allergens.length ? `<div class="ft-party-flags"><strong>${escape(g.allergens.join(' · '))}</strong></div>` : ''}
+              ${g.notes ? `<div class="ft-party-note">${escape(g.notes)}</div>` : ''}
+            </div>
+          `).join('')
+        }
+      </section>`;
+
+    const returningHTML = `
+      <section class="ft-section">
+        <p class="ft-section-label">Returning guests (${returningGuests.length}${multiYearCount ? ` · ${multiYearCount} multi-year` : ''})</p>
+        ${returningGuests.length === 0
+          ? `<div class="ft-empty">No returning guests tonight.</div>`
+          : returningGuests.map(g => {
+              const total = (g.returning.prior_count || 0) + 1;
+              return `
+                <div class="ft-party returning">
+                  <span class="ft-party-name">${escape(g.purchaser)}</span>
+                  <span class="ft-party-meta">party of ${g.party_size}</span>
+                  <div class="ft-returning-ord">${ordinal(total)} Swan House dinner</div>
+                  <div class="ft-returning-years">Prior visit${g.returning.prior_count > 1 ? 's' : ''}: ${escape((g.returning.years || []).join(', '))}</div>
+                </div>`;
+            }).join('')
+        }
+      </section>`;
+
+    // Menu walkthrough: re-use the Reference render but force-expand all dishes
+    const r = referenceData;
+    const menuHTML = `
+      <section class="ft-section">
+        <p class="ft-section-label">Menu walkthrough · all courses</p>
+        ${(r.courses || []).map(c => `
+          <div class="ref-course">
+            <div class="ref-course-head">
+              <p class="ref-course-label">${escape(c.label)}</p>
+              ${c.subtitle ? `<p class="ref-course-sub">${escape(c.subtitle)}</p>` : ''}
+            </div>
+            ${(c.dishes || []).map(refDishHTML).join('')}
+            ${c.plateware ? `<div class="ref-plateware"><span class="ref-plateware-label">Plateware</span>${escape(c.plateware)}</div>` : ''}
+          </div>
+        `).join('')}
+      </section>`;
+
+    container.innerHTML = headerHTML + glanceHTML + allergenHTML + returningHTML + menuHTML;
+  }
+
+  // Show/hide the Fresh-talk vtab — needs both dinnerData AND referenceData.
+  function updateFreshTalkTabVisibility() {
+    const btn = document.getElementById('vtab-freshtalk');
+    if (!btn) return;
+    const ready = !!(dinnerData && !dinnerData._missing && referenceData);
+    if (ready) {
+      btn.hidden = false;
+    } else {
+      btn.hidden = true;
+      if (activeView === 'freshtalk') {
+        activeView = 'list';
+        document.querySelectorAll('.vtab').forEach(b => b.classList.toggle('active', b.dataset.view === 'list'));
+        document.getElementById('list-view').style.display = '';
+        document.getElementById('seating-view').style.display = 'none';
+        document.getElementById('reference-view').style.display = 'none';
+        document.getElementById('freshtalk-view').style.display = 'none';
+      }
+    }
   }
 
   // ====================================================================
@@ -2033,6 +2297,7 @@
       referenceData = await loadReference(dinnerDate);
       expandedDishes.clear();
       updateReferenceTabVisibility();
+      updateFreshTalkTabVisibility();
 
       if (stateBackend === 'firebase') {
         const ok = await initFirebase();
@@ -2100,6 +2365,7 @@
       referenceData = await loadReference(dinnerDate);
       expandedDishes.clear();
       updateReferenceTabVisibility();
+      updateFreshTalkTabVisibility();
 
       // Try Firebase if available, otherwise localStorage
       const fbAttempt = await initFirebase();
