@@ -1489,8 +1489,8 @@
     </div>
     <div class="endcap-controls">
       <span>End caps:</span>
-      <label><input type="checkbox" id="endcap-A-END"> A · seat 9 (driveway end)</label>
-      <label><input type="checkbox" id="endcap-C-END"> C · seat 5 (fence end)</label>
+      <label><input type="checkbox" id="endcap-A-END"> A · seat 5 (fence end)</label>
+      <label><input type="checkbox" id="endcap-C-END"> C · seat 9 (driveway end)</label>
       <span style="margin-left:auto;" id="seat-totals"></span>
     </div>
     <div class="guest-picker" id="guest-picker"></div>
@@ -1501,9 +1501,9 @@
         <div class="row-label">Driveway →</div>
       </div>
       <div class="tables-row">
-        <div id="table-C"></div>
-        <div id="table-B"></div>
         <div id="table-A"></div>
+        <div id="table-B"></div>
+        <div id="table-C"></div>
       </div>
     </div>
   </div>
@@ -1574,7 +1574,7 @@
   // ====================================================================
   // CONFIG + STATE
   // ====================================================================
-  const VERSION = "v1.11";
+  const VERSION = "v1.12";
   const DATA_PATH = "data";
   const params = new URLSearchParams(window.location.search);
   const today = new Date().toISOString().split('T')[0];
@@ -1618,9 +1618,10 @@
   // For C: end-cap is on the LEFT (where seat 4 + seat 5 meet — between bottom-left
   //   and top-left). When enabled, it's effectively seat 5, with old 5/6/7/8 bumping
   //   to 6/7/8/9 (display only; internal seat IDs stay stable).
-  // Tables form a single horizontal row across the screen — C left, B middle, A right.
+  // Tables form a single horizontal row across the screen — A left, B middle, C right
+  // (alphabetical, fence on left, driveway on right). Flipped in v1.12 — was C-B-A.
   // Each table is a long horizontal rectangle with seats on the top and bottom long
-  // sides; end-caps sit at the OUTER short edges (far left of C, far right of A).
+  // sides; end-caps sit at the OUTER short edges (far left of A, far right of C).
   //
   //   topSeats    = the TOP long side, left-to-right (ascending numbers)
   //   bottomSeats = the BOTTOM long side, left-to-right (DESCENDING numbers)
@@ -1631,12 +1632,12 @@
   //   → 5 (TL) → 6 → 7 → 8 (TR)
   //   → back to 1
   // So "4 and 5" short edge = LEFT; "1 and 8" short edge = RIGHT.
-  // C's end-cap at "4 and 5" → LEFT (far left of the row, fence end).
-  // A's end-cap at "1 and 8" → RIGHT (far right of the row, driveway end).
+  // A's end-cap at "4 and 5" → LEFT (far left of the row, fence end).
+  // C's end-cap at "1 and 8" → RIGHT (far right of the row, driveway end).
   const TABLES = [
-    { id: 'C', topSeats: [5, 6, 7, 8],     bottomSeats: [4, 3, 2, 1],     endcapSide: 'left',  label: 'Fence end' },
+    { id: 'A', topSeats: [5, 6, 7, 8],     bottomSeats: [4, 3, 2, 1],     endcapSide: 'left',  label: 'Fence end' },
     { id: 'B', topSeats: [6, 7, 8, 9, 10], bottomSeats: [5, 4, 3, 2, 1],  endcapSide: null,    label: 'Middle' },
-    { id: 'A', topSeats: [5, 6, 7, 8],     bottomSeats: [4, 3, 2, 1],     endcapSide: 'right', label: 'Driveway end' },
+    { id: 'C', topSeats: [5, 6, 7, 8],     bottomSeats: [4, 3, 2, 1],     endcapSide: 'right', label: 'Driveway end' },
   ];
 
   function endcapId(t) { return t.endcapSide ? `${t.id}-END` : null; }
@@ -1658,15 +1659,18 @@
     return seatId.endsWith('-END');
   }
 
-  // Display label for an end-cap once enabled. For C the end-cap renumbers as "5"
-  // (bumping old 5/6/7/8 to 6/7/8/9 in display only). For A it's seat "9".
+  // Display label for an end-cap once enabled. Logic is driven by which side the
+  // cap is on, not which table — left-cap labels as "5" and bumps the inner top
+  // seats (5/6/7/8) up by one (6/7/8/9). Right-cap labels as "9" and leaves
+  // numbering alone. This way the convention is consistent regardless of where
+  // a given table lands on screen.
   function endcapLabel(tableId) {
-    return tableId === 'A' ? '9' : '5';
+    const t = TABLES.find(x => x.id === tableId);
+    return t?.endcapSide === 'right' ? '9' : '5';
   }
-  // For C, when end-cap is enabled, original top-row seat N displays as N+1.
-  // Bottom row (1-4) stays the same.
   function displaySeatNum(tableId, side, originalNum) {
-    if (tableId === 'C' && state.endcaps[`${tableId}-END`] && side === 'T' && originalNum >= 5) {
+    const t = TABLES.find(x => x.id === tableId);
+    if (t?.endcapSide === 'left' && state.endcaps[`${tableId}-END`] && side === 'T' && originalNum >= 5) {
       return String(originalNum + 1);
     }
     return String(originalNum);
