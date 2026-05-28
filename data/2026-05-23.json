@@ -90,9 +90,11 @@
       "party_size": 2,
       "email": "Katemcdonald7@yahoo.com",
       "notes": "Kate McDonald Party (this party N/A)",
-      "allergens": [],
+      "allergens": [
+        "NA"
+      ],
       "returning": null,
-      "is_allergen_party": false
+      "is_allergen_party": true
     },
     {
       "id": "g-2026-05-23-009",
