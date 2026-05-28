@@ -822,6 +822,198 @@
     color: var(--text-mute);
     font-style: italic;
   }
+
+  /* ===== SERVICE TAB (Feature 4, v1.11) ===== */
+  .service-view {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 22px 22px 80px;
+  }
+  .sv-header {
+    text-align: center;
+    margin: 0 0 18px;
+  }
+  .sv-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+    margin: 0 0 4px;
+  }
+  .sv-current-card {
+    background: var(--bg);
+    border: 1.5px solid var(--gold);
+    border-radius: 12px;
+    padding: 22px 22px 26px;
+    text-align: center;
+    margin: 0 0 22px;
+  }
+  .sv-course-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-mute);
+    margin: 0;
+  }
+  .sv-course-name {
+    font-family: 'Caladea', 'Cambria', Georgia, serif;
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--wood);
+    margin: 6px 0 4px;
+    line-height: 1.1;
+  }
+  .sv-course-dish {
+    font-size: 13.5px;
+    color: var(--text-mute);
+    font-style: italic;
+    margin: 0 0 18px;
+  }
+  .sv-state-row {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin: 14px 0 18px;
+    flex-wrap: wrap;
+  }
+  .sv-state-chip {
+    padding: 5px 10px;
+    border-radius: 999px;
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+    background: transparent;
+    border: 0.5px solid var(--border);
+    color: var(--text-mute);
+  }
+  .sv-state-chip.done {
+    background: var(--bg);
+    border-color: var(--gold-soft);
+    color: var(--gold);
+  }
+  .sv-state-chip.current {
+    background: var(--gold);
+    border-color: var(--gold);
+    color: var(--bg);
+  }
+  .sv-state-since {
+    font-size: 12px;
+    color: var(--text-mute);
+    margin: 0 0 18px;
+  }
+  .sv-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .sv-btn {
+    width: 100%;
+    padding: 14px 16px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    border: 0.5px solid var(--border);
+    background: var(--bg);
+    color: var(--text);
+    transition: transform 0.1s ease;
+  }
+  .sv-btn:active { transform: scale(0.985); }
+  .sv-btn.primary {
+    background: var(--wood);
+    color: var(--bg);
+    border: 0;
+    font-size: 16px;
+    padding: 16px;
+  }
+  .sv-btn.fire {
+    background: #b85a2f;
+    color: #fff5e9;
+    border: 0;
+    font-size: 17px;
+    padding: 18px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+  .sv-btn.ghost {
+    background: transparent;
+    color: var(--text-mute);
+    font-size: 13px;
+    padding: 8px;
+    font-weight: 500;
+  }
+  .sv-empty {
+    background: var(--bg);
+    border-radius: 12px;
+    padding: 36px 22px;
+    text-align: center;
+    color: var(--text-mute);
+    font-style: italic;
+    font-size: 14px;
+  }
+  .sv-timeline {
+    margin-top: 28px;
+  }
+  .sv-timeline-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+    margin: 0 0 10px;
+    padding-bottom: 6px;
+    border-bottom: 0.5px solid var(--border);
+  }
+  .sv-tl-course {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    padding: 10px 12px;
+    margin: 0 0 6px;
+    background: var(--bg);
+    border-radius: 6px;
+    border-left: 3px solid var(--border);
+  }
+  .sv-tl-course.in-progress { border-left-color: var(--gold); }
+  .sv-tl-course.completed { border-left-color: var(--gold-soft); }
+  .sv-tl-marker {
+    font-size: 13px;
+    width: 16px;
+    flex-shrink: 0;
+    color: var(--text-mute);
+  }
+  .sv-tl-course.in-progress .sv-tl-marker { color: var(--gold); }
+  .sv-tl-course.completed .sv-tl-marker { color: var(--gold-soft); }
+  .sv-tl-name {
+    font-family: 'Caladea', 'Cambria', Georgia, serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--wood);
+    flex-shrink: 0;
+  }
+  .sv-tl-meta {
+    font-size: 11.5px;
+    color: var(--text-mute);
+    font-style: italic;
+  }
+  .sv-tl-duration {
+    margin-left: auto;
+    font-size: 11.5px;
+    color: var(--gold);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .sv-foot-note {
+    margin-top: 20px;
+    font-size: 12px;
+    color: var(--text-mute);
+    text-align: center;
+    font-style: italic;
+  }
   @media (max-width: 600px) {
     .ft-glance { grid-template-columns: repeat(2, 1fr); }
   }
@@ -1273,6 +1465,7 @@
   <button class="vtab active" data-view="list">Check-in</button>
   <button class="vtab" data-view="seating">Seating</button>
   <button class="vtab" data-view="freshtalk" id="vtab-freshtalk" hidden>Fresh talk</button>
+  <button class="vtab" data-view="service" id="vtab-service" hidden>Service</button>
 </div>
 
 <div id="list-view">
@@ -1319,6 +1512,12 @@
 <div id="freshtalk-view" style="display:none;">
   <div class="freshtalk-view" id="freshtalk-content">
     <div class="loading">Loading fresh talk…</div>
+  </div>
+</div>
+
+<div id="service-view" style="display:none;">
+  <div class="service-view" id="service-content">
+    <div class="loading">Loading service…</div>
   </div>
 </div>
 
@@ -1375,7 +1574,7 @@
   // ====================================================================
   // CONFIG + STATE
   // ====================================================================
-  const VERSION = "v1.10";
+  const VERSION = "v1.11";
   const DATA_PATH = "data";
   const params = new URLSearchParams(window.location.search);
   const today = new Date().toISOString().split('T')[0];
@@ -1393,7 +1592,7 @@
   let selectedGuestId = null;        // for seating mode
 
   // Unified state: { checkins: {gid: {...}}, seats: {seatId: gid}, endcaps: {seatId: true} }
-  let state = { checkins: {}, seats: {}, endcaps: {} };
+  let state = { checkins: {}, seats: {}, endcaps: {}, courseState: emptyCourseState() };
   let stateBackend = 'localStorage';
   let unsubscribe = null;
 
@@ -1491,7 +1690,12 @@
       const raw = localStorage.getItem(lsKey());
       if (raw) {
         const parsed = JSON.parse(raw);
-        state = { checkins: parsed.checkins || {}, seats: parsed.seats || {}, endcaps: parsed.endcaps || {} };
+        state = {
+          checkins: parsed.checkins || {},
+          seats: parsed.seats || {},
+          endcaps: parsed.endcaps || {},
+          courseState: parsed.courseState || emptyCourseState(),
+        };
       }
     } catch (e) { /* fresh state */ }
   }
@@ -1512,6 +1716,7 @@
           checkins: data.checkins || {},
           seats: data.seats || {},
           endcaps: data.endcaps || {},
+          courseState: data.courseState || emptyCourseState(),
         };
       } else {
         // First time on this dinner — write our local state up
@@ -1582,6 +1787,14 @@
 
   // (updateReferenceTabVisibility removed in v1.10 — Fresh-talk's visibility
   // function now handles the only menu/wine surface.)
+
+  // Initial / reset shape for the course state machine. current_index = null
+  // means "service not yet started" — the first Fire button starts course 0.
+  // history is an append-only log of every state transition with a wall-clock
+  // timestamp for post-service pacing analysis.
+  function emptyCourseState() {
+    return { current_index: null, current_state: null, history: [] };
+  }
 
   // After referenceData loads (or changes), seed every dish and wine name into
   // the expanded sets so the Fresh-talk view defaults to fully open. User taps
@@ -2115,6 +2328,7 @@
       document.getElementById('list-view').style.display = activeView === 'list' ? '' : 'none';
       document.getElementById('seating-view').style.display = activeView === 'seating' ? '' : 'none';
       document.getElementById('freshtalk-view').style.display = activeView === 'freshtalk' ? '' : 'none';
+      document.getElementById('service-view').style.display = activeView === 'service' ? '' : 'none';
       refresh();
     });
   });
@@ -2142,6 +2356,251 @@
     if (activeView === 'list') renderList();
     else if (activeView === 'seating') renderSeating();
     else if (activeView === 'freshtalk') renderFreshTalk();
+    else if (activeView === 'service') renderService();
+  }
+
+  // ====================================================================
+  // RENDERING — SERVICE VIEW (Feature 4, v1.11)
+  // ====================================================================
+  // Course state machine: single global state (not per-table), 5 states
+  // (served → clearing → cleared → ready → fired). "fired" closes the
+  // current course and auto-advances the next to "served". History is
+  // append-only with timestamps so we get a real pacing log per dinner.
+  const COURSE_STATES = ['served', 'clearing', 'cleared', 'ready', 'fired'];
+  const STATE_LABELS = { served: 'Served', clearing: 'Clearing', cleared: 'Cleared', ready: 'Ready', fired: 'Fired' };
+
+  function courseStateOrEmpty() {
+    return state.courseState || emptyCourseState();
+  }
+
+  // Append a transition to history + update current pointers.
+  async function applyCourseTransition(courseIdx, toState) {
+    if (!state.courseState) state.courseState = emptyCourseState();
+    const cs = state.courseState;
+    cs.history.push({ course_index: courseIdx, state: toState, at: new Date().toISOString() });
+    cs.current_index = courseIdx;
+    cs.current_state = toState;
+    await pushState();
+    refresh();
+  }
+
+  // Fire next: closes current course (logs 'fired' if not already), then
+  // moves to next course at 'served'. From null state, just fires course 0.
+  async function fireNextCourse() {
+    if (!state.courseState) state.courseState = emptyCourseState();
+    const cs = state.courseState;
+    const courses = referenceData?.courses || [];
+    const now = new Date().toISOString();
+    if (cs.current_index === null) {
+      cs.history.push({ course_index: 0, state: 'served', at: now });
+      cs.current_index = 0;
+      cs.current_state = 'served';
+    } else {
+      if (cs.current_state !== 'fired') {
+        cs.history.push({ course_index: cs.current_index, state: 'fired', at: now });
+      }
+      const next = cs.current_index + 1;
+      if (next < courses.length) {
+        cs.history.push({ course_index: next, state: 'served', at: now });
+        cs.current_index = next;
+        cs.current_state = 'served';
+      } else {
+        cs.current_state = 'fired';
+      }
+    }
+    await pushState();
+    refresh();
+  }
+
+  async function undoLastTransition() {
+    if (!state.courseState || !state.courseState.history.length) return;
+    state.courseState.history.pop();
+    const h = state.courseState.history;
+    if (h.length === 0) {
+      state.courseState.current_index = null;
+      state.courseState.current_state = null;
+    } else {
+      const last = h[h.length - 1];
+      state.courseState.current_index = last.course_index;
+      state.courseState.current_state = last.state;
+    }
+    await pushState();
+    refresh();
+  }
+
+  async function resetCourseState() {
+    if (!confirm('Reset all course state for this dinner? History will be cleared.')) return;
+    state.courseState = emptyCourseState();
+    await pushState();
+    refresh();
+  }
+
+  function formatClock(iso) {
+    try { return new Date(iso).toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' }); }
+    catch (e) { return iso; }
+  }
+  function minutesAgo(iso) {
+    try { return Math.max(0, Math.round((Date.now() - new Date(iso).getTime()) / 60000)); }
+    catch (e) { return 0; }
+  }
+
+  function renderService() {
+    const container = document.getElementById('service-content');
+    if (!referenceData) {
+      container.innerHTML = `<div class="loading">Service view needs reference content for this series.</div>`;
+      return;
+    }
+    const courses = referenceData.courses || [];
+    const cs = courseStateOrEmpty();
+    const idx = cs.current_index;
+    const cur = cs.current_state;
+
+    // CURRENT COURSE CARD — three cases: not started, in progress, all done
+    let currentCardHTML;
+    if (idx === null) {
+      const firstCourse = courses[0]?.label || 'first course';
+      currentCardHTML = `
+        <div class="sv-empty">
+          Service hasn't started yet. Tap below when the first plates leave the kitchen.
+        </div>
+        <div class="sv-actions" style="margin-top:14px;">
+          <button class="sv-btn fire" data-action="fire">Fire course 1 → ${escape(firstCourse)}</button>
+        </div>`;
+    } else if (cur === 'fired' && idx >= courses.length - 1) {
+      currentCardHTML = `
+        <div class="sv-empty">
+          Service complete — final course fired. Nice work.
+        </div>`;
+    } else {
+      const c = courses[idx];
+      const firstDish = (c.dishes || [])[0]?.name || '';
+      const lastTrans = cs.history[cs.history.length - 1];
+      const sinceMin = lastTrans ? minutesAgo(lastTrans.at) : 0;
+      const chipsHTML = COURSE_STATES.map(s => {
+        const sIdx = COURSE_STATES.indexOf(s);
+        const curIdx = COURSE_STATES.indexOf(cur);
+        const cls = sIdx < curIdx ? 'done' : sIdx === curIdx ? 'current' : '';
+        return `<span class="sv-state-chip ${cls}">${STATE_LABELS[s]}</span>`;
+      }).join('');
+
+      // Action buttons: show only the valid next transitions for this state
+      const actions = [];
+      if (cur === 'served') actions.push({ label: 'Start clearing', state: 'clearing', primary: true });
+      if (cur === 'clearing') actions.push({ label: 'Mark cleared', state: 'cleared', primary: true });
+      if (cur === 'cleared') actions.push({ label: 'Ready for fire', state: 'ready', primary: true });
+      // Fire next is always available except when already fired on the last course
+      const isLast = idx >= courses.length - 1;
+      const nextCourseName = isLast ? null : courses[idx + 1].label;
+      const fireLabel = isLast ? 'Mark service complete' : `Fire next course → ${nextCourseName}`;
+      const actionsHTML = actions.map(a =>
+        `<button class="sv-btn primary" data-action="state" data-state="${a.state}">${escape(a.label)}</button>`
+      ).join('');
+      const fireHTML = `<button class="sv-btn fire" data-action="fire">${escape(fireLabel)}</button>`;
+
+      currentCardHTML = `
+        <div class="sv-current-card">
+          <p class="sv-course-label">Course ${idx + 1} of ${courses.length} · ${escape(c.label)}</p>
+          <p class="sv-course-name">${escape(firstDish || c.label)}</p>
+          ${c.dishes && c.dishes.length > 1 ? `<p class="sv-course-dish">+${c.dishes.length - 1} more on this course</p>` : ''}
+          <div class="sv-state-row">${chipsHTML}</div>
+          <p class="sv-state-since">${STATE_LABELS[cur]} for ${sinceMin} min · last ping ${formatClock(lastTrans.at)}</p>
+          <div class="sv-actions">
+            ${actionsHTML}
+            ${fireHTML}
+          </div>
+        </div>`;
+    }
+
+    // TIMELINE — one row per course with timestamps + duration
+    const tlHTML = courses.map((c, i) => {
+      const courseHist = cs.history.filter(h => h.course_index === i);
+      let cls = '', marker = '○', meta = 'not yet served', duration = '';
+      if (courseHist.length === 0) {
+        // not yet started
+      } else {
+        const firstServed = courseHist.find(h => h.state === 'served');
+        const firedTrans = courseHist.find(h => h.state === 'fired');
+        if (firedTrans) {
+          cls = 'completed'; marker = '✓';
+          const mins = Math.round((new Date(firedTrans.at) - new Date(firstServed.at)) / 60000);
+          meta = `served ${formatClock(firstServed.at)} · fired ${formatClock(firedTrans.at)}`;
+          duration = `${mins} min`;
+        } else {
+          cls = 'in-progress'; marker = '●';
+          const lastTrans = courseHist[courseHist.length - 1];
+          meta = `served ${formatClock(firstServed.at)} · ${STATE_LABELS[lastTrans.state].toLowerCase()} now`;
+          const mins = minutesAgo(firstServed.at);
+          duration = `${mins} min`;
+        }
+      }
+      return `
+        <div class="sv-tl-course ${cls}">
+          <span class="sv-tl-marker">${marker}</span>
+          <span class="sv-tl-name">${escape(c.label)}</span>
+          <span class="sv-tl-meta">${escape(meta)}</span>
+          ${duration ? `<span class="sv-tl-duration">${escape(duration)}</span>` : ''}
+        </div>`;
+    }).join('');
+
+    const undoHTML = cs.history.length > 0
+      ? `<button class="sv-btn ghost" data-action="undo">↶ Undo last (${cs.history.length} ${cs.history.length === 1 ? 'event' : 'events'} logged)</button>`
+      : '';
+    const resetHTML = cs.history.length > 0
+      ? `<button class="sv-btn ghost" data-action="reset" style="color:#a04040;">Reset all course state</button>`
+      : '';
+
+    container.innerHTML = `
+      <div class="sv-header">
+        <p class="sv-eyebrow">Service</p>
+      </div>
+      ${currentCardHTML}
+      <div class="sv-timeline">
+        <p class="sv-timeline-label">Tonight's pacing</p>
+        ${tlHTML}
+      </div>
+      <div style="display:flex; flex-direction:column; gap:6px; margin-top:16px;">
+        ${undoHTML}
+        ${resetHTML}
+      </div>
+      <p class="sv-foot-note">Realtime sync — what you see here is mirrored on every iPad signed in to this dinner.</p>
+    `;
+
+    // Wire actions
+    container.querySelectorAll('button[data-action]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const action = btn.dataset.action;
+        if (action === 'state') {
+          applyCourseTransition(cs.current_index, btn.dataset.state);
+        } else if (action === 'fire') {
+          fireNextCourse();
+        } else if (action === 'undo') {
+          undoLastTransition();
+        } else if (action === 'reset') {
+          resetCourseState();
+        }
+      });
+    });
+  }
+
+  // Show/hide the Service vtab — needs both dinnerData AND referenceData,
+  // same as Fresh-talk.
+  function updateServiceTabVisibility() {
+    const btn = document.getElementById('vtab-service');
+    if (!btn) return;
+    const ready = !!(dinnerData && !dinnerData._missing && referenceData);
+    if (ready) {
+      btn.hidden = false;
+    } else {
+      btn.hidden = true;
+      if (activeView === 'service') {
+        activeView = 'list';
+        document.querySelectorAll('.vtab').forEach(b => b.classList.toggle('active', b.dataset.view === 'list'));
+        document.getElementById('list-view').style.display = '';
+        document.getElementById('seating-view').style.display = 'none';
+        document.getElementById('freshtalk-view').style.display = 'none';
+        document.getElementById('service-view').style.display = 'none';
+      }
+    }
   }
 
   // ====================================================================
@@ -2499,7 +2958,7 @@
       unsubscribe = null;
     }
     dinnerDate = newDate;
-    state = { checkins: {}, seats: {}, endcaps: {} };
+    state = { checkins: {}, seats: {}, endcaps: {}, courseState: emptyCourseState() };
     selectedGuestId = null;
     updateUrlDate(newDate);
 
@@ -2517,6 +2976,7 @@
       referenceData = await loadReference(dinnerDate);
       seedExpandedSetsFromReference();
       updateFreshTalkTabVisibility();
+      updateServiceTabVisibility();
 
       if (stateBackend === 'firebase') {
         const ok = await initFirebase();
@@ -2584,6 +3044,7 @@
       referenceData = await loadReference(dinnerDate);
       seedExpandedSetsFromReference();
       updateFreshTalkTabVisibility();
+      updateServiceTabVisibility();
 
       // Try Firebase if available, otherwise localStorage
       const fbAttempt = await initFirebase();
