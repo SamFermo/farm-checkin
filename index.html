@@ -358,6 +358,27 @@
     background: var(--returning-bg); border-left: 3px solid var(--returning-border);
     padding: 9px 12px; border-radius: 3px;
   }
+  .greeting-label {
+    color: var(--gold) !important;
+    font-size: 12.5px !important;
+    letter-spacing: 0.08em;
+  }
+  .greeting-body {
+    padding: 12px 14px !important;
+  }
+  .greeting-headline {
+    font-family: 'Caladea', 'Cambria', Georgia, serif;
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--wood);
+    line-height: 1.2;
+  }
+  .greeting-sub {
+    margin-top: 4px;
+    font-size: 13px;
+    color: var(--text-mute);
+    font-style: italic;
+  }
   .modal-section .seats-list {
     background: #ebdfc4; border-left: 3px solid var(--wood);
     color: var(--wood);
@@ -901,7 +922,7 @@
   // ====================================================================
   // CONFIG + STATE
   // ====================================================================
-  const VERSION = "v1.5";
+  const VERSION = "v1.6";
   const DATA_PATH = "data";
   const params = new URLSearchParams(window.location.search);
   const today = new Date().toISOString().split('T')[0];
@@ -1098,6 +1119,14 @@
     return String(s || '').replace(/[&<>"']/g, c => ({
       '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;',
     })[c]);
+  }
+
+  // English ordinal for integers: 1→"1st", 2→"2nd", 11→"11th", etc.
+  function ordinal(n) {
+    const v = n % 100;
+    if (v >= 11 && v <= 13) return `${n}th`;
+    const suffix = { 1: 'st', 2: 'nd', 3: 'rd' }[n % 10] || 'th';
+    return `${n}${suffix}`;
   }
 
   function partyColor(guestId) {
@@ -1485,14 +1514,20 @@
         </div>
       </div>` : '';
 
-    const returningSection = g.returning ? `
-      <div class="modal-section">
-        <h4>Returning guest</h4>
-        <div class="body returning">
-          ${g.returning.prior_count} prior dinner${g.returning.prior_count > 1 ? 's' : ''} —
-          years: ${g.returning.years.join(', ')}${g.returning.is_multi_year ? ' (multi-year)' : ''}
+    const returningSection = g.returning ? (() => {
+      const r = g.returning;
+      const totalVisits = r.prior_count + 1;
+      const ord = ordinal(totalVisits);
+      const priorLabel = r.prior_count > 1 ? 'Prior visits' : 'Prior visit';
+      return `
+      <div class="modal-section greeting-section">
+        <h4 class="greeting-label">★ Welcome back</h4>
+        <div class="body returning greeting-body">
+          <div class="greeting-headline">${ord} Swan House dinner</div>
+          <div class="greeting-sub">${priorLabel}: ${escape(r.years.join(', '))}</div>
         </div>
-      </div>` : '';
+      </div>`;
+    })() : '';
 
     const notesSection = (g.notes && !g.allergens?.length) ? `
       <div class="modal-section">
@@ -1521,7 +1556,7 @@
     document.getElementById('modal').innerHTML = `
       <h2 class="modal-title">${escape(g.purchaser)}</h2>
       <p class="modal-sub">Party of ${g.party_size}${g.email ? ` · ${escape(g.email)}` : ''}</p>
-      ${allergenSection}${returningSection}${notesSection}${seatsSection}${noteInput}
+      ${returningSection}${allergenSection}${notesSection}${seatsSection}${noteInput}
       <div class="modal-actions">${actions}</div>
     `;
     document.getElementById('modal-backdrop').classList.add('open');
