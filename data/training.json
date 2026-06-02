@@ -1,0 +1,239 @@
+{
+  "version": "v0.3",
+  "last_updated": "2026-05-27",
+  "setup": {
+    "title": "Setup",
+    "subtitle": "Saturday morning, first dinner of the month",
+    "phases": [
+      {
+        "name": "UNPACK",
+        "items": [
+          "Open boxes, sort by category (Sam unloaded Friday night, staged in garden shed + swan house)",
+          "Alcohol → fridge or cellar",
+          "Dry goods → garden shed, cellar, or swan house",
+          "Glassware / dishes → garden shed",
+          "Stack empty boxes for the return trip — do not break down"
+        ]
+      },
+      {
+        "name": "PLATEWARE",
+        "items": [
+          "Check the app for the day's plateware, silverware, and guest count",
+          "Pull required dishes from Swan House; anything dirty → dish pit for Yoshi",
+          "Polish, organize into milk crates by course",
+          "Stage crates on the dining room table in the Main House"
+        ]
+      },
+      {
+        "name": "BAR",
+        "items": [
+          "Re-write the chalkboard: cocktails, white + red by name, NA / mocktail options",
+          "Ice well filled with potable ice",
+          "Second cooler stocked: Prosecco + heavy cocktail ingredients",
+          "Pull working bar stock",
+          "Brew coffee at 2:30 — the pods keep it hot through service"
+        ]
+      },
+      {
+        "name": "GLASSWARE TABLE",
+        "items": [
+          "Restock any missing pieces from boxes / swan house",
+          "Polish anything that came back dull",
+          "Re-group by type if mixed"
+        ]
+      },
+      {
+        "name": "PERGOLA + TABLE",
+        "items": [
+          "Walk the pergola — no new wasp nests or nature issues since last week",
+          "Vines not falling onto the table; shades in good shape",
+          "Wipe down chairs and table",
+          "Linens folded",
+          "Plates set",
+          "First-course silverware set",
+          "Wine and water glasses",
+          "Place card blocks set — parties of 4+ have block + card pre-placed; everyone else's block goes empty (guests drop their own card in when they choose a seat)"
+        ]
+      },
+      {
+        "name": "SERVICE STATIONS",
+        "items": [
+          "Gate-side service table set: bus tubs, water carafes, extra linens, extra silverware",
+          "Trash cans out of guest sightlines",
+          "Water bottle backstock in the garden shed",
+          "Whites and rosé chilling in garden shed reach-in or cellar",
+          "Reds out of boxes, ready to grab"
+        ]
+      },
+      {
+        "name": "BATHROOM",
+        "items": [
+          "Restock towels",
+          "Refill hot soap water",
+          "Refill cool hand rinse water",
+          "Refill sanitizer",
+          "Put out the bathroom sign"
+        ]
+      },
+      {
+        "name": "FRESH TALK",
+        "items": [
+          "Sit down with Sam — Fresh Talk + wine notes in the app, walk through any questions",
+          "Pour and taste both wines"
+        ]
+      },
+      {
+        "name": "FINAL WALK",
+        "subtitle": "T-minus 30 min",
+        "items": [
+          "Light candles; walk the bar, bathroom, parking lot — once-over everything"
+        ]
+      }
+    ]
+  },
+  "breakdown": {
+    "title": "Breakdown",
+    "subtitle": "Saturday vs Sunday closeout",
+    "columns": [
+      {
+        "name": "SATURDAY CLOSEOUT",
+        "subtitle": "Light reset — property stays set for Sunday",
+        "phases": [
+          {
+            "name": "TABLE",
+            "items": [
+              "Florals stay on the table",
+              "Candles + hurricane lamps → garden shed",
+              "Wipe around each place setting"
+            ]
+          },
+          {
+            "name": "BAR",
+            "items": [
+              "All bottles back to the fridge",
+              "Open cooler drain plugs",
+              "Chalkboard stays as is"
+            ]
+          },
+          {
+            "name": "GLASSWARE + PLATEWARE",
+            "items": [
+              "Clean glassware → polished-glassware table in the garden shed",
+              "Used plates → washed by Yoshi → polished",
+              "Re-crate by course, adjust quantity for Sunday's count → Main House dining room table"
+            ]
+          },
+          {
+            "name": "CLEANUP",
+            "items": [
+              "Bus pergola tables, wipe down chairs",
+              "Garbage to the truck",
+              "Kitchen wiped down, furniture clean",
+              "Self walk — everything in its home"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "SUNDAY CLOSEOUT",
+        "subtitle": "Full breakdown — property closes",
+        "phases": [
+          {
+            "name": "TABLE",
+            "items": [
+              "Strip linens",
+              "Wipe down full table",
+              "Candles + hurricane lamps → garden shed"
+            ]
+          },
+          {
+            "name": "BAR",
+            "items": [
+              "All bottles back to the fridge",
+              "Empty coolers, dump ice, leave on the cook line by the bar",
+              "Break down bar → bar crate (tools, garnish bowls, napkins) → Swan House"
+            ]
+          },
+          {
+            "name": "GLASSWARE + PLATEWARE",
+            "items": [
+              "Glassware → washed → polished → Swan House",
+              "Plates → washed → polished → back into the milk crates they arrived in → Swan House (keep separate from unused plateware stored there)",
+              "Silverware → washed → into gray silverware trays → saran-wrapped → Swan House",
+              "Wine → fridge, cellar, or wherever Mom + Dad want it (only goes back to the restaurant if Sam calls a wine-list change)"
+            ]
+          },
+          {
+            "name": "CLEANUP",
+            "items": [
+              "Bus pergola tables, wipe down chairs",
+              "Garbage to the truck",
+              "Kitchen wiped down, furniture clean",
+              "Self walk — everything in its home"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "standards": {
+    "title": "Standards",
+    "subtitle": "What to expect, what to bring, who to call",
+    "sections": [
+      {
+        "name": "DRESS CODE",
+        "type": "bullets",
+        "items": [
+          "Farm casual",
+          "Shoes comfortable for 8–10 hours and OK getting muddy",
+          "Apron",
+          "Wine key",
+          "Be prepared for any weather",
+          "Jacket for the end of the night"
+        ]
+      },
+      {
+        "name": "ARRIVAL & TIMING",
+        "type": "bullets",
+        "items": [
+          "Saturday: noon (sometimes later if there's less to do)",
+          "Sunday: 1pm (sometimes later)",
+          "Guests arrive: 3:30",
+          "Sit down: 4:30",
+          "First course: 4:45 (after wine is poured)"
+        ]
+      },
+      {
+        "name": "THE MAP",
+        "type": "definitions",
+        "items": [
+          {"term": "Main House", "def": "kitchen, plating, Yoshi during service"},
+          {"term": "Swan House", "def": "storage for dishes, glassware, silverware between dinners"},
+          {"term": "Pergola", "def": "the dining table"},
+          {"term": "Garden shed", "def": "dry-good storage, service-side backstock, polished-glassware table, reach-in fridge"},
+          {"term": "Cellar", "def": "alcohol backstock + kitchen dry goods"},
+          {"term": "Bar", "def": "long wooden table between the two houses, green egg + propane built in, chalkboard behind"},
+          {"term": "Farm stand", "def": "small house by the parking lot"},
+          {"term": "Bathroom", "def": "by the farm stand, outdoor handwashing station"}
+        ]
+      },
+      {
+        "name": "THE CHECK-IN APP",
+        "type": "prose",
+        "text": "Has everything you need: menu, drinks, guests, timing. Read the Fresh Talk section before every service."
+      },
+      {
+        "name": "CONTACTS",
+        "type": "definitions",
+        "items": [
+          {"term": "Sam", "def": "206-851-3137"},
+          {"term": "Tim", "def": "206-551-3328"},
+          {"term": "Kelly", "def": "206-250-9433"},
+          {"term": "Jessica Vick (Vick)", "def": "425-890-5828"},
+          {"term": "Jessica Blosmo (Blosmo)", "def": "360-603-6754"},
+          {"term": "Arlen Coiley (Arlen)", "def": "360-610-3473"}
+        ]
+      }
+    ]
+  }
+}
