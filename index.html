@@ -1897,7 +1897,7 @@
   // ====================================================================
   // CONFIG + STATE
   // ====================================================================
-  const VERSION = "v1.14";
+  const VERSION = "v1.15";
   const DATA_PATH = "data";
   const params = new URLSearchParams(window.location.search);
   const today = new Date().toISOString().split('T')[0];
@@ -2649,7 +2649,8 @@
   });
 
   // -------- Portal + view switching (v1.14) --------
-  // Show one view, hide the rest. Toggle the .view-toggle bar's visibility.
+  // Show one view, hide the rest. Toggle the view-toggle-wrap (which carries
+  // the Home button + dinner-view tabs) visibility.
   function switchView(viewName) {
     activeView = viewName;
     const allViews = ['portal','list','seating','freshtalk','service','setup','breakdown','standards'];
@@ -2657,11 +2658,11 @@
       const el = document.getElementById(v + '-view');
       if (el) el.style.display = (v === viewName) ? '' : 'none';
     });
-    // Tab bar visibility: hidden on portal + training views, visible on dinner views.
-    const dinnerViews = ['list','seating','freshtalk','service'];
+    // Home button + tab bar visible on every view except portal.
     const wrap = document.getElementById('view-toggle-wrap');
-    wrap.style.display = dinnerViews.includes(viewName) ? 'flex' : 'none';
+    wrap.style.display = (viewName === 'portal') ? 'none' : 'flex';
     // Mark the active vtab if we're in a dinner view; otherwise unmark all.
+    const dinnerViews = ['list','seating','freshtalk','service'];
     document.querySelectorAll('.vtab').forEach(b => b.classList.remove('active'));
     if (dinnerViews.includes(viewName)) {
       const btn = document.querySelector(`.vtab[data-view="${viewName}"]`);
@@ -2705,15 +2706,13 @@
   // REFRESH ENTRY
   // ====================================================================
   function refresh() {
-    if (activeView === 'portal') {
-      renderPortal();
-      return;
-    }
+    // Header reflects whichever dinner is currently loaded, regardless of view.
+    if (dinnerData) renderHeader(dinnerData);
+    if (activeView === 'portal') { renderPortal(); return; }
     if (activeView === 'setup') { renderSetup(); return; }
     if (activeView === 'breakdown') { renderBreakdown(); return; }
     if (activeView === 'standards') { renderStandards(); return; }
     if (!dinnerData) return;
-    renderHeader(dinnerData);
     if (activeView === 'list') renderList();
     else if (activeView === 'seating') renderSeating();
     else if (activeView === 'freshtalk') renderFreshTalk();
