@@ -1477,7 +1477,15 @@
 
   /* --- Portal: circular layout ------------------------------------- */
   #portal-view {
+    position: relative;
     padding: 8px 12px 32px;
+    background-image:
+      linear-gradient(rgba(244, 237, 224, 0.62), rgba(244, 237, 224, 0.78)),
+      url('data/portal-hero.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: calc(100vh - 200px);
   }
   .portal {
     position: relative;
@@ -1608,7 +1616,7 @@
     background: var(--card);
     border: 1px solid var(--border);
     border-radius: var(--radius);
-    box-shadow: var(--shadow);
+    box-shadow: 0 2px 8px rgba(58, 42, 22, 0.22);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1987,7 +1995,7 @@
   // ====================================================================
   // CONFIG + STATE
   // ====================================================================
-  const VERSION = "v1.16";
+  const VERSION = "v1.17";
   const DATA_PATH = "data";
   const params = new URLSearchParams(window.location.search);
   const today = new Date().toISOString().split('T')[0];
