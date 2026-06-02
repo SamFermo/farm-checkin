@@ -1445,6 +1445,266 @@
     .endcap-col .seat { width: 44px; height: 44px; }
     .table-rect { height: 48px; font-size: 22px; }
   }
+
+  /* ====================================================================
+     PORTAL + TRAINING (v1.14)
+     ==================================================================== */
+
+  /* Home button — sits to the left of the view-toggle, hidden on portal */
+  .home-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--wood-soft);
+    font-family: 'Caladea', Georgia, serif;
+    font-size: 15px;
+    padding: 6px 14px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    margin-right: 12px;
+    box-shadow: var(--shadow);
+  }
+  .home-button:active { background: var(--gold-soft); }
+
+  .view-toggle-wrap {
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    margin: 8px 0 4px;
+  }
+
+  /* --- Portal: circular layout ------------------------------------- */
+  #portal-view {
+    padding: 8px 12px 32px;
+  }
+  .portal {
+    position: relative;
+    width: 100%;
+    max-width: 560px;
+    aspect-ratio: 1 / 1;
+    margin: 8px auto 0;
+  }
+  .portal-center {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 32%;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    background: radial-gradient(circle at 40% 35%, var(--card) 0%, var(--gold-soft) 100%);
+    border: 2px solid var(--gold);
+    box-shadow: var(--shadow-lift);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 8px;
+  }
+  .portal-center .pc-farm {
+    font-family: 'Caladea', Georgia, serif;
+    font-size: 13px;
+    color: var(--wood-soft);
+    letter-spacing: 0.02em;
+    line-height: 1.1;
+  }
+  .portal-center .pc-date {
+    font-family: 'Caladea', Georgia, serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--wood);
+    margin-top: 4px;
+    line-height: 1.1;
+  }
+  .portal-center .pc-counts {
+    font-family: 'Caladea', Georgia, serif;
+    font-size: 13px;
+    color: var(--text-soft);
+    margin-top: 6px;
+    line-height: 1.2;
+  }
+  .portal-center .pc-counts strong { color: var(--accent-dark); font-weight: 700; }
+
+  .portal-card {
+    position: absolute;
+    width: 26%;
+    aspect-ratio: 1 / 1;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    cursor: pointer;
+    transition: box-shadow 0.15s, transform 0.15s;
+    padding: 6px;
+  }
+  .portal-card.dimmed {
+    opacity: 0.4;
+    cursor: default;
+    pointer-events: none;
+  }
+  .portal-card .pcd-icon {
+    font-size: 22px;
+    color: var(--accent);
+    margin-bottom: 2px;
+    line-height: 1;
+  }
+  .portal-card .pcd-label {
+    font-family: 'Caladea', Georgia, serif;
+    font-size: 14px;
+    color: var(--wood);
+    font-weight: 700;
+    line-height: 1.15;
+  }
+
+  /* 7 cards at 360/7 = ~51.4° around center. Top is 0°, going clockwise.
+     Using r ≈ 37% of container width as orbital radius. */
+  .portal-card[data-pos="0"] { top: 0%;    left: 50%;  transform: translate(-50%, 0%); }
+  .portal-card[data-pos="1"] { top: 19%;   right: 0%;  transform: translate(0%, -50%); }
+  .portal-card[data-pos="2"] { top: 62%;   right: 0%;  transform: translate(0%, -50%); }
+  .portal-card[data-pos="3"] { bottom: 0%; left: 67%;  transform: translate(-50%, 0%); }
+  .portal-card[data-pos="4"] { bottom: 0%; left: 33%;  transform: translate(-50%, 0%); }
+  .portal-card[data-pos="5"] { top: 62%;   left: 0%;   transform: translate(0%, -50%); }
+  .portal-card[data-pos="6"] { top: 19%;   left: 0%;   transform: translate(0%, -50%); }
+
+  .portal-card[data-pos="0"]:active { transform: translate(-50%, 0%) scale(0.96); background: var(--gold-soft); }
+  .portal-card[data-pos="1"]:active { transform: translate(0%, -50%) scale(0.96); background: var(--gold-soft); }
+  .portal-card[data-pos="2"]:active { transform: translate(0%, -50%) scale(0.96); background: var(--gold-soft); }
+  .portal-card[data-pos="3"]:active { transform: translate(-50%, 0%) scale(0.96); background: var(--gold-soft); }
+  .portal-card[data-pos="4"]:active { transform: translate(-50%, 0%) scale(0.96); background: var(--gold-soft); }
+  .portal-card[data-pos="5"]:active { transform: translate(0%, -50%) scale(0.96); background: var(--gold-soft); }
+  .portal-card[data-pos="6"]:active { transform: translate(0%, -50%) scale(0.96); background: var(--gold-soft); }
+
+  /* --- Training views (Setup / Breakdown / Standards) --------------- */
+  .training-page {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 8px 16px 32px;
+  }
+  .training-page .tp-title {
+    font-family: 'Caladea', Georgia, serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--wood);
+    text-align: center;
+    margin: 8px 0 2px;
+  }
+  .training-page .tp-subtitle {
+    font-family: 'Caladea', Georgia, serif;
+    font-size: 14px;
+    font-style: italic;
+    color: var(--text-soft);
+    text-align: center;
+    margin: 0 0 16px;
+    border-bottom: 1px solid var(--border-soft);
+    padding-bottom: 10px;
+  }
+  .tp-phase { margin-top: 16px; }
+  .tp-phase-name {
+    font-family: 'Caladea', Georgia, serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--accent-dark);
+    margin: 0 0 6px;
+  }
+  .tp-phase-sub {
+    font-family: 'Caladea', Georgia, serif;
+    font-size: 12px;
+    font-style: italic;
+    color: var(--text-mute);
+    margin-left: 8px;
+  }
+  .tp-item {
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.4;
+    padding: 4px 0 4px 18px;
+    position: relative;
+  }
+  .tp-item::before {
+    content: '·';
+    position: absolute;
+    left: 6px;
+    top: 1px;
+    color: var(--wood-soft);
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 1;
+  }
+
+  /* Breakdown: two side-by-side columns on wide; stacked on narrow */
+  .breakdown-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .breakdown-col {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px 16px;
+  }
+  .breakdown-col.sat { background: linear-gradient(to bottom, #f4f8f4 0%, var(--card) 100%); }
+  .breakdown-col.sun { background: linear-gradient(to bottom, #f8f4f4 0%, var(--card) 100%); }
+  .breakdown-col .bc-name {
+    font-family: 'Caladea', Georgia, serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--wood);
+    margin: 0 0 2px;
+  }
+  .breakdown-col .bc-sub {
+    font-family: 'Caladea', Georgia, serif;
+    font-size: 12px;
+    font-style: italic;
+    color: var(--text-soft);
+    margin: 0 0 12px;
+  }
+
+  /* Standards-specific */
+  .standards-section { margin-top: 16px; }
+  .standards-section .ss-name {
+    font-family: 'Caladea', Georgia, serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--accent-dark);
+    margin: 0 0 6px;
+  }
+  .standards-section .ss-bullet {
+    padding-left: 18px;
+    position: relative;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+  .standards-section .ss-bullet::before {
+    content: '•';
+    position: absolute;
+    left: 6px;
+    color: var(--wood-soft);
+  }
+  .standards-section .ss-def { font-size: 14px; padding: 3px 0; line-height: 1.4; }
+  .standards-section .ss-def strong { color: var(--wood); font-weight: 700; }
+  .standards-section .ss-prose { font-size: 14px; padding: 4px 0; line-height: 1.45; color: var(--text); }
+
+  /* Responsive: stack breakdown columns on phone */
+  @media (max-width: 600px) {
+    .breakdown-cols { grid-template-columns: 1fr; }
+    .portal { max-width: 380px; }
+    .portal-card .pcd-label { font-size: 12px; }
+    .portal-card .pcd-icon { font-size: 18px; }
+    .portal-center .pc-date { font-size: 14px; }
+    .portal-center .pc-counts { font-size: 12px; }
+  }
 </style>
 </head>
 <body>
@@ -1462,14 +1722,76 @@
 
 <div id="date-switcher-container"></div>
 
-<div class="view-toggle">
-  <button class="vtab active" data-view="list">Check-in</button>
-  <button class="vtab" data-view="seating">Seating</button>
-  <button class="vtab" data-view="freshtalk" id="vtab-freshtalk" hidden>Fresh talk</button>
-  <button class="vtab" data-view="service" id="vtab-service" hidden>Service</button>
+<div id="view-toggle-wrap" class="view-toggle-wrap" style="display:none;">
+  <button class="home-button" id="home-button" type="button" aria-label="Back to home portal">← Home</button>
+  <div class="view-toggle">
+    <button class="vtab" data-view="list">Check-in</button>
+    <button class="vtab" data-view="seating">Seating</button>
+    <button class="vtab" data-view="freshtalk" id="vtab-freshtalk" hidden>Fresh talk</button>
+    <button class="vtab" data-view="service" id="vtab-service" hidden>Service</button>
+  </div>
 </div>
 
-<div id="list-view">
+<div id="portal-view">
+  <div class="portal" id="portal">
+    <div class="portal-center" id="portal-center">
+      <div class="pc-farm">Swan House Farm</div>
+      <div class="pc-date" id="pc-date">Loading…</div>
+      <div class="pc-counts" id="pc-counts"></div>
+    </div>
+    <div class="portal-card" data-pos="0" data-target="list">
+      <div class="pcd-icon">✓</div>
+      <div class="pcd-label">Check-in</div>
+    </div>
+    <div class="portal-card" data-pos="1" data-target="seating">
+      <div class="pcd-icon">⌂</div>
+      <div class="pcd-label">Seating</div>
+    </div>
+    <div class="portal-card dimmed" data-pos="2" data-target="service" id="portal-card-service">
+      <div class="pcd-icon">⚐</div>
+      <div class="pcd-label">Service</div>
+    </div>
+    <div class="portal-card" data-pos="3" data-target="breakdown">
+      <div class="pcd-icon">⊟</div>
+      <div class="pcd-label">Breakdown</div>
+    </div>
+    <div class="portal-card" data-pos="4" data-target="standards">
+      <div class="pcd-icon">✦</div>
+      <div class="pcd-label">Standards</div>
+    </div>
+    <div class="portal-card dimmed" data-pos="5" data-target="freshtalk" id="portal-card-freshtalk">
+      <div class="pcd-icon">❀</div>
+      <div class="pcd-label">Fresh talk</div>
+    </div>
+    <div class="portal-card" data-pos="6" data-target="setup">
+      <div class="pcd-icon">◐</div>
+      <div class="pcd-label">Setup</div>
+    </div>
+  </div>
+</div>
+
+<div id="setup-view" style="display:none;">
+  <div class="training-page" id="setup-content">
+    <div class="tp-title">Setup</div>
+    <div class="tp-subtitle">Loading…</div>
+  </div>
+</div>
+
+<div id="breakdown-view" style="display:none;">
+  <div class="training-page" id="breakdown-content">
+    <div class="tp-title">Breakdown</div>
+    <div class="tp-subtitle">Loading…</div>
+  </div>
+</div>
+
+<div id="standards-view" style="display:none;">
+  <div class="training-page" id="standards-content">
+    <div class="tp-title">Standards</div>
+    <div class="tp-subtitle">Loading…</div>
+  </div>
+</div>
+
+<div id="list-view" style="display:none;">
   <div class="tabs">
     <button class="tab active" data-tab="arriving">Arriving <span class="count" id="count-arriving">0</span></button>
     <button class="tab" data-tab="checked">Checked in <span class="count" id="count-checked">0</span></button>
@@ -1575,7 +1897,7 @@
   // ====================================================================
   // CONFIG + STATE
   // ====================================================================
-  const VERSION = "v1.13";
+  const VERSION = "v1.14";
   const DATA_PATH = "data";
   const params = new URLSearchParams(window.location.search);
   const today = new Date().toISOString().split('T')[0];
@@ -1585,9 +1907,10 @@
 
   let dinnerData = null;
   let referenceData = null;       // series-level reference content (menu + server ref + plateware + wines)
+  let trainingData = null;        // standing server training content (Setup / Breakdown / Standards)
   const expandedDishes = new Set(); // dish names currently expanded in the Reference view
   const expandedWines = new Set();  // wine names currently expanded in the Reference view
-  let activeView = 'list';
+  let activeView = 'portal';
   let activeTab = 'arriving';
   let filterText = '';
   let selectedGuestId = null;        // for seating mode
@@ -2325,17 +2648,43 @@
     if (e.target === e.currentTarget) closeModal();
   });
 
-  document.querySelectorAll('.vtab').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.vtab').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      activeView = btn.dataset.view;
-      document.getElementById('list-view').style.display = activeView === 'list' ? '' : 'none';
-      document.getElementById('seating-view').style.display = activeView === 'seating' ? '' : 'none';
-      document.getElementById('freshtalk-view').style.display = activeView === 'freshtalk' ? '' : 'none';
-      document.getElementById('service-view').style.display = activeView === 'service' ? '' : 'none';
-      refresh();
+  // -------- Portal + view switching (v1.14) --------
+  // Show one view, hide the rest. Toggle the .view-toggle bar's visibility.
+  function switchView(viewName) {
+    activeView = viewName;
+    const allViews = ['portal','list','seating','freshtalk','service','setup','breakdown','standards'];
+    allViews.forEach(v => {
+      const el = document.getElementById(v + '-view');
+      if (el) el.style.display = (v === viewName) ? '' : 'none';
     });
+    // Tab bar visibility: hidden on portal + training views, visible on dinner views.
+    const dinnerViews = ['list','seating','freshtalk','service'];
+    const wrap = document.getElementById('view-toggle-wrap');
+    wrap.style.display = dinnerViews.includes(viewName) ? 'flex' : 'none';
+    // Mark the active vtab if we're in a dinner view; otherwise unmark all.
+    document.querySelectorAll('.vtab').forEach(b => b.classList.remove('active'));
+    if (dinnerViews.includes(viewName)) {
+      const btn = document.querySelector(`.vtab[data-view="${viewName}"]`);
+      if (btn) btn.classList.add('active');
+    }
+    refresh();
+  }
+
+  // Portal cards → drill into that view
+  document.querySelectorAll('.portal-card').forEach(card => {
+    card.addEventListener('click', () => {
+      if (card.classList.contains('dimmed')) return;
+      const target = card.dataset.target;
+      if (target) switchView(target);
+    });
+  });
+
+  // Home button → back to portal
+  document.getElementById('home-button').addEventListener('click', () => switchView('portal'));
+
+  // Existing tab bar → switch dinner view
+  document.querySelectorAll('.vtab').forEach(btn => {
+    btn.addEventListener('click', () => switchView(btn.dataset.view));
   });
 
   document.querySelectorAll('.tab').forEach(btn => {
@@ -2356,12 +2705,149 @@
   // REFRESH ENTRY
   // ====================================================================
   function refresh() {
+    if (activeView === 'portal') {
+      renderPortal();
+      return;
+    }
+    if (activeView === 'setup') { renderSetup(); return; }
+    if (activeView === 'breakdown') { renderBreakdown(); return; }
+    if (activeView === 'standards') { renderStandards(); return; }
     if (!dinnerData) return;
     renderHeader(dinnerData);
     if (activeView === 'list') renderList();
     else if (activeView === 'seating') renderSeating();
     else if (activeView === 'freshtalk') renderFreshTalk();
     else if (activeView === 'service') renderService();
+  }
+
+  // ====================================================================
+  // PORTAL + TRAINING RENDERING (v1.14)
+  // ====================================================================
+  function renderPortal() {
+    // Update the centre-disc with current dinner info
+    const pcDate = document.getElementById('pc-date');
+    const pcCounts = document.getElementById('pc-counts');
+    if (dinnerData && dinnerData.display_date) {
+      pcDate.textContent = dinnerData.display_date;
+      const total = (dinnerData.guests || []).length;
+      const checkedIn = Object.keys(state.checkins || {}).length;
+      pcCounts.innerHTML = `<strong>${checkedIn}</strong> / ${total} in`;
+    } else {
+      pcDate.textContent = 'No dinner loaded';
+      pcCounts.textContent = '';
+    }
+    // Fresh-talk + Service cards: dim when no reference data
+    const ftCard = document.getElementById('portal-card-freshtalk');
+    const svcCard = document.getElementById('portal-card-service');
+    if (referenceData) {
+      if (ftCard) ftCard.classList.remove('dimmed');
+      if (svcCard) svcCard.classList.remove('dimmed');
+    } else {
+      if (ftCard) ftCard.classList.add('dimmed');
+      if (svcCard) svcCard.classList.add('dimmed');
+    }
+  }
+
+  async function loadTraining() {
+    if (trainingData) return trainingData;
+    try {
+      const r = await fetch(`${DATA_PATH}/training.json?t=${Date.now()}`);
+      if (!r.ok) throw new Error('training.json missing');
+      trainingData = await r.json();
+    } catch (e) {
+      console.error('Failed to load training data:', e);
+      trainingData = null;
+    }
+    return trainingData;
+  }
+
+  function renderItemList(items) {
+    return items.map(t => `<div class="tp-item">${escapeHtml(t)}</div>`).join('');
+  }
+
+  function renderPhase(phase) {
+    const sub = phase.subtitle ? `<span class="tp-phase-sub">(${escapeHtml(phase.subtitle)})</span>` : '';
+    return `
+      <div class="tp-phase">
+        <div class="tp-phase-name">${escapeHtml(phase.name)}${sub}</div>
+        ${renderItemList(phase.items)}
+      </div>`;
+  }
+
+  async function renderSetup() {
+    const td = await loadTraining();
+    const el = document.getElementById('setup-content');
+    if (!td || !td.setup) {
+      el.innerHTML = `<div class="tp-title">Setup</div><div class="tp-subtitle">Could not load training data.</div>`;
+      return;
+    }
+    const s = td.setup;
+    el.innerHTML = `
+      <div class="tp-title">${escapeHtml(s.title)}</div>
+      <div class="tp-subtitle">${escapeHtml(s.subtitle)}</div>
+      ${s.phases.map(renderPhase).join('')}
+    `;
+  }
+
+  async function renderBreakdown() {
+    const td = await loadTraining();
+    const el = document.getElementById('breakdown-content');
+    if (!td || !td.breakdown) {
+      el.innerHTML = `<div class="tp-title">Breakdown</div><div class="tp-subtitle">Could not load training data.</div>`;
+      return;
+    }
+    const b = td.breakdown;
+    const colHtml = (col, idx) => {
+      const klass = idx === 0 ? 'sat' : 'sun';
+      return `
+        <div class="breakdown-col ${klass}">
+          <div class="bc-name">${escapeHtml(col.name)}</div>
+          <div class="bc-sub">${escapeHtml(col.subtitle || '')}</div>
+          ${col.phases.map(renderPhase).join('')}
+        </div>`;
+    };
+    el.innerHTML = `
+      <div class="tp-title">${escapeHtml(b.title)}</div>
+      <div class="tp-subtitle">${escapeHtml(b.subtitle)}</div>
+      <div class="breakdown-cols">
+        ${b.columns.map(colHtml).join('')}
+      </div>
+    `;
+  }
+
+  async function renderStandards() {
+    const td = await loadTraining();
+    const el = document.getElementById('standards-content');
+    if (!td || !td.standards) {
+      el.innerHTML = `<div class="tp-title">Standards</div><div class="tp-subtitle">Could not load training data.</div>`;
+      return;
+    }
+    const s = td.standards;
+    const renderSection = (sec) => {
+      let body = '';
+      if (sec.type === 'bullets') {
+        body = sec.items.map(t => `<div class="ss-bullet">${escapeHtml(t)}</div>`).join('');
+      } else if (sec.type === 'definitions') {
+        body = sec.items.map(d => `<div class="ss-def"><strong>${escapeHtml(d.term)}</strong> — ${escapeHtml(d.def)}</div>`).join('');
+      } else if (sec.type === 'prose') {
+        body = `<div class="ss-prose">${escapeHtml(sec.text)}</div>`;
+      }
+      return `
+        <div class="standards-section">
+          <div class="ss-name">${escapeHtml(sec.name)}</div>
+          ${body}
+        </div>`;
+    };
+    el.innerHTML = `
+      <div class="tp-title">${escapeHtml(s.title)}</div>
+      <div class="tp-subtitle">${escapeHtml(s.subtitle)}</div>
+      ${s.sections.map(renderSection).join('')}
+    `;
+  }
+
+  function escapeHtml(s) {
+    if (s == null) return '';
+    return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   }
 
   // ====================================================================
@@ -2593,18 +3079,14 @@
     const btn = document.getElementById('vtab-service');
     if (!btn) return;
     const ready = !!(dinnerData && !dinnerData._missing && referenceData);
+    const portalCard = document.getElementById('portal-card-service');
     if (ready) {
       btn.hidden = false;
+      if (portalCard) portalCard.classList.remove('dimmed');
     } else {
       btn.hidden = true;
-      if (activeView === 'service') {
-        activeView = 'list';
-        document.querySelectorAll('.vtab').forEach(b => b.classList.toggle('active', b.dataset.view === 'list'));
-        document.getElementById('list-view').style.display = '';
-        document.getElementById('seating-view').style.display = 'none';
-        document.getElementById('freshtalk-view').style.display = 'none';
-        document.getElementById('service-view').style.display = 'none';
-      }
+      if (portalCard) portalCard.classList.add('dimmed');
+      if (activeView === 'service') switchView('portal');
     }
   }
 
@@ -2728,17 +3210,14 @@
     const btn = document.getElementById('vtab-freshtalk');
     if (!btn) return;
     const ready = !!(dinnerData && !dinnerData._missing && referenceData);
+    const portalCard = document.getElementById('portal-card-freshtalk');
     if (ready) {
       btn.hidden = false;
+      if (portalCard) portalCard.classList.remove('dimmed');
     } else {
       btn.hidden = true;
-      if (activeView === 'freshtalk') {
-        activeView = 'list';
-        document.querySelectorAll('.vtab').forEach(b => b.classList.toggle('active', b.dataset.view === 'list'));
-        document.getElementById('list-view').style.display = '';
-        document.getElementById('seating-view').style.display = 'none';
-        document.getElementById('freshtalk-view').style.display = 'none';
-      }
+      if (portalCard) portalCard.classList.add('dimmed');
+      if (activeView === 'freshtalk') switchView('portal');
     }
   }
 
