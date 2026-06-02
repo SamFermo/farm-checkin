@@ -1580,10 +1580,22 @@
     border-radius: var(--radius);
   }
   .map-modal .map-close:active { background: var(--gold-soft); }
-  .map-modal .map-frame {
+  .map-modal .map-body {
     flex: 1;
-    border: 0;
-    width: 100%;
+    overflow: auto;
+    background: var(--bg-deeper);
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .map-modal .map-image {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: block;
   }
   .portal-center .pc-farm {
     font-family: 'Caladea', Georgia, serif;
@@ -1857,14 +1869,12 @@
   <div class="map-backdrop" id="map-backdrop"></div>
   <div class="map-content">
     <div class="map-header">
-      <h2 class="map-title">Swan House Farm — Skagit Valley</h2>
+      <h2 class="map-title">Property Map</h2>
       <button class="map-close" id="map-close" type="button" aria-label="Close map">×</button>
     </div>
-    <iframe class="map-frame" id="map-frame"
-      src=""
-      loading="lazy"
-      referrerpolicy="no-referrer-when-downgrade"
-      title="Swan House Farm on the map"></iframe>
+    <div class="map-body">
+      <img class="map-image" id="map-image" src="data/property-map.svg" alt="Swan House Farm property map" loading="lazy"/>
+    </div>
   </div>
 </div>
 
@@ -1995,7 +2005,7 @@
   // ====================================================================
   // CONFIG + STATE
   // ====================================================================
-  const VERSION = "v1.17";
+  const VERSION = "v1.18";
   const DATA_PATH = "data";
   const params = new URLSearchParams(window.location.search);
   const today = new Date().toISOString().split('T')[0];
@@ -2781,12 +2791,9 @@
   // Home button → back to portal
   document.getElementById('home-button').addEventListener('click', () => switchView('portal'));
 
-  // Center disc → open Skagit map modal
-  const MAP_SRC = "https://maps.google.com/maps?q=Swan+House+Farm+Skagit+Valley+WA&output=embed";
+  // Center disc → open property map modal
   function openMapModal() {
     const modal = document.getElementById('map-modal');
-    const frame = document.getElementById('map-frame');
-    if (!frame.src) frame.src = MAP_SRC;
     modal.classList.add('open');
     modal.setAttribute('aria-hidden', 'false');
   }
