@@ -1610,6 +1610,40 @@
      PORTAL + TRAINING (v1.14)
      ==================================================================== */
 
+  /* --- Dinner-view background photo (v1.29) ----------------------- */
+  /* When past the portal, the body shows a fixed pergola-and-table photo
+     softened with a cream gradient overlay. Content lives inside cream
+     bubble cards so it stays legible. */
+  body.in-dinner-view {
+    background-image:
+      linear-gradient(rgba(244, 237, 224, 0.52), rgba(244, 237, 224, 0.62)),
+      url('data/dinner-hero.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+  }
+  body.in-dinner-view #list-view,
+  body.in-dinner-view #seating-view,
+  body.in-dinner-view #freshtalk-view,
+  body.in-dinner-view #service-view,
+  body.in-dinner-view #setup-breakdown-view,
+  body.in-dinner-view #standards-view {
+    background: rgba(251, 246, 234, 0.93);
+    margin: 8px 10px 24px;
+    border-radius: 14px;
+    padding: 14px 12px 24px;
+    box-shadow: 0 4px 18px rgba(58, 42, 22, 0.22),
+                0 0 0 1px rgba(216, 200, 168, 0.6);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+  /* Pull the tab-bar wrap up close to the view bubble so the layout
+     reads as one connected unit. */
+  body.in-dinner-view .view-toggle-wrap {
+    margin-bottom: 4px;
+  }
+
   /* Home button — floating in top-right of viewport (empty space on dinner
      views; no compass arrow there). Hidden on portal. */
   .home-button {
@@ -2220,7 +2254,7 @@
   // ====================================================================
   // CONFIG + STATE
   // ====================================================================
-  const VERSION = "v1.28";
+  const VERSION = "v1.29";
   const DATA_PATH = "data";
   const params = new URLSearchParams(window.location.search);
   const today = new Date().toISOString().split('T')[0];
@@ -2990,6 +3024,8 @@
     const onPortal = (viewName === 'portal');
     wrap.style.display = onPortal ? 'none' : 'flex';
     homeBtn.style.display = onPortal ? 'none' : 'inline-flex';
+    // Photo background on body whenever we've left the portal.
+    document.body.classList.toggle('in-dinner-view', !onPortal);
     // Mark the active vtab if we're in any view that has a tab in the bar.
     const tabbedViews = ['list','seating','freshtalk','service','setup-breakdown'];
     document.querySelectorAll('.vtab').forEach(b => b.classList.remove('active'));
