@@ -1,8 +1,8 @@
 {
   "dinner_date": "2026-07-19",
   "display_date": "Sunday, July 19, 2026",
-  "seated_covers": 22,
-  "party_count": 6,
+  "seated_covers": 26,
+  "party_count": 8,
   "cancelled": [],
   "guests": [
     {
@@ -43,6 +43,26 @@
     },
     {
       "id": "g-2026-07-19-004",
+      "purchaser": "Tami Hurwitz",
+      "party_size": 2,
+      "email": "tamihurwitz@outlook.com",
+      "notes": "1 G/F, together",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-07-19-005",
+      "purchaser": "H Alexander Holzer",
+      "party_size": 2,
+      "email": "alexholzer@outlook.com",
+      "notes": "together",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-07-19-006",
       "purchaser": "AMANDA NELSON",
       "party_size": 4,
       "email": "amnelly206@gmail.com",
@@ -52,7 +72,7 @@
       "is_allergen_party": false
     },
     {
-      "id": "g-2026-07-19-005",
+      "id": "g-2026-07-19-007",
       "purchaser": "Alana Roozen",
       "party_size": 6,
       "email": "Alana.Rospond@gmail.com",
@@ -68,7 +88,7 @@
       "is_allergen_party": false
     },
     {
-      "id": "g-2026-07-19-006",
+      "id": "g-2026-07-19-008",
       "purchaser": "Leah Churinskas",
       "party_size": 6,
       "email": "Leahe314@gmail.com",
