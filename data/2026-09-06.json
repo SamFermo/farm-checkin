@@ -1,8 +1,8 @@
 {
   "dinner_date": "2026-09-06",
   "display_date": "Sunday, September 6, 2026",
-  "seated_covers": 6,
-  "party_count": 3,
+  "seated_covers": 8,
+  "party_count": 4,
   "cancelled": [],
   "guests": [
     {
@@ -42,6 +42,16 @@
       "purchaser": "Kelsey Vollmer",
       "party_size": 2,
       "email": "kelseyvollmer@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-09-06-004",
+      "purchaser": "Kaitlyn Staup",
+      "party_size": 2,
+      "email": "staupk@gmail.com",
       "notes": "",
       "allergens": [],
       "returning": null,
