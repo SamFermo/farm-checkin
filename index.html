@@ -1640,6 +1640,12 @@
     backdrop-filter: blur(6px);
     -webkit-backdrop-filter: blur(6px);
   }
+  /* Seating needs horizontal room — three tables (A, B, C) read across the
+     width. Override the 760px cap and let it stretch close to the viewport. */
+  body.in-dinner-view #seating-view {
+    max-width: none;
+    margin: 8px 12px 24px;
+  }
   /* Pull the tab-bar wrap up close to the view bubble so the layout
      reads as one connected unit. */
   body.in-dinner-view .view-toggle-wrap {
@@ -2256,7 +2262,7 @@
   // ====================================================================
   // CONFIG + STATE
   // ====================================================================
-  const VERSION = "v1.30";
+  const VERSION = "v1.31";
   const DATA_PATH = "data";
   const params = new URLSearchParams(window.location.search);
   const today = new Date().toISOString().split('T')[0];
