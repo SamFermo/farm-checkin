@@ -1,8 +1,8 @@
 {
   "dinner_date": "2026-07-12",
   "display_date": "Sunday, July 12, 2026",
-  "seated_covers": 20,
-  "party_count": 9,
+  "seated_covers": 24,
+  "party_count": 11,
   "cancelled": [],
   "guests": [
     {
@@ -102,6 +102,28 @@
     },
     {
       "id": "g-2026-07-12-009",
+      "purchaser": "Nicolas Becerra",
+      "party_size": 2,
+      "email": "ncbecerra@gmail.com",
+      "notes": "49th birtday for wife",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-07-12-010",
+      "purchaser": "Mary Frances Callaghan",
+      "party_size": 2,
+      "email": "mcallaghan416@gmail.com",
+      "notes": "One gluten intolerant but willing to suffer",
+      "allergens": [
+        "GF"
+      ],
+      "returning": null,
+      "is_allergen_party": true
+    },
+    {
+      "id": "g-2026-07-12-011",
       "purchaser": "AMANDA NELSON",
       "party_size": 4,
       "email": "mailto:Mandeewong@gmail.com",
