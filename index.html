@@ -1450,9 +1450,12 @@
      PORTAL + TRAINING (v1.14)
      ==================================================================== */
 
-  /* Home button — sits to the left of the view-toggle, hidden on portal */
+  /* Home button — floating in top-left of viewport. Hidden on portal. */
   .home-button {
-    display: inline-flex;
+    position: fixed;
+    top: 14px;
+    left: 14px;
+    z-index: 30;
     align-items: center;
     gap: 6px;
     background: var(--card);
@@ -1463,14 +1466,15 @@
     padding: 6px 14px;
     border-radius: var(--radius);
     cursor: pointer;
-    margin-right: 12px;
     box-shadow: var(--shadow);
   }
   .home-button:active { background: var(--gold-soft); }
 
+  /* Centered tab bar wrapper */
   .view-toggle-wrap {
     display: flex;
     align-items: center;
+    justify-content: center;
     padding: 0 12px;
     margin: 8px 0 4px;
   }
@@ -1674,33 +1678,54 @@
     background: var(--gold-soft);
   }
 
-  /* --- Setup & Breakdown combined view tab bar --------------------- */
-  .sb-tabs-bar {
+  /* --- Setup & Breakdown combined view: animated pill slider ------- */
+  .sb-tabs-wrap {
     display: flex;
     justify-content: center;
-    gap: 4px;
-    padding: 10px 12px 0;
-    max-width: 760px;
-    margin: 0 auto;
+    padding: 14px 12px 0;
+  }
+  .sb-tabs-bar {
+    position: relative;
+    display: inline-flex;
+    background: var(--bg-deeper);
+    border: 1px solid var(--border-soft);
+    border-radius: 999px;
+    padding: 4px;
+    box-shadow: inset 0 1px 2px rgba(58, 42, 22, 0.08);
   }
   .sb-tab {
+    position: relative;
+    z-index: 2;
     background: transparent;
-    border: 1px solid var(--border);
-    color: var(--wood-soft);
+    border: none;
+    padding: 8px 28px;
     font-family: 'Caladea', Georgia, serif;
     font-size: 15px;
     font-weight: 700;
-    padding: 8px 22px;
-    border-radius: var(--radius);
+    color: var(--wood-soft);
     cursor: pointer;
-    transition: background 0.15s, color 0.15s;
+    border-radius: 999px;
+    transition: color 0.2s ease;
+    min-width: 110px;
   }
   .sb-tab.active {
-    background: var(--gold-soft);
     color: var(--wood);
-    border-color: var(--gold);
   }
-  .sb-tab:active { background: var(--gold-soft); }
+  .sb-pill {
+    position: absolute;
+    top: 4px;
+    bottom: 4px;
+    left: 4px;
+    width: calc(50% - 4px);
+    background: var(--card);
+    border-radius: 999px;
+    box-shadow: 0 1px 3px rgba(58, 42, 22, 0.15);
+    transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1;
+  }
+  .sb-tabs-bar[data-active="breakdown"] .sb-pill {
+    transform: translateX(100%);
+  }
 
   /* --- Training views (Setup / Breakdown / Standards) --------------- */
   .training-page {
@@ -1843,8 +1868,9 @@
 
 <div id="date-switcher-container"></div>
 
+<button class="home-button" id="home-button" type="button" aria-label="Back to home portal" style="display:none;">← Home</button>
+
 <div id="view-toggle-wrap" class="view-toggle-wrap" style="display:none;">
-  <button class="home-button" id="home-button" type="button" aria-label="Back to home portal">← Home</button>
   <div class="view-toggle">
     <button class="vtab" data-view="list">Check-in</button>
     <button class="vtab" data-view="seating">Seating</button>
@@ -1902,9 +1928,12 @@
 </div>
 
 <div id="setup-breakdown-view" style="display:none;">
-  <div class="sb-tabs-bar">
-    <button class="sb-tab active" data-sb-tab="setup" type="button">Setup</button>
-    <button class="sb-tab" data-sb-tab="breakdown" type="button">Breakdown</button>
+  <div class="sb-tabs-wrap">
+    <div class="sb-tabs-bar" id="sb-tabs-bar" data-active="setup">
+      <span class="sb-pill" aria-hidden="true"></span>
+      <button class="sb-tab active" data-sb-tab="setup" type="button">Setup</button>
+      <button class="sb-tab" data-sb-tab="breakdown" type="button">Breakdown</button>
+    </div>
   </div>
   <div class="training-page" id="sb-content">
     <div class="tp-title">Setup</div>
@@ -2025,7 +2054,7 @@
   // ====================================================================
   // CONFIG + STATE
   // ====================================================================
-  const VERSION = "v1.22";
+  const VERSION = "v1.23";
   const DATA_PATH = "data";
   const params = new URLSearchParams(window.location.search);
   const today = new Date().toISOString().split('T')[0];
@@ -2788,7 +2817,10 @@
     });
     // Home button + tab bar visible on every view except portal.
     const wrap = document.getElementById('view-toggle-wrap');
-    wrap.style.display = (viewName === 'portal') ? 'none' : 'flex';
+    const homeBtn = document.getElementById('home-button');
+    const onPortal = (viewName === 'portal');
+    wrap.style.display = onPortal ? 'none' : 'flex';
+    homeBtn.style.display = onPortal ? 'none' : 'inline-flex';
     // Mark the active vtab if we're in a dinner view; otherwise unmark all.
     const dinnerViews = ['list','seating','freshtalk','service'];
     document.querySelectorAll('.vtab').forEach(b => b.classList.remove('active'));
@@ -2974,10 +3006,12 @@
   // Combined Setup & Breakdown view — renders whichever tab is active into #sb-content.
   async function renderSetupBreakdown() {
     const el = document.getElementById('sb-content');
-    // Sync tab visual state with sbActiveTab
+    // Sync tab visual state + pill slider position with sbActiveTab
     document.querySelectorAll('.sb-tab').forEach(b => {
       b.classList.toggle('active', b.dataset.sbTab === sbActiveTab);
     });
+    const bar = document.getElementById('sb-tabs-bar');
+    if (bar) bar.dataset.active = sbActiveTab;
     if (sbActiveTab === 'setup') {
       await renderSetupContent(el);
     } else {
