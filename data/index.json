@@ -66,8 +66,8 @@
     {
       "date": "2026-07-12",
       "display_date": "Sunday, July 12, 2026",
-      "seated_covers": 20,
-      "party_count": 9,
+      "seated_covers": 24,
+      "party_count": 11,
       "is_past": false
     },
     {
@@ -80,50 +80,50 @@
     {
       "date": "2026-07-19",
       "display_date": "Sunday, July 19, 2026",
-      "seated_covers": 22,
-      "party_count": 6,
+      "seated_covers": 26,
+      "party_count": 8,
       "is_past": false
     },
     {
       "date": "2026-08-08",
       "display_date": "Saturday, August 8, 2026",
-      "seated_covers": 24,
-      "party_count": 5,
+      "seated_covers": 26,
+      "party_count": 6,
       "is_past": false
     },
     {
       "date": "2026-08-09",
       "display_date": "Sunday, August 9, 2026",
-      "seated_covers": 20,
-      "party_count": 4,
+      "seated_covers": 22,
+      "party_count": 5,
       "is_past": false
     },
     {
       "date": "2026-08-15",
       "display_date": "Saturday, August 15, 2026",
-      "seated_covers": 18,
-      "party_count": 8,
+      "seated_covers": 20,
+      "party_count": 9,
       "is_past": false
     },
     {
       "date": "2026-08-16",
       "display_date": "Sunday, August 16, 2026",
-      "seated_covers": 18,
-      "party_count": 9,
+      "seated_covers": 20,
+      "party_count": 10,
       "is_past": false
     },
     {
       "date": "2026-09-05",
       "display_date": "Saturday, September 5, 2026",
-      "seated_covers": 16,
-      "party_count": 7,
+      "seated_covers": 18,
+      "party_count": 8,
       "is_past": false
     },
     {
       "date": "2026-09-06",
       "display_date": "Sunday, September 6, 2026",
-      "seated_covers": 6,
-      "party_count": 3,
+      "seated_covers": 8,
+      "party_count": 4,
       "is_past": false
     },
     {
@@ -141,5 +141,5 @@
       "is_past": false
     }
   ],
-  "generated_at": "2026-06-03T10:15:36"
+  "generated_at": "2026-06-03T10:45:45"
 }
