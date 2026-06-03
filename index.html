@@ -1813,8 +1813,10 @@
   .sb-tabs-wrap {
     display: flex;
     justify-content: center;
-    padding: 14px 12px 0;
+    padding: 14px 12px 18px;
   }
+  /* Spacing for the body content directly under a pill-tab bar */
+  .ft-tab-body { padding-top: 4px; }
   .sb-tabs-bar {
     position: relative;
     display: inline-flex;
@@ -2187,7 +2189,7 @@
   // ====================================================================
   // CONFIG + STATE
   // ====================================================================
-  const VERSION = "v1.25";
+  const VERSION = "v1.26";
   const DATA_PATH = "data";
   const params = new URLSearchParams(window.location.search);
   const today = new Date().toISOString().split('T')[0];
@@ -3556,7 +3558,9 @@
         ${r.cocktails.map(c => refCocktailHTML(c)).join('')}
       </section>` : '';
 
-    // Food / Beverage pill slider — splits menu walkthrough vs wines+cocktails
+    // Food / Beverage pill slider — splits menu walkthrough vs wines+cocktails.
+    // BOTH bodies are rendered into the DOM and just toggled with display, so
+    // the pill animates smoothly between taps (it's never destroyed/recreated).
     const fbTabsHTML = `
       <div class="sb-tabs-wrap">
         <div class="sb-tabs-bar" id="ft-tabs-bar" data-active="${ftActiveTab}">
@@ -3565,9 +3569,10 @@
           <button class="sb-tab ${ftActiveTab === 'beverage' ? 'active' : ''}" data-ft-tab="beverage" type="button">Beverage</button>
         </div>
       </div>`;
-    const tabbedContent = ftActiveTab === 'food' ? menuHTML : (wineHTML + cocktailHTML);
+    const foodBody = `<div class="ft-tab-body" data-ft-body="food" style="${ftActiveTab === 'food' ? '' : 'display:none;'}">${menuHTML}</div>`;
+    const bevBody  = `<div class="ft-tab-body" data-ft-body="beverage" style="${ftActiveTab === 'beverage' ? '' : 'display:none;'}">${wineHTML + cocktailHTML}</div>`;
 
-    container.innerHTML = headerHTML + glanceHTML + allergenHTML + returningHTML + fbTabsHTML + tabbedContent;
+    container.innerHTML = headerHTML + glanceHTML + allergenHTML + returningHTML + fbTabsHTML + foodBody + bevBody;
 
     // Bind dish + wine accordion handlers so cards can be tap-collapsed.
     // (Cards default-open because seedExpandedSetsFromReference seeded the sets.)
@@ -3603,11 +3608,19 @@
         ingEl.classList.toggle('expanded');
       });
     });
-    // Food / Beverage tab switcher
+    // Food / Beverage tab switcher — toggle visibility, don't re-render
+    // (the bar stays in the DOM so the pill animates smoothly between tabs).
     container.querySelectorAll('[data-ft-tab]').forEach(btn => {
       btn.addEventListener('click', () => {
         ftActiveTab = btn.dataset.ftTab;
-        renderFreshTalk();
+        const bar = document.getElementById('ft-tabs-bar');
+        if (bar) bar.dataset.active = ftActiveTab;
+        container.querySelectorAll('[data-ft-tab]').forEach(b => {
+          b.classList.toggle('active', b.dataset.ftTab === ftActiveTab);
+        });
+        container.querySelectorAll('[data-ft-body]').forEach(body => {
+          body.style.display = body.dataset.ftBody === ftActiveTab ? '' : 'none';
+        });
       });
     });
   }
