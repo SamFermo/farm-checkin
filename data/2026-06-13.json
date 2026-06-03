@@ -102,10 +102,12 @@
       "purchaser": "Sahar Banijamali",
       "party_size": 4,
       "email": "Sbanijamali@gmail.com",
-      "notes": "",
-      "allergens": [],
+      "notes": "one no tartare",
+      "allergens": [
+        "no tartare"
+      ],
       "returning": null,
-      "is_allergen_party": false
+      "is_allergen_party": true
     }
   ]
 }
