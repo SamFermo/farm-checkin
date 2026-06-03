@@ -99,8 +99,10 @@
       "purchaser": "AVIVA ELMAN",
       "party_size": 2,
       "email": "aviva.elman@gmail.com",
-      "notes": "",
-      "allergens": [],
+      "notes": "no pork, risotto fine",
+      "allergens": [
+        "no pork"
+      ],
       "returning": {
         "prior_count": 1,
         "years": [
@@ -108,7 +110,7 @@
         ],
         "is_multi_year": true
       },
-      "is_allergen_party": false
+      "is_allergen_party": true
     },
     {
       "id": "g-2026-06-07-010",
@@ -135,10 +137,12 @@
       "purchaser": "Matthew Huntley",
       "party_size": 4,
       "email": "huntmr1@gmail.com",
-      "notes": "",
-      "allergens": [],
+      "notes": "3 no tartare",
+      "allergens": [
+        "no tartare"
+      ],
       "returning": null,
-      "is_allergen_party": false
+      "is_allergen_party": true
     }
   ]
 }
