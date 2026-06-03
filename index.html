@@ -147,26 +147,48 @@
 
   /* View toggle (List <-> Seating) */
   .view-toggle {
-    display: flex;
-    background: var(--card);
-    border-bottom: 1px solid var(--border);
-    position: sticky; top: 92px; z-index: 9;
+    position: relative;
+    display: inline-flex;
+    background: rgba(122, 92, 50, 0.16);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 4px;
+    box-shadow: inset 0 1px 3px rgba(58, 42, 22, 0.14);
   }
   .vtab {
-    flex: 1;
+    position: relative;
+    z-index: 2;
     background: transparent; border: 0;
-    padding: 12px 8px;
+    padding: 8px 16px;
     font-size: 11px; font-weight: 700;
     color: var(--text-soft);
-    border-bottom: 2px solid transparent;
     cursor: pointer;
     font-family: 'Caladea', Georgia, serif;
     text-transform: uppercase;
-    letter-spacing: 1.5px;
+    letter-spacing: 1.4px;
+    border-radius: 999px;
+    transition: color 0.2s ease;
+    white-space: nowrap;
   }
   .vtab.active {
     color: var(--accent-dark);
-    border-bottom-color: var(--accent);
+  }
+  .vt-pill {
+    position: absolute;
+    top: 4px;
+    bottom: 4px;
+    left: 4px;
+    background: var(--accent-soft);
+    border: 1px solid var(--accent);
+    border-radius: 999px;
+    box-shadow: 0 1px 4px rgba(58, 42, 22, 0.18);
+    transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1),
+                width 0.28s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.15s ease;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0;
+    width: 0;
   }
 
   /* Tabs within list view */
@@ -1980,11 +2002,13 @@
 <button class="home-button" id="home-button" type="button" aria-label="Back to home portal" style="display:none;">← Home</button>
 
 <div id="view-toggle-wrap" class="view-toggle-wrap" style="display:none;">
-  <div class="view-toggle">
+  <div class="view-toggle" id="view-toggle">
+    <span class="vt-pill" id="vt-pill" aria-hidden="true"></span>
     <button class="vtab" data-view="list">Check-in</button>
     <button class="vtab" data-view="seating">Seating</button>
     <button class="vtab" data-view="freshtalk" id="vtab-freshtalk" hidden>Fresh talk</button>
     <button class="vtab" data-view="service" id="vtab-service" hidden>Service</button>
+    <button class="vtab" data-view="setup-breakdown">Setup &amp; Breakdown</button>
   </div>
 </div>
 
@@ -2163,7 +2187,7 @@
   // ====================================================================
   // CONFIG + STATE
   // ====================================================================
-  const VERSION = "v1.24";
+  const VERSION = "v1.25";
   const DATA_PATH = "data";
   const params = new URLSearchParams(window.location.search);
   const today = new Date().toISOString().split('T')[0];
@@ -2933,15 +2957,39 @@
     const onPortal = (viewName === 'portal');
     wrap.style.display = onPortal ? 'none' : 'flex';
     homeBtn.style.display = onPortal ? 'none' : 'inline-flex';
-    // Mark the active vtab if we're in a dinner view; otherwise unmark all.
-    const dinnerViews = ['list','seating','freshtalk','service'];
+    // Mark the active vtab if we're in any view that has a tab in the bar.
+    const tabbedViews = ['list','seating','freshtalk','service','setup-breakdown'];
     document.querySelectorAll('.vtab').forEach(b => b.classList.remove('active'));
-    if (dinnerViews.includes(viewName)) {
+    if (tabbedViews.includes(viewName)) {
       const btn = document.querySelector(`.vtab[data-view="${viewName}"]`);
       if (btn) btn.classList.add('active');
     }
+    // Position the sliding pill under the active tab.
+    updateVtabPill();
     refresh();
   }
+
+  // Move the vtab pill background to underlay whichever tab is active.
+  // Uses live measurements so it works as Fresh-talk / Service hide & show.
+  function updateVtabPill() {
+    const wrap = document.getElementById('view-toggle');
+    const pill = document.getElementById('vt-pill');
+    if (!wrap || !pill) return;
+    const active = wrap.querySelector('.vtab.active');
+    if (!active || active.hidden) {
+      pill.style.opacity = '0';
+      pill.style.width = '0';
+      return;
+    }
+    const wrapRect = wrap.getBoundingClientRect();
+    const activeRect = active.getBoundingClientRect();
+    const left = activeRect.left - wrapRect.left - 4;  // -4 for the bar's left padding
+    pill.style.transform = `translateX(${left}px)`;
+    pill.style.width = `${activeRect.width}px`;
+    pill.style.opacity = '1';
+  }
+  // Reposition on window resize too (text reflow can shift tab widths).
+  window.addEventListener('resize', updateVtabPill);
 
   // Portal cards → drill into that view
   document.querySelectorAll('.portal-card').forEach(card => {
@@ -3075,6 +3123,8 @@
 
   // sbActiveTab tracks which tab is showing in the combined Setup & Breakdown view.
   let sbActiveTab = 'setup';
+  // ftActiveTab tracks the Food / Beverage tab within Fresh Talk.
+  let ftActiveTab = 'food';
 
   async function renderSetupContent(el) {
     const td = await loadTraining();
@@ -3404,6 +3454,7 @@
       if (portalCard) portalCard.classList.add('dimmed');
       if (activeView === 'service') switchView('portal');
     }
+    updateVtabPill();
   }
 
   // ====================================================================
@@ -3505,7 +3556,18 @@
         ${r.cocktails.map(c => refCocktailHTML(c)).join('')}
       </section>` : '';
 
-    container.innerHTML = headerHTML + glanceHTML + allergenHTML + returningHTML + menuHTML + wineHTML + cocktailHTML;
+    // Food / Beverage pill slider — splits menu walkthrough vs wines+cocktails
+    const fbTabsHTML = `
+      <div class="sb-tabs-wrap">
+        <div class="sb-tabs-bar" id="ft-tabs-bar" data-active="${ftActiveTab}">
+          <span class="sb-pill" aria-hidden="true"></span>
+          <button class="sb-tab ${ftActiveTab === 'food' ? 'active' : ''}" data-ft-tab="food" type="button">Food</button>
+          <button class="sb-tab ${ftActiveTab === 'beverage' ? 'active' : ''}" data-ft-tab="beverage" type="button">Beverage</button>
+        </div>
+      </div>`;
+    const tabbedContent = ftActiveTab === 'food' ? menuHTML : (wineHTML + cocktailHTML);
+
+    container.innerHTML = headerHTML + glanceHTML + allergenHTML + returningHTML + fbTabsHTML + tabbedContent;
 
     // Bind dish + wine accordion handlers so cards can be tap-collapsed.
     // (Cards default-open because seedExpandedSetsFromReference seeded the sets.)
@@ -3541,6 +3603,13 @@
         ingEl.classList.toggle('expanded');
       });
     });
+    // Food / Beverage tab switcher
+    container.querySelectorAll('[data-ft-tab]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        ftActiveTab = btn.dataset.ftTab;
+        renderFreshTalk();
+      });
+    });
   }
 
   // Show/hide the Fresh-talk vtab — needs both dinnerData AND referenceData.
@@ -3557,6 +3626,7 @@
       if (portalCard) portalCard.classList.add('dimmed');
       if (activeView === 'freshtalk') switchView('portal');
     }
+    updateVtabPill();
   }
 
   // (Reference view phased out in v1.10 — Fresh-talk now serves both
