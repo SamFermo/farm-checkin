@@ -46,10 +46,12 @@
       "purchaser": "Mia Bergeron",
       "party_size": 2,
       "email": "miaber98@gmail.com",
-      "notes": "",
-      "allergens": [],
+      "notes": "no raw beef",
+      "allergens": [
+        "no raw"
+      ],
       "returning": null,
-      "is_allergen_party": false
+      "is_allergen_party": true
     },
     {
       "id": "g-2026-06-06-005",
