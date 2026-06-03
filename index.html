@@ -802,6 +802,114 @@
     border-top: 0.5px dashed var(--border);
   }
   .ref-wine.expanded .ref-wine-details { display: block; }
+
+  /* Cocktail cards — same pattern as wines */
+  .ref-cocktail {
+    background: var(--bg);
+    border: 0.5px solid var(--border);
+    border-radius: 8px;
+    margin: 0 0 10px;
+    overflow: hidden;
+    transition: border-color 0.15s ease;
+  }
+  .ref-cocktail.expanded { border-color: var(--gold); }
+  .ref-cocktail-head {
+    padding: 14px 16px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+  }
+  .ref-cocktail-type {
+    display: inline-block;
+    font-size: 10.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 3px 8px;
+    border-radius: 999px;
+    background: #efe2c8;
+    color: var(--wood);
+    margin-bottom: 6px;
+  }
+  .ref-cocktail-name {
+    font-family: 'Caladea', 'Cambria', Georgia, serif;
+    font-size: 16.5px;
+    font-weight: 700;
+    color: var(--wood);
+  }
+  .ref-cocktail-tagline {
+    font-family: 'Caladea', 'Cambria', Georgia, serif;
+    font-size: 13px;
+    font-style: italic;
+    color: var(--gold);
+    margin-top: 2px;
+  }
+  .ref-cocktail-pour {
+    margin-top: 8px;
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.5;
+  }
+  .ref-cocktail-details {
+    display: none;
+    padding: 4px 18px 18px;
+    border-top: 0.5px dashed var(--border);
+  }
+  .ref-cocktail.expanded .ref-cocktail-details { display: block; }
+  .ref-cocktail-section-label {
+    font-family: 'Caladea', 'Cambria', Georgia, serif;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin: 14px 0 8px;
+  }
+  .ref-cocktail-ingredient {
+    border-top: 0.5px solid var(--border-soft);
+    padding: 8px 0 4px;
+  }
+  .ref-cocktail-ingredient:first-of-type { border-top: none; padding-top: 4px; }
+  .ref-cocktail-ing-head {
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  .ref-cocktail-ing-name {
+    font-family: 'Caladea', 'Cambria', Georgia, serif;
+    font-size: 14.5px;
+    font-weight: 700;
+    color: var(--wood);
+  }
+  .ref-cocktail-ing-name::after {
+    content: ' ›';
+    color: var(--gold);
+    font-weight: 400;
+    transition: transform 0.15s ease;
+    display: inline-block;
+  }
+  .ref-cocktail-ingredient.expanded .ref-cocktail-ing-name::after {
+    transform: rotate(90deg);
+  }
+  .ref-cocktail-ing-amount {
+    font-size: 12.5px;
+    color: var(--text-mute);
+    font-style: italic;
+    white-space: nowrap;
+  }
+  .ref-cocktail-ing-desc {
+    display: none;
+    font-family: 'Caladea', 'Cambria', Georgia, serif;
+    font-size: 13.5px;
+    color: var(--text);
+    line-height: 1.55;
+    margin: 6px 0 4px;
+  }
+  .ref-cocktail-ingredient.expanded .ref-cocktail-ing-desc { display: block; }
   .ref-wine-section-label {
     font-family: 'Caladea', 'Cambria', Georgia, serif;
     font-size: 12px;
@@ -1450,11 +1558,12 @@
      PORTAL + TRAINING (v1.14)
      ==================================================================== */
 
-  /* Home button — floating in top-left of viewport. Hidden on portal. */
+  /* Home button — floating in top-right of viewport (empty space on dinner
+     views; no compass arrow there). Hidden on portal. */
   .home-button {
     position: fixed;
     top: 14px;
-    left: 14px;
+    right: 14px;
     z-index: 30;
     align-items: center;
     gap: 6px;
@@ -2054,7 +2163,7 @@
   // ====================================================================
   // CONFIG + STATE
   // ====================================================================
-  const VERSION = "v1.23";
+  const VERSION = "v1.24";
   const DATA_PATH = "data";
   const params = new URLSearchParams(window.location.search);
   const today = new Date().toISOString().split('T')[0];
@@ -2067,6 +2176,7 @@
   let trainingData = null;        // standing server training content (Setup / Breakdown / Standards)
   const expandedDishes = new Set(); // dish names currently expanded in the Reference view
   const expandedWines = new Set();  // wine names currently expanded in the Reference view
+  const expandedCocktails = new Set(); // cocktail names currently expanded
   let activeView = 'portal';
   let activeTab = 'arriving';
   let filterText = '';
@@ -2288,11 +2398,13 @@
   function seedExpandedSetsFromReference() {
     expandedDishes.clear();
     expandedWines.clear();
+    expandedCocktails.clear();
     if (!referenceData) return;
     (referenceData.courses || []).forEach(c =>
       (c.dishes || []).forEach(d => expandedDishes.add(d.name))
     );
     (referenceData.wines || []).forEach(w => expandedWines.add(w.name));
+    (referenceData.cocktails || []).forEach(c => expandedCocktails.add(c.name));
   }
 
   // ====================================================================
@@ -3387,7 +3499,13 @@
         ${r.wines.map(w => refWineHTML(w)).join('')}
       </section>` : '';
 
-    container.innerHTML = headerHTML + glanceHTML + allergenHTML + returningHTML + menuHTML + wineHTML;
+    const cocktailHTML = (r.cocktails && r.cocktails.length) ? `
+      <section class="ft-section">
+        <p class="ft-section-label">Cocktail · ${r.cocktails.length}</p>
+        ${r.cocktails.map(c => refCocktailHTML(c)).join('')}
+      </section>` : '';
+
+    container.innerHTML = headerHTML + glanceHTML + allergenHTML + returningHTML + menuHTML + wineHTML + cocktailHTML;
 
     // Bind dish + wine accordion handlers so cards can be tap-collapsed.
     // (Cards default-open because seedExpandedSetsFromReference seeded the sets.)
@@ -3405,6 +3523,22 @@
         const name = wineEl.dataset.wine;
         if (expandedWines.has(name)) { expandedWines.delete(name); wineEl.classList.remove('expanded'); }
         else { expandedWines.add(name); wineEl.classList.add('expanded'); }
+      });
+    });
+    container.querySelectorAll('.ref-cocktail-head').forEach(el => {
+      el.addEventListener('click', () => {
+        const cEl = el.parentElement;
+        const name = cEl.dataset.cocktail;
+        if (expandedCocktails.has(name)) { expandedCocktails.delete(name); cEl.classList.remove('expanded'); }
+        else { expandedCocktails.add(name); cEl.classList.add('expanded'); }
+      });
+    });
+    // Per-ingredient expand within an open cocktail
+    container.querySelectorAll('.ref-cocktail-ing-head').forEach(el => {
+      el.addEventListener('click', (e) => {
+        e.stopPropagation();  // don't bubble up to .ref-cocktail-head and collapse the cocktail
+        const ingEl = el.parentElement;
+        ingEl.classList.toggle('expanded');
       });
     });
   }
@@ -3550,6 +3684,35 @@
         </div>
         ${wines.map(w => refWineHTML(w)).join('')}
       </section>`;
+  }
+
+  function refCocktailHTML(c) {
+    const isExpanded = expandedCocktails.has(c.name);
+    const tagline = c.tagline ? `<div class="ref-cocktail-tagline">${escape(c.tagline)}</div>` : '';
+    const pourNotes = c.pour_notes ? `<p class="ref-cocktail-pour">${escape(c.pour_notes)}</p>` : '';
+    const ingredients = (c.ingredients || []).map(i => `
+      <div class="ref-cocktail-ingredient">
+        <div class="ref-cocktail-ing-head">
+          <span class="ref-cocktail-ing-name">${escape(i.name)}</span>
+          ${i.amount ? `<span class="ref-cocktail-ing-amount">${escape(i.amount)}</span>` : ''}
+        </div>
+        ${i.description ? `<p class="ref-cocktail-ing-desc">${escape(i.description)}</p>` : ''}
+      </div>
+    `).join('');
+    return `
+      <div class="ref-cocktail ${isExpanded ? 'expanded' : ''}" data-cocktail="${escape(c.name)}">
+        <div class="ref-cocktail-head">
+          <span class="ref-cocktail-type">cocktail</span>
+          <div class="ref-cocktail-name">${escape(c.name)}</div>
+          ${tagline}
+          ${pourNotes}
+        </div>
+        <div class="ref-cocktail-details">
+          <p class="ref-cocktail-section-label">Ingredients · tap each for the deep dive</p>
+          ${ingredients}
+        </div>
+      </div>
+    `;
   }
 
   function refDishHTML(d) {
