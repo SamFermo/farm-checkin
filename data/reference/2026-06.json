@@ -98,13 +98,13 @@
         {
           "name": "Spring Salad",
           "pronunciation": null,
-          "components": "red romaine, salanova, sorrel, fennel, mint, lovage, snow peas, fire cider vinaigrette",
-          "story": "A composed plate of Kelly's spring garden at Swan House. Farm-grown red romaine and salanova lettuces, layered with whole young sorrel leaves, fennel fronds, mint, and a careful touch of lovage. Shaved snow peas across the top for sweetness and crunch. Dressed with Kelly's homemade fire cider vinaigrette.",
+          "components": "salanova lettuces, sorrel, fennel, mint, lovage, snow peas, fire cider vinaigrette",
+          "story": "A composed plate of Kelly's spring garden at Swan House. Farm-grown salanova lettuces — both red and green varieties of summer crisp, oakleaf, and butter — layered with whole young sorrel leaves, fennel fronds, mint, and a careful touch of lovage. Shaved snow peas across the top for sweetness and crunch. Dressed with Kelly's homemade fire cider vinaigrette.",
           "ingredients": [
             {
               "term": "Salanova",
               "pronunciation": "sah-lah-NOH-vah",
-              "note": "a variety of small butterhead-style lettuce grown for tender leaves and excellent texture"
+              "note": "a lettuce cultivar grown in both red and green varieties across several leaf types (summer crisp, oakleaf, and butter), prized for tender leaves and excellent texture"
             },
             {
               "term": "Sorrel",
