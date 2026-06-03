@@ -1,8 +1,8 @@
 {
   "dinner_date": "2026-08-09",
   "display_date": "Sunday, August 9, 2026",
-  "seated_covers": 20,
-  "party_count": 4,
+  "seated_covers": 22,
+  "party_count": 5,
   "cancelled": [],
   "guests": [
     {
@@ -17,6 +17,16 @@
     },
     {
       "id": "g-2026-08-09-002",
+      "purchaser": "Graham Nichol",
+      "party_size": 2,
+      "email": "graham@songlinesland.com",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-08-09-003",
       "purchaser": "Joan Bowzer",
       "party_size": 4,
       "email": "Jbowzer@comcast.net",
@@ -26,7 +36,7 @@
       "is_allergen_party": false
     },
     {
-      "id": "g-2026-08-09-003",
+      "id": "g-2026-08-09-004",
       "purchaser": "David C Wells",
       "party_size": 6,
       "email": "thewells5@comcast.net",
@@ -36,7 +46,7 @@
       "is_allergen_party": false
     },
     {
-      "id": "g-2026-08-09-004",
+      "id": "g-2026-08-09-005",
       "purchaser": "Warren T Hill",
       "party_size": 8,
       "email": "Shill8485@gmail.com",
