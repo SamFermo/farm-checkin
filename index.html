@@ -1659,21 +1659,48 @@
 
   /* 7 cards at 360/7 = ~51.4° around center. Top is 0°, going clockwise.
      Using r ≈ 37% of container width as orbital radius. */
-  .portal-card[data-pos="0"] { top: 0%;    left: 50%;  transform: translate(-50%, 0%); }
-  .portal-card[data-pos="1"] { top: 19%;   right: 0%;  transform: translate(0%, -50%); }
-  .portal-card[data-pos="2"] { top: 62%;   right: 0%;  transform: translate(0%, -50%); }
-  .portal-card[data-pos="3"] { bottom: 0%; left: 67%;  transform: translate(-50%, 0%); }
-  .portal-card[data-pos="4"] { bottom: 0%; left: 33%;  transform: translate(-50%, 0%); }
-  .portal-card[data-pos="5"] { top: 62%;   left: 0%;   transform: translate(0%, -50%); }
-  .portal-card[data-pos="6"] { top: 19%;   left: 0%;   transform: translate(0%, -50%); }
+  /* 6 cards at 60° apart around the center (r ≈ 37% of container).
+     Card centers: pos0 top (50%, 13%), pos1 UR (82%, 31.5%), pos2 LR (82%, 68.5%),
+                   pos3 bot (50%, 87%), pos4 LL (18%, 68.5%), pos5 UL (18%, 31.5%). */
+  .portal-card[data-pos="0"] { top: 13%;   left: 50%; transform: translate(-50%, -50%); }
+  .portal-card[data-pos="1"] { top: 31.5%; left: 82%; transform: translate(-50%, -50%); }
+  .portal-card[data-pos="2"] { top: 68.5%; left: 82%; transform: translate(-50%, -50%); }
+  .portal-card[data-pos="3"] { top: 87%;   left: 50%; transform: translate(-50%, -50%); }
+  .portal-card[data-pos="4"] { top: 68.5%; left: 18%; transform: translate(-50%, -50%); }
+  .portal-card[data-pos="5"] { top: 31.5%; left: 18%; transform: translate(-50%, -50%); }
 
-  .portal-card[data-pos="0"]:active { transform: translate(-50%, 0%) scale(0.96); background: var(--gold-soft); }
-  .portal-card[data-pos="1"]:active { transform: translate(0%, -50%) scale(0.96); background: var(--gold-soft); }
-  .portal-card[data-pos="2"]:active { transform: translate(0%, -50%) scale(0.96); background: var(--gold-soft); }
-  .portal-card[data-pos="3"]:active { transform: translate(-50%, 0%) scale(0.96); background: var(--gold-soft); }
-  .portal-card[data-pos="4"]:active { transform: translate(-50%, 0%) scale(0.96); background: var(--gold-soft); }
-  .portal-card[data-pos="5"]:active { transform: translate(0%, -50%) scale(0.96); background: var(--gold-soft); }
-  .portal-card[data-pos="6"]:active { transform: translate(0%, -50%) scale(0.96); background: var(--gold-soft); }
+  .portal-card:active {
+    transform: translate(-50%, -50%) scale(0.96);
+    background: var(--gold-soft);
+  }
+
+  /* --- Setup & Breakdown combined view tab bar --------------------- */
+  .sb-tabs-bar {
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+    padding: 10px 12px 0;
+    max-width: 760px;
+    margin: 0 auto;
+  }
+  .sb-tab {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--wood-soft);
+    font-family: 'Caladea', Georgia, serif;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 8px 22px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+  }
+  .sb-tab.active {
+    background: var(--gold-soft);
+    color: var(--wood);
+    border-color: var(--gold);
+  }
+  .sb-tab:active { background: var(--gold-soft); }
 
   /* --- Training views (Setup / Breakdown / Standards) --------------- */
   .training-page {
@@ -1846,9 +1873,9 @@
       <div class="pcd-icon">⚐</div>
       <div class="pcd-label">Service</div>
     </div>
-    <div class="portal-card" data-pos="3" data-target="breakdown">
-      <div class="pcd-icon">⊟</div>
-      <div class="pcd-label">Breakdown</div>
+    <div class="portal-card" data-pos="3" data-target="setup-breakdown">
+      <div class="pcd-icon">⊞</div>
+      <div class="pcd-label">Setup &amp;<br>Breakdown</div>
     </div>
     <div class="portal-card" data-pos="4" data-target="standards">
       <div class="pcd-icon">✦</div>
@@ -1857,10 +1884,6 @@
     <div class="portal-card dimmed" data-pos="5" data-target="freshtalk" id="portal-card-freshtalk">
       <div class="pcd-icon">❀</div>
       <div class="pcd-label">Fresh talk</div>
-    </div>
-    <div class="portal-card" data-pos="6" data-target="setup">
-      <div class="pcd-icon">◐</div>
-      <div class="pcd-label">Setup</div>
     </div>
   </div>
 </div>
@@ -1878,16 +1901,13 @@
   </div>
 </div>
 
-<div id="setup-view" style="display:none;">
-  <div class="training-page" id="setup-content">
-    <div class="tp-title">Setup</div>
-    <div class="tp-subtitle">Loading…</div>
+<div id="setup-breakdown-view" style="display:none;">
+  <div class="sb-tabs-bar">
+    <button class="sb-tab active" data-sb-tab="setup" type="button">Setup</button>
+    <button class="sb-tab" data-sb-tab="breakdown" type="button">Breakdown</button>
   </div>
-</div>
-
-<div id="breakdown-view" style="display:none;">
-  <div class="training-page" id="breakdown-content">
-    <div class="tp-title">Breakdown</div>
+  <div class="training-page" id="sb-content">
+    <div class="tp-title">Setup</div>
     <div class="tp-subtitle">Loading…</div>
   </div>
 </div>
@@ -2005,7 +2025,7 @@
   // ====================================================================
   // CONFIG + STATE
   // ====================================================================
-  const VERSION = "v1.21";
+  const VERSION = "v1.22";
   const DATA_PATH = "data";
   const params = new URLSearchParams(window.location.search);
   const today = new Date().toISOString().split('T')[0];
@@ -2761,7 +2781,7 @@
   // the Home button + dinner-view tabs) visibility.
   function switchView(viewName) {
     activeView = viewName;
-    const allViews = ['portal','list','seating','freshtalk','service','setup','breakdown','standards'];
+    const allViews = ['portal','list','seating','freshtalk','service','setup-breakdown','standards'];
     allViews.forEach(v => {
       const el = document.getElementById(v + '-view');
       if (el) el.style.display = (v === viewName) ? '' : 'none';
@@ -2790,6 +2810,14 @@
 
   // Home button → back to portal
   document.getElementById('home-button').addEventListener('click', () => switchView('portal'));
+
+  // Tab buttons inside the combined Setup & Breakdown view
+  document.querySelectorAll('.sb-tab').forEach(btn => {
+    btn.addEventListener('click', () => {
+      sbActiveTab = btn.dataset.sbTab;
+      renderSetupBreakdown();
+    });
+  });
 
   // Center disc → open property map modal
   function openMapModal() {
@@ -2838,8 +2866,7 @@
     // Header reflects whichever dinner is currently loaded, regardless of view.
     if (dinnerData) renderHeader(dinnerData);
     if (activeView === 'portal') { renderPortal(); return; }
-    if (activeView === 'setup') { renderSetup(); return; }
-    if (activeView === 'breakdown') { renderBreakdown(); return; }
+    if (activeView === 'setup-breakdown') { renderSetupBreakdown(); return; }
     if (activeView === 'standards') { renderStandards(); return; }
     if (!dinnerData) return;
     if (activeView === 'list') renderList();
@@ -2902,9 +2929,11 @@
       </div>`;
   }
 
-  async function renderSetup() {
+  // sbActiveTab tracks which tab is showing in the combined Setup & Breakdown view.
+  let sbActiveTab = 'setup';
+
+  async function renderSetupContent(el) {
     const td = await loadTraining();
-    const el = document.getElementById('setup-content');
     if (!td || !td.setup) {
       el.innerHTML = `<div class="tp-title">Setup</div><div class="tp-subtitle">Could not load training data.</div>`;
       return;
@@ -2917,9 +2946,8 @@
     `;
   }
 
-  async function renderBreakdown() {
+  async function renderBreakdownContent(el) {
     const td = await loadTraining();
-    const el = document.getElementById('breakdown-content');
     if (!td || !td.breakdown) {
       el.innerHTML = `<div class="tp-title">Breakdown</div><div class="tp-subtitle">Could not load training data.</div>`;
       return;
@@ -2941,6 +2969,20 @@
         ${b.columns.map(colHtml).join('')}
       </div>
     `;
+  }
+
+  // Combined Setup & Breakdown view — renders whichever tab is active into #sb-content.
+  async function renderSetupBreakdown() {
+    const el = document.getElementById('sb-content');
+    // Sync tab visual state with sbActiveTab
+    document.querySelectorAll('.sb-tab').forEach(b => {
+      b.classList.toggle('active', b.dataset.sbTab === sbActiveTab);
+    });
+    if (sbActiveTab === 'setup') {
+      await renderSetupContent(el);
+    } else {
+      await renderBreakdownContent(el);
+    }
   }
 
   async function renderStandards() {
