@@ -1,9 +1,20 @@
 {
   "dinner_date": "2026-09-05",
   "display_date": "Saturday, September 5, 2026",
-  "seated_covers": 16,
-  "party_count": 7,
-  "cancelled": [],
+  "seated_covers": 18,
+  "party_count": 8,
+  "cancelled": [
+    {
+      "id": "g-2026-09-05-007",
+      "purchaser": "Juanita Ishman Schwarz",
+      "party_size": 2,
+      "email": "lanae.ishman@gmail.com",
+      "notes": "wrong date maybe refund",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    }
+  ],
   "guests": [
     {
       "id": "g-2026-09-05-001",
@@ -69,7 +80,19 @@
       "is_allergen_party": true
     },
     {
-      "id": "g-2026-09-05-007",
+      "id": "g-2026-09-05-008",
+      "purchaser": "Meredith meyer",
+      "party_size": 2,
+      "email": "meredith.meyer@outlook.com",
+      "notes": "one NA",
+      "allergens": [
+        "NA"
+      ],
+      "returning": null,
+      "is_allergen_party": true
+    },
+    {
+      "id": "g-2026-09-05-009",
       "purchaser": "Emily J Gottschalk",
       "party_size": 4,
       "email": "gottsche@umich.edu",
