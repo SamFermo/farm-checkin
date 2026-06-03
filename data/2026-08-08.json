@@ -1,8 +1,8 @@
 {
   "dinner_date": "2026-08-08",
   "display_date": "Saturday, August 8, 2026",
-  "seated_covers": 24,
-  "party_count": 5,
+  "seated_covers": 26,
+  "party_count": 6,
   "cancelled": [],
   "guests": [
     {
@@ -33,6 +33,16 @@
     },
     {
       "id": "g-2026-08-08-003",
+      "purchaser": "Megan Anderson",
+      "party_size": 2,
+      "email": "manderson781@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-08-08-004",
       "purchaser": "Connor Mara",
       "party_size": 4,
       "email": "Mariadaddeo@gmail.com",
@@ -48,7 +58,7 @@
       "is_allergen_party": false
     },
     {
-      "id": "g-2026-08-08-004",
+      "id": "g-2026-08-08-005",
       "purchaser": "M Barton Waring",
       "party_size": 8,
       "email": "barton.waring@aya.yale.edu",
@@ -64,7 +74,7 @@
       "is_allergen_party": false
     },
     {
-      "id": "g-2026-08-08-005",
+      "id": "g-2026-08-08-006",
       "purchaser": "Christopher Pynn",
       "party_size": 8,
       "email": "christopherpynn@gmail.com",
