@@ -9,8 +9,8 @@
   "courses": [
     {
       "label": "Antipasti",
-      "subtitle": "welcome bites — family style at sit-down",
-      "plateware": "Family-style at sit-down (not passed).\n\nEach table gets 2 tartare platters and 2 endive platters, one per long side:\n• Tables A and C — 4 pieces per platter (8 seats)\n• Table B — 5 pieces per platter (10 seats)\n\nPer setting: 8\" bread plate and fork only.\n\nCutlery is staggered course-by-course — not all preset at once.",
+      "subtitle": "welcome bites \u2014 family style at sit-down",
+      "plateware": "Family-style at sit-down (not passed).\n\nEach table gets 2 tartare platters and 2 endive platters, one per long side:\n\u2022 Tables A and C \u2014 4 pieces per platter (8 seats)\n\u2022 Table B \u2014 5 pieces per platter (10 seats)\n\nPer setting: 8\" bread plate and fork only.\n\nCutlery is staggered course-by-course \u2014 not all preset at once.",
       "dishes": [
         {
           "name": "Beef Tenderloin Tartare",
@@ -18,26 +18,74 @@
           "components": "grilled breadfarm focaccia, calabrian, giardiniera, lovage, lemon",
           "story": "Raw beef tenderloin from Pure Country Beef, hand-mixed with Calabrian chili aioli, pickled vegetables, lovage, and lemon. Spooned onto a slice of grilled rosemary focaccia from Breadfarm in Edison. Topped with a microplane of meyer lemon zest and a lovage leaf.",
           "ingredients": [
-            { "term": "Calabrian", "pronunciation": "kah-LAH-bree-ahn", "note": "a spicy red chili paste from the Calabria region of southern Italy; we use it in the aioli for heat and depth" },
-            { "term": "Giardiniera", "pronunciation": "jar-din-YEH-rah", "note": "Italian pickled vegetables (peppers, cauliflower, carrots, celery) brined in vinegar; here mixed straight into the tartare" },
-            { "term": "Aioli", "pronunciation": "ay-OH-lee", "note": "emulsion of garlic, egg yolk, and oil, like a richer garlic mayonnaise" },
-            { "term": "Lovage", "pronunciation": "LUH-vij", "note": "leafy herb with a flavor like celery and parsley combined, more intense" },
-            { "term": "Tartare", "pronunciation": "tar-TAR", "note": "preparation of raw, finely chopped or minced meat" },
-            { "term": "Pure Country Beef", "pronunciation": null, "note": "Moses Lake, WA — the Pacific Northwest's premier dry-age beef program. We're using their tenderloin for this welcome bite." }
+            {
+              "term": "Calabrian",
+              "pronunciation": "kah-LAH-bree-ahn",
+              "note": "a spicy red chili paste from the Calabria region of southern Italy; we use it in the aioli for heat and depth"
+            },
+            {
+              "term": "Giardiniera",
+              "pronunciation": "jar-din-YEH-rah",
+              "note": "Italian pickled vegetables (peppers, cauliflower, carrots, celery) brined in vinegar; here mixed straight into the tartare"
+            },
+            {
+              "term": "Aioli",
+              "pronunciation": "ay-OH-lee",
+              "note": "emulsion of garlic, egg yolk, and oil, like a richer garlic mayonnaise"
+            },
+            {
+              "term": "Lovage",
+              "pronunciation": "LUH-vij",
+              "note": "leafy herb with a flavor like celery and parsley combined, more intense"
+            },
+            {
+              "term": "Tartare",
+              "pronunciation": "tar-TAR",
+              "note": "preparation of raw, finely chopped or minced meat"
+            },
+            {
+              "term": "Pure Country Beef",
+              "pronunciation": null,
+              "note": "Moses Lake, WA \u2014 the Pacific Northwest's premier dry-age beef program. We're using their tenderloin for this welcome bite."
+            }
           ]
         },
         {
           "name": "Asparagus on Endive",
           "pronunciation": "ON-deev",
-          "components": "sorrel, crème fraîche, radish, chive blossom, lovage honey",
-          "story": "Inner endive leaves used as a small vessel. Filled with sliced asparagus folded into sorrel chiffonade, crème fraîche, olive oil, and Maldon salt. Topped with radish batons, a chive blossom, an asparagus tip, and a drizzle of lovage honey.",
+          "components": "sorrel, cr\u00e8me fra\u00eeche, radish, chive blossom, lovage honey",
+          "story": "Inner endive leaves used as a small vessel. Filled with sliced asparagus folded into sorrel chiffonade, cr\u00e8me fra\u00eeche, olive oil, and Maldon salt. Topped with radish batons, a chive blossom, an asparagus tip, and a drizzle of lovage honey.",
           "ingredients": [
-            { "term": "Endive", "pronunciation": "ON-deev", "note": "crisp leafy vegetable with a slight pleasant bitterness; we use the smaller inner leaves as a one-bite vessel" },
-            { "term": "Sorrel", "pronunciation": "SOR-rel", "note": "leafy herb with bright lemony tartness, like spinach with a citrus punch" },
-            { "term": "Chiffonade", "pronunciation": "shif-on-AHD", "note": "herbs or leafy greens cut into thin ribbons" },
-            { "term": "Crème fraîche", "pronunciation": "krem FRESH", "note": "French cultured cream, thicker and tangier than sour cream, milder" },
-            { "term": "Maldon", "pronunciation": null, "note": "flaky English finishing salt, prized for its crunch" },
-            { "term": "Lovage honey", "pronunciation": null, "note": "local honey infused with lovage; herbaceous and floral" }
+            {
+              "term": "Endive",
+              "pronunciation": "ON-deev",
+              "note": "crisp leafy vegetable with a slight pleasant bitterness; we use the smaller inner leaves as a one-bite vessel"
+            },
+            {
+              "term": "Sorrel",
+              "pronunciation": "SOR-rel",
+              "note": "leafy herb with bright lemony tartness, like spinach with a citrus punch"
+            },
+            {
+              "term": "Chiffonade",
+              "pronunciation": "shif-on-AHD",
+              "note": "herbs or leafy greens cut into thin ribbons"
+            },
+            {
+              "term": "Cr\u00e8me fra\u00eeche",
+              "pronunciation": "krem FRESH",
+              "note": "French cultured cream, thicker and tangier than sour cream, milder"
+            },
+            {
+              "term": "Maldon",
+              "pronunciation": null,
+              "note": "flaky English finishing salt, prized for its crunch"
+            },
+            {
+              "term": "Lovage honey",
+              "pronunciation": null,
+              "note": "local honey infused with lovage; herbaceous and floral"
+            }
           ]
         }
       ]
@@ -53,12 +101,36 @@
           "components": "red romaine, salanova, sorrel, fennel, mint, lovage, snow peas, fire cider vinaigrette",
           "story": "A composed plate of Kelly's spring garden at Swan House. Farm-grown red romaine and salanova lettuces, layered with whole young sorrel leaves, fennel fronds, mint, and a careful touch of lovage. Shaved snow peas across the top for sweetness and crunch. Dressed with Kelly's homemade fire cider vinaigrette.",
           "ingredients": [
-            { "term": "Salanova", "pronunciation": "sah-lah-NOH-vah", "note": "a variety of small butterhead-style lettuce grown for tender leaves and excellent texture" },
-            { "term": "Sorrel", "pronunciation": "SOR-rel", "note": "same lemony herb as on the asparagus bite, used as whole leaves here for brightness and shape" },
-            { "term": "Fennel fronds", "pronunciation": null, "note": "the feathery green leaves from a fennel plant; mild anise flavor" },
-            { "term": "Lovage", "pronunciation": "LUH-vij", "note": "celery-like herb, intense, used sparingly because it builds quickly" },
-            { "term": "Snow peas", "pronunciation": null, "note": "flat, edible-pod pea variety; sweet and crisp, sliced thin on the bias here" },
-            { "term": "Fire cider", "pronunciation": null, "note": "a folk-medicine tonic Kelly makes at the farm: apple cider vinegar infused with horseradish, garlic, ginger, hot pepper, onion, and turmeric. Bright, pungent, complex. Cut with olive oil and a touch of honey for the vinaigrette." }
+            {
+              "term": "Salanova",
+              "pronunciation": "sah-lah-NOH-vah",
+              "note": "a variety of small butterhead-style lettuce grown for tender leaves and excellent texture"
+            },
+            {
+              "term": "Sorrel",
+              "pronunciation": "SOR-rel",
+              "note": "same lemony herb as on the asparagus bite, used as whole leaves here for brightness and shape"
+            },
+            {
+              "term": "Fennel fronds",
+              "pronunciation": null,
+              "note": "the feathery green leaves from a fennel plant; mild anise flavor"
+            },
+            {
+              "term": "Lovage",
+              "pronunciation": "LUH-vij",
+              "note": "celery-like herb, intense, used sparingly because it builds quickly"
+            },
+            {
+              "term": "Snow peas",
+              "pronunciation": null,
+              "note": "flat, edible-pod pea variety; sweet and crisp, sliced thin on the bias here"
+            },
+            {
+              "term": "Fire cider",
+              "pronunciation": null,
+              "note": "a folk-medicine tonic Kelly makes at the farm: apple cider vinegar infused with horseradish, garlic, ginger, hot pepper, onion, and turmeric. Bright, pungent, complex. Cut with olive oil and a touch of honey for the vinaigrette."
+            }
           ]
         }
       ]
@@ -72,15 +144,43 @@
           "name": "Paccheri",
           "pronunciation": "pah-KEH-ree",
           "components": "sea bean & pistachio pesto, smoked lamb sausage, black morels, lemon balm, parmigiano",
-          "story": "Tube-shaped pasta from southern Italy — our cut here is essentially a shorter rigatoni. Joe extrudes ours fresh at the restaurant. We lay down a vibrant sea bean and pistachio pesto on the plate first, then top with smoked lamb sausage from Tim's smoker, black morels, paccheri tossed in a butter sauce with fresh lemon balm. Finished with shaved Parmigiano and raw fresh sea beans.",
+          "story": "Tube-shaped pasta from southern Italy \u2014 our cut here is essentially a shorter rigatoni. Joe extrudes ours fresh at the restaurant. We lay down a vibrant sea bean and pistachio pesto on the plate first, then top with smoked lamb sausage from Tim's smoker, black morels, paccheri tossed in a butter sauce with fresh lemon balm. Finished with shaved Parmigiano and raw fresh sea beans.",
           "ingredients": [
-            { "term": "Paccheri", "pronunciation": "pah-KEH-ree", "note": "large tube pasta, Neapolitan in origin; the name comes from the slapping sound the wide tubes make as they're tossed in sauce. Our cut here is essentially a shorter rigatoni." },
-            { "term": "Sea beans", "pronunciation": null, "note": "a wild succulent that grows in coastal salt marshes, also called samphire or salicornia; naturally briny, crisp, vivid green" },
-            { "term": "Pistachio", "pronunciation": null, "note": "toasted and ground into the pesto base for richness and a subtle sweetness against the sea bean's salinity" },
-            { "term": "Smoked lamb sausage", "pronunciation": null, "note": "sweet-spicy Italian-style sausage smoked at the farm from Tim's lamb" },
-            { "term": "Black morels", "pronunciation": null, "note": "prized wild mushroom, honeycomb-shaped cap, deep earthy nutty flavor; in season only spring" },
-            { "term": "Lemon balm", "pronunciation": null, "note": "citrusy mint-family herb; bright lemon perfume without the acid" },
-            { "term": "Parmigiano", "pronunciation": "par-mee-JAH-noh", "note": "short for Parmigiano-Reggiano, the aged hard Italian cheese from the Parma region" }
+            {
+              "term": "Paccheri",
+              "pronunciation": "pah-KEH-ree",
+              "note": "large tube pasta, Neapolitan in origin; the name comes from the slapping sound the wide tubes make as they're tossed in sauce. Our cut here is essentially a shorter rigatoni."
+            },
+            {
+              "term": "Sea beans",
+              "pronunciation": null,
+              "note": "a wild succulent that grows in coastal salt marshes, also called samphire or salicornia; naturally briny, crisp, vivid green"
+            },
+            {
+              "term": "Pistachio",
+              "pronunciation": null,
+              "note": "toasted and ground into the pesto base for richness and a subtle sweetness against the sea bean's salinity"
+            },
+            {
+              "term": "Smoked lamb sausage",
+              "pronunciation": null,
+              "note": "sweet-spicy Italian-style sausage smoked at the farm from Tim's lamb"
+            },
+            {
+              "term": "Black morels",
+              "pronunciation": null,
+              "note": "prized wild mushroom, honeycomb-shaped cap, deep earthy nutty flavor; in season only spring"
+            },
+            {
+              "term": "Lemon balm",
+              "pronunciation": null,
+              "note": "citrusy mint-family herb; bright lemon perfume without the acid"
+            },
+            {
+              "term": "Parmigiano",
+              "pronunciation": "par-mee-JAH-noh",
+              "note": "short for Parmigiano-Reggiano, the aged hard Italian cheese from the Parma region"
+            }
           ]
         }
       ]
@@ -88,7 +188,7 @@
     {
       "label": "Secondi",
       "subtitle": "Course 3",
-      "plateware": "Entrée plate. Large fork. Steak knife.",
+      "plateware": "Entr\u00e9e plate. Large fork. Steak knife.",
       "dishes": [
         {
           "name": "Smoked Swan House Pork Belly",
@@ -96,13 +196,41 @@
           "components": "green garlic & lovage salsa verde, charred spring onion, oregano oil, sorrel",
           "story": "Pork belly from Swan House Farm. Braised low and slow in an aromatic stock, then lightly smoked on the Big Green Egg, then roasted to finish for crisp edges. Plated with a green garlic and lovage salsa verde, charred spring onion in oregano oil, a pork demi made from the reduced braising liquid, a drizzle of chive oil, and a finishing chiffonade of sorrel.",
           "ingredients": [
-            { "term": "Pork belly", "pronunciation": null, "note": "the cut from the underside of the pig; rich, fatty, prized for the texture you can develop through braise-smoke-roast layering" },
-            { "term": "Big Green Egg", "pronunciation": null, "note": "a kamado-style ceramic smoker/grill we use for live-fire cooking" },
-            { "term": "Salsa verde", "pronunciation": "SAHL-sah VEHR-day", "note": "Italian green sauce, herb-based, bright with lemon and capers; this version uses farm green garlic, lovage, and parsley" },
-            { "term": "Green garlic", "pronunciation": null, "note": "young garlic harvested in spring before the bulb fully forms; mild, grassy, less sharp than mature garlic" },
-            { "term": "Demi", "pronunciation": "DEM-ee glahs", "note": "short for demi-glace; a deeply concentrated stock-based sauce. Ours is built from the belly's braising liquid reduced down." },
-            { "term": "Spring onion", "pronunciation": null, "note": "young onion harvested before the bulb fully forms; sweeter and milder than a mature onion" },
-            { "term": "Oregano oil", "pronunciation": null, "note": "neutral oil infused with oregano" }
+            {
+              "term": "Pork belly",
+              "pronunciation": null,
+              "note": "the cut from the underside of the pig; rich, fatty, prized for the texture you can develop through braise-smoke-roast layering"
+            },
+            {
+              "term": "Big Green Egg",
+              "pronunciation": null,
+              "note": "a kamado-style ceramic smoker/grill we use for live-fire cooking"
+            },
+            {
+              "term": "Salsa verde",
+              "pronunciation": "SAHL-sah VEHR-day",
+              "note": "Italian green sauce, herb-based, bright with lemon and capers; this version uses farm green garlic, lovage, and parsley"
+            },
+            {
+              "term": "Green garlic",
+              "pronunciation": null,
+              "note": "young garlic harvested in spring before the bulb fully forms; mild, grassy, less sharp than mature garlic"
+            },
+            {
+              "term": "Demi",
+              "pronunciation": "DEM-ee glahs",
+              "note": "short for demi-glace; a deeply concentrated stock-based sauce. Ours is built from the belly's braising liquid reduced down."
+            },
+            {
+              "term": "Spring onion",
+              "pronunciation": null,
+              "note": "young onion harvested before the bulb fully forms; sweeter and milder than a mature onion"
+            },
+            {
+              "term": "Oregano oil",
+              "pronunciation": null,
+              "note": "neutral oil infused with oregano"
+            }
           ]
         }
       ]
@@ -116,19 +244,39 @@
           "name": "Rhubarb Pavlova",
           "pronunciation": "pav-LOH-vah",
           "components": "lemon balm pastry cream, rose, honeysuckle, edible flowers",
-          "story": "A meringue-based dessert named after Russian ballerina Anna Pavlova who toured Australia and New Zealand in the 1920s. The meringue is crisp on the outside, marshmallow-soft inside, and this version is baked from rose sugar rather than plain caster sugar — meaning rose petals from the farm have been processed into the sugar itself, so the floral notes live inside the meringue. Topped with a spoonful of rhubarb compote folded with honeysuckle syrup, a loose dollop of lemon balm pastry cream, and a scatter of fresh rose petals, honeysuckle blossoms, and other edible flowers. Finished with a pinch of Maldon and a drizzle of olive oil.",
+          "story": "A meringue-based dessert named after Russian ballerina Anna Pavlova who toured Australia and New Zealand in the 1920s. The meringue is crisp on the outside, marshmallow-soft inside, and this version is baked from rose sugar rather than plain caster sugar \u2014 meaning rose petals from the farm have been processed into the sugar itself, so the floral notes live inside the meringue. Topped with a spoonful of rhubarb compote folded with honeysuckle syrup, a loose dollop of lemon balm pastry cream, and a scatter of fresh rose petals, honeysuckle blossoms, and other edible flowers. Finished with a pinch of Maldon and a drizzle of olive oil.",
           "ingredients": [
-            { "term": "Pavlova", "pronunciation": "pav-LOH-vah", "note": "meringue dessert; egg whites + sugar + a touch of vinegar and cornstarch for the marshmallow center" },
-            { "term": "Rose sugar", "pronunciation": null, "note": "caster sugar processed with farm rose petals, then sifted. The petals infuse a subtle floral note throughout the meringue; you can sometimes see the faint pink tint." },
-            { "term": "Honeysuckle", "pronunciation": null, "note": "the sweet floral edible flower from Kelly's garden; mild, like a soft elderflower" },
-            { "term": "Pastry cream", "pronunciation": null, "note": "classic French custard of egg yolks, sugar, cornstarch, and dairy, thickened on the stove. Ours is infused with lemon balm via a 24-hour cold steep." },
-            { "term": "Rhubarb compote", "pronunciation": null, "note": "rhubarb cooked briefly with sugar and lemon, just until softened; loose and juicy, not jammy. Folded with honeysuckle syrup for this menu." }
+            {
+              "term": "Pavlova",
+              "pronunciation": "pav-LOH-vah",
+              "note": "meringue dessert; egg whites + sugar + a touch of vinegar and cornstarch for the marshmallow center"
+            },
+            {
+              "term": "Rose sugar",
+              "pronunciation": null,
+              "note": "caster sugar processed with farm rose petals, then sifted. The petals infuse a subtle floral note throughout the meringue; you can sometimes see the faint pink tint."
+            },
+            {
+              "term": "Honeysuckle",
+              "pronunciation": null,
+              "note": "the sweet floral edible flower from Kelly's garden; mild, like a soft elderflower"
+            },
+            {
+              "term": "Pastry cream",
+              "pronunciation": null,
+              "note": "classic French custard of egg yolks, sugar, cornstarch, and dairy, thickened on the stove. Ours is infused with lemon balm via a 24-hour cold steep."
+            },
+            {
+              "term": "Rhubarb compote",
+              "pronunciation": null,
+              "note": "rhubarb cooked briefly with sugar and lemon, just until softened; loose and juicy, not jammy. Folded with honeysuckle syrup for this menu."
+            }
           ]
         }
       ]
     },
     {
-      "label": "Caffé",
+      "label": "Caff\u00e9",
       "subtitle": "to close",
       "plateware": null,
       "dishes": [
@@ -142,5 +290,188 @@
       ]
     }
   ],
-  "wines": []
+  "wines": [
+    {
+      "name": "Antica Tenuta Pietramore Passerina",
+      "vintage": null,
+      "type": "white",
+      "region": "Abruzzo, Italy",
+      "grapes": "100% Passerina",
+      "alcohol_pct": null,
+      "pour_notes": "A salty, mineral Italian white from the Abruzzo coast. Pear, yellow peach, white flowers. Indigenous grape, biodynamic estate, stainless-aged on the lees.",
+      "specs": [
+        {
+          "label": "Body",
+          "rating": 3,
+          "low": "light",
+          "high": "full"
+        },
+        {
+          "label": "Dryness",
+          "rating": 5,
+          "low": "off-dry",
+          "high": "bone dry"
+        },
+        {
+          "label": "Acidity",
+          "rating": 4,
+          "low": "soft",
+          "high": "bright"
+        },
+        {
+          "label": "Tannins",
+          "rating": 1,
+          "low": "none",
+          "high": "grippy"
+        }
+      ],
+      "producer": "Antica Tenuta Pietramore was started in 2011 by Maria Pia Leone and her partner Massimiliano. The name reflects Maria's reverence for the soil \u2014 pietra (stone) + amore (love). The 70-hectare estate is certified organic and biodynamic, nestled between the Maiella mountains and the Adriatic Sea in the Province of Chieti. Maria works exclusively with indigenous Abruzzo grape varieties, and the estate has become a benchmark for what's possible from this corner of Italy.",
+      "winemaking": "Hand-harvested at deliberately low yields (~4 tons/hectare). Vines are grown on medium-textured soils tending to chalk and limestone with south-east exposure. The fruit is gently pressed under dry-ice protection to preserve aromatics, followed by a soft pressing and free-run juice only. The wine is aged on its fine lees in stainless steel, which gives it body and a saline, mineral signature."
+    },
+    {
+      "name": "Corte Scaletta Valpolicella",
+      "vintage": "2022",
+      "type": "red",
+      "region": "Marcellise, Veneto, Italy",
+      "grapes": "40% Corvina \u00b7 30% Corvinone \u00b7 30% Rondinella",
+      "alcohol_pct": null,
+      "pour_notes": "Light, pretty Valpolicella from a family estate near Verona. Tart cherry, raspberry preserves, a flicker of green peppercorn. Hand-harvested, stainless-aged, solar-powered cellar.",
+      "specs": [
+        {
+          "label": "Body",
+          "rating": 2,
+          "low": "light",
+          "high": "full"
+        },
+        {
+          "label": "Dryness",
+          "rating": 5,
+          "low": "off-dry",
+          "high": "bone dry"
+        },
+        {
+          "label": "Acidity",
+          "rating": 4,
+          "low": "soft",
+          "high": "bright"
+        },
+        {
+          "label": "Tannins",
+          "rating": 2,
+          "low": "none",
+          "high": "grippy"
+        }
+      ],
+      "producer": "Corte Scaletta was founded in 2011 by the Cavedini family, who have made wine for generations and farm with deep respect for the unique character of Valpolicella DOC. The estate sits in the Valley of Marcellise a few kilometers from Verona, near the Musella estate, where surrounding mountains and hills moderate the climate. The cellar runs entirely on solar power.",
+      "winemaking": "Wild grasses are left long between rows to maintain soil biology, with careful cutting under the vines so no chemical herbicides are needed. Grapes are hand-harvested. Vinification is in stainless-steel vats with a cold maceration phase followed by slow, spontaneous, temperature-controlled fermentation \u2014 no inoculated yeasts, no rushing it. The result is a Valpolicella that reads lifted and red-fruited rather than dark and brooding."
+    },
+    {
+      "name": "Les Mar\u00e9es Non-Alcoholic Sparkling Blanc de Blancs",
+      "vintage": null,
+      "type": "sparkling NA",
+      "region": "Southern France",
+      "grapes": "100% organic Chardonnay",
+      "alcohol_pct": 0,
+      "pour_notes": "A real sparkling NA wine, not soda. Organic Chardonnay from Southern France. Green apple, mineral, bright. Treat it like a Blanc de Blancs \u2014 chill it, pour it tall, toast with it.",
+      "specs": [
+        {
+          "label": "Body",
+          "rating": 2,
+          "low": "light",
+          "high": "full"
+        },
+        {
+          "label": "Dryness",
+          "rating": 5,
+          "low": "off-dry",
+          "high": "bone dry"
+        },
+        {
+          "label": "Acidity",
+          "rating": 5,
+          "low": "soft",
+          "high": "bright"
+        },
+        {
+          "label": "Tannins",
+          "rating": 1,
+          "low": "none",
+          "high": "grippy"
+        }
+      ],
+      "producer": "Les Mar\u00e9es is made from organic Chardonnay grown on the sunlit shores of Southern France. The maker takes the Blanc de Blancs idea (Chardonnay-only sparkling, the same backbone as Champagne) and removes the alcohol while preserving the structure.",
+      "winemaking": "Made in the spirit of a real sparkling wine \u2014 bright, refined, structured around green apple and mineral. Aimed at slow caf\u00e9 afternoons, easy celebrations, and any moment that calls for sparkle without alcohol."
+    },
+    {
+      "name": "Cantina Zaccagnini Alcohol-Removed White",
+      "vintage": null,
+      "type": "white NA",
+      "region": "Abruzzo, Italy",
+      "grapes": "Italian white grapes",
+      "alcohol_pct": 0,
+      "pour_notes": "A premium alcohol-removed Italian white from Abruzzo. Bright straw color, yellow fruits, white flowers, delicate and balanced. Made from a real wine that's had the alcohol gently distilled out \u2014 full character, zero buzz.",
+      "specs": [
+        {
+          "label": "Body",
+          "rating": 3,
+          "low": "light",
+          "high": "full"
+        },
+        {
+          "label": "Dryness",
+          "rating": 4,
+          "low": "off-dry",
+          "high": "bone dry"
+        },
+        {
+          "label": "Acidity",
+          "rating": 3,
+          "low": "soft",
+          "high": "bright"
+        },
+        {
+          "label": "Tannins",
+          "rating": 1,
+          "low": "none",
+          "high": "grippy"
+        }
+      ],
+      "producer": "The Ciccio Zaccagnini estate sits on 500 acres in Bolognano, about 30 miles from the Adriatic coast and 8 miles from the Maiella mountains (which rise to 9,000 ft). The vineyards are in the cru section 'Colle Morto di Bolognano.' Marcello Zaccagnini and winemaker Concezio Marulli are central figures in the modern Abruzzo wine renaissance, and every bottle of this line carries a small piece of tralcetto \u2014 grape vine \u2014 as the estate's signature.",
+      "winemaking": "A first-class wine is the starting point \u2014 quality in, quality out. The alcohol is removed in a two-step distillation in a vacuum evaporator: the first pass captures the volatile aromas (which evaporate first), and those aromas are condensed and held aside. The second pass evaporates the ethanol. Finally the preserved aromas are returned to the dealcoholized wine, so the finished bottle retains the original wine's character without the alcohol."
+    }
+  ],
+  "cocktails": [
+    {
+      "name": "In Fair Verona",
+      "tagline": "a spring Manhattan",
+      "pour_notes": "Whiskey-forward but lighter than the classic \u2014 Westland's malty depth softened with rhubarb-infused Bianco vermouth, lifted by gentian, Cocchi Americano, and a finishing whisper of lavender.",
+      "ingredients": [
+        {
+          "name": "Westland flagship whiskey",
+          "amount": "2 oz",
+          "description": "Seattle's craft American single malt distillery. Made entirely from malted barley, aged in new American oak. Notes of malt, cocoa, dried fruit, and a touch of smoke. The PNW's signature whiskey."
+        },
+        {
+          "name": "Rhubarb-infused Bianco vermouth",
+          "amount": "0.75 oz",
+          "description": "House-made infusion. Bianco vermouth is a sweet white vermouth \u2014 floral, vanilla-tinged, lightly herbal. Steeped with fresh rhubarb stalks, it picks up rhubarb's tart-sweet brightness, giving the cocktail a distinctly spring character."
+        },
+        {
+          "name": "Genziana Fernanda",
+          "amount": "0.25 oz",
+          "description": "An Italian gentian liqueur from Abruzzo. Made from the bitter root of the yellow gentian plant (Gentiana lutea). Earthy, herbal, intensely bitter \u2014 a small dose grounds the cocktail and pulls everything into focus."
+        },
+        {
+          "name": "Cocchi Americano",
+          "amount": "0.25 oz",
+          "description": "A Piedmontese aperitivo wine flavored with cinchona bark (quinine), gentian, and herbs. Light, citrusy, gently bitter. Lillet Blanc's more characterful cousin. Brightens the cocktail without sweetening it."
+        },
+        {
+          "name": "Lavender bitters",
+          "amount": "2 dashes",
+          "description": "Aromatic bitters infused with dried lavender. Floral and herbaceous with a soft sweetness. A few dashes carry the spring-garden aroma across every sip and tie the rhubarb to the gentian."
+        }
+      ]
+    }
+  ]
 }
