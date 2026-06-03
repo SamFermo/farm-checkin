@@ -1856,7 +1856,8 @@
     transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 1;
   }
-  .sb-tabs-bar[data-active="breakdown"] .sb-pill {
+  .sb-tabs-bar[data-active="breakdown"] .sb-pill,
+  .sb-tabs-bar[data-active="beverage"] .sb-pill {
     transform: translateX(100%);
   }
 
@@ -2189,7 +2190,7 @@
   // ====================================================================
   // CONFIG + STATE
   // ====================================================================
-  const VERSION = "v1.26";
+  const VERSION = "v1.27";
   const DATA_PATH = "data";
   const params = new URLSearchParams(window.location.search);
   const today = new Date().toISOString().split('T')[0];
