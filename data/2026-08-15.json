@@ -1,8 +1,8 @@
 {
   "dinner_date": "2026-08-15",
   "display_date": "Saturday, August 15, 2026",
-  "seated_covers": 18,
-  "party_count": 8,
+  "seated_covers": 20,
+  "party_count": 9,
   "cancelled": [],
   "guests": [
     {
@@ -96,6 +96,16 @@
     },
     {
       "id": "g-2026-08-15-008",
+      "purchaser": "Nicole Little",
+      "party_size": 2,
+      "email": "nikkilittle919@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-08-15-009",
       "purchaser": "Abraham Curry",
       "party_size": 4,
       "email": "abecurry@gmail.com",
