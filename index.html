@@ -2056,6 +2056,30 @@
     .portal-card .pcd-icon { font-size: 18px; }
     .portal-center .pc-date { font-size: 14px; }
     .portal-center .pc-counts { font-size: 12px; }
+
+    /* Vtab pill bar — shrink so all five tabs fit within ~375px (iPhone Mini)
+       without horizontal scroll. Production math: font 9.5px × ls 0.4px +
+       6px h-padding = ~366px total bar width including "SETUP & BREAKDOWN". */
+    .view-toggle-wrap { padding: 0 6px; }
+    .view-toggle { padding: 3px; }
+    .vtab {
+      padding: 7px 6px;
+      font-size: 9.5px;
+      letter-spacing: 0.4px;
+    }
+
+    /* Home button — back to top-left, arrow-only on mobile. The "← Home" text
+       overlaps the date header on phone (the date wraps long). Keeping just
+       the arrow gives the date breathing room and matches "back" semantics. */
+    .home-button {
+      left: 14px;
+      right: auto;
+      padding: 5px 11px;
+      font-size: 18px;
+      line-height: 1;
+    }
+    .home-label { display: none; }
+    .home-arrow { font-weight: 700; }
   }
 </style>
 </head>
@@ -2074,7 +2098,7 @@
 
 <div id="date-switcher-container"></div>
 
-<button class="home-button" id="home-button" type="button" aria-label="Back to home portal" style="display:none;">← Home</button>
+<button class="home-button" id="home-button" type="button" aria-label="Back to home portal" style="display:none;"><span class="home-arrow">←</span><span class="home-label"> Home</span></button>
 
 <div id="view-toggle-wrap" class="view-toggle-wrap" style="display:none;">
   <div class="view-toggle" id="view-toggle">
@@ -2262,7 +2286,7 @@
   // ====================================================================
   // CONFIG + STATE
   // ====================================================================
-  const VERSION = "v1.31";
+  const VERSION = "v1.32";
   const DATA_PATH = "data";
   const params = new URLSearchParams(window.location.search);
   const today = new Date().toISOString().split('T')[0];
