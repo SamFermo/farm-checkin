@@ -1,0 +1,39 @@
+{
+  "$comment": "May 2026 backfill, ported 2026-06-05 from 2026-05-13-kelly-harvest-list.md (W1 email) and print-pack/2026-05-23-24-harvest-list.md (W2). Checkboxes for these past dinners show unchecked — no state was captured at the time.",
+  "series": "2026-05",
+  "weekends": [
+    {
+      "label": "May 16-17",
+      "dates": ["2026-05-16", "2026-05-17"],
+      "pdf": null,
+      "intro": "Backfilled from the list sent 5/13. Hold cool for service; lovage and lemon balm day-of.",
+      "items": [
+        { "id": "edible-flowers", "name": "Edible flowers", "qty": "~200 blossoms across both weekends", "note": "peak harvest" },
+        { "id": "chive-blossoms", "name": "Chive blossoms", "qty": "100-150 stems across both weekends", "note": "asparagus bites + vichyssoise" },
+        { "id": "radish", "name": "Radish", "qty": "10-12 medium", "note": "plus a few extra 5/17 for the pickled-radish dairy-free plate" },
+        { "id": "endive", "name": "Endive", "qty": "10-12 heads", "note": "inner leaves for the asparagus bite vessel" },
+        { "id": "lovage", "name": "Lovage", "qty": "fresh bundle day-of", "note": "tartare topper + vichyssoise garnish" },
+        { "id": "lemon-balm", "name": "Lemon balm", "qty": "small fresh bunch day-of", "note": "pasta chiffonade" }
+      ],
+      "confirm": [
+        { "id": "lilac-sugar", "name": "Lilac sugar", "note": "ongoing — batch already harvested" }
+      ],
+      "footnote": "Spring onions and asparagus already pulled. Pastry cream made at SF."
+    },
+    {
+      "label": "May 23-24",
+      "dates": ["2026-05-23", "2026-05-24"],
+      "pdf": null,
+      "intro": "Backfilled from the W2 print-pack harvest list (Friday 5/22 pick).",
+      "items": [
+        { "id": "lovage", "name": "Lovage", "qty": "2 lb total", "note": "tartare topper + vichyssoise garnish" },
+        { "id": "chive-blossoms", "name": "Chive blossoms", "qty": "20 heads total", "note": "asparagus bites + vichyssoise" },
+        { "id": "edible-flowers", "name": "Edible flowers", "qty": "2 pints total", "note": "bites plus pavlova" },
+        { "id": "radish", "name": "Radishes", "qty": "as many as we want", "note": "radish and butter platter alongside olives and almonds on arrival" },
+        { "id": "lemon-balm", "name": "Lemon balm", "qty": "1 lb total", "note": "pasta chiffonade + pastry cream" }
+      ],
+      "confirm": [],
+      "footnote": "Lilac sugar 86'd per Sam's harvest note 5/22."
+    }
+  ]
+}
