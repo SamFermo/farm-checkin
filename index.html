@@ -1629,6 +1629,7 @@
   body.in-dinner-view #freshtalk-view,
   body.in-dinner-view #service-view,
   body.in-dinner-view #setup-breakdown-view,
+  body.in-dinner-view #harvest-view,
   body.in-dinner-view #standards-view {
     background: rgba(251, 246, 234, 0.95);
     max-width: 760px;
@@ -1869,12 +1870,14 @@
   /* 6 cards at 60° apart around the center (r ≈ 37% of container).
      Card centers: pos0 top (50%, 13%), pos1 UR (82%, 31.5%), pos2 LR (82%, 68.5%),
                    pos3 bot (50%, 87%), pos4 LL (18%, 68.5%), pos5 UL (18%, 31.5%). */
-  .portal-card[data-pos="0"] { top: 13%;   left: 50%; transform: translate(-50%, -50%); }
-  .portal-card[data-pos="1"] { top: 31.5%; left: 82%; transform: translate(-50%, -50%); }
-  .portal-card[data-pos="2"] { top: 68.5%; left: 82%; transform: translate(-50%, -50%); }
-  .portal-card[data-pos="3"] { top: 87%;   left: 50%; transform: translate(-50%, -50%); }
-  .portal-card[data-pos="4"] { top: 68.5%; left: 18%; transform: translate(-50%, -50%); }
-  .portal-card[data-pos="5"] { top: 31.5%; left: 18%; transform: translate(-50%, -50%); }
+  /* 7 cards spaced evenly around the ellipse (v1.33 added Harvest) */
+  .portal-card[data-pos="0"] { top: 13%; left: 50%; transform: translate(-50%, -50%); }
+  .portal-card[data-pos="1"] { top: 27%; left: 75%; transform: translate(-50%, -50%); }
+  .portal-card[data-pos="2"] { top: 58%; left: 81%; transform: translate(-50%, -50%); }
+  .portal-card[data-pos="3"] { top: 83%; left: 64%; transform: translate(-50%, -50%); }
+  .portal-card[data-pos="4"] { top: 83%; left: 36%; transform: translate(-50%, -50%); }
+  .portal-card[data-pos="5"] { top: 58%; left: 19%; transform: translate(-50%, -50%); }
+  .portal-card[data-pos="6"] { top: 27%; left: 25%; transform: translate(-50%, -50%); }
 
   .portal-card:active {
     transform: translate(-50%, -50%) scale(0.96);
@@ -2081,6 +2084,45 @@
     .home-label { display: none; }
     .home-arrow { font-weight: 700; }
   }
+
+  /* ---- Harvest view (v1.33) ---- */
+  .harvest-view { max-width: 560px; margin: 0 auto; padding: 12px 14px 60px; }
+  .hv-header { text-align: center; padding: 10px 0 4px; }
+  .hv-eyebrow { font-size: 11px; text-transform: uppercase; letter-spacing: 1.4px; color: var(--accent); font-weight: 600; }
+  .hv-title { font-family: Caladea, Cambria, Georgia, serif; font-size: 22px; color: var(--text); margin-top: 2px; }
+  .hv-progress { font-size: 12.5px; color: var(--text-soft); font-style: italic; margin-top: 2px; }
+  .hv-pdf {
+    display: inline-block; margin-top: 10px; padding: 7px 16px;
+    border: 1px solid var(--gold); color: var(--gold); border-radius: 999px;
+    font-size: 13px; text-decoration: none; background: var(--card);
+  }
+  .hv-pdf:active { background: var(--gold-soft); }
+  .hv-intro { font-size: 13px; color: var(--text-soft); font-style: italic; text-align: center; margin: 8px 0 2px; }
+  .hv-section {
+    font-family: Caladea, Cambria, Georgia, serif; font-size: 15px; color: var(--accent-dark);
+    margin: 18px 2px 8px; padding-bottom: 5px; border-bottom: 1px solid var(--border-soft);
+  }
+  .hv-item {
+    display: flex; align-items: flex-start; gap: 12px;
+    background: var(--card); border: 0.5px solid var(--card-edge); border-radius: var(--radius);
+    padding: 12px 14px; margin-bottom: 8px; cursor: pointer; box-shadow: var(--shadow);
+    -webkit-tap-highlight-color: transparent;
+  }
+  .hv-box {
+    flex-shrink: 0; width: 26px; height: 26px; margin-top: 1px;
+    border: 1.5px solid var(--accent); border-radius: 6px; background: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 17px; color: #fff; font-weight: 700;
+  }
+  .hv-item.done .hv-box { background: var(--accent); }
+  .hv-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+  .hv-line { line-height: 1.35; }
+  .hv-name { font-weight: 600; font-size: 15px; color: var(--text); }
+  .hv-qty { font-size: 13px; color: var(--gold); }
+  .hv-note { font-size: 12.5px; color: var(--text-soft); font-style: italic; line-height: 1.4; }
+  .hv-item.done .hv-name { text-decoration: line-through; color: var(--text-mute); }
+  .hv-item.done .hv-qty, .hv-item.done .hv-note { opacity: 0.55; }
+  .hv-footnote { font-size: 12.5px; color: var(--text-soft); font-style: italic; margin: 16px 2px 0; }
 </style>
 </head>
 <body>
@@ -2107,6 +2149,7 @@
     <button class="vtab" data-view="seating">Seating</button>
     <button class="vtab" data-view="freshtalk" id="vtab-freshtalk" hidden>Fresh talk</button>
     <button class="vtab" data-view="service" id="vtab-service" hidden>Service</button>
+    <button class="vtab" data-view="harvest" id="vtab-harvest" hidden>Harvest</button>
     <button class="vtab" data-view="setup-breakdown">Setup &amp; Breakdown</button>
   </div>
 </div>
@@ -2135,11 +2178,15 @@
       <div class="pcd-icon">⊞</div>
       <div class="pcd-label">Setup &amp;<br>Breakdown</div>
     </div>
-    <div class="portal-card" data-pos="4" data-target="standards">
+    <div class="portal-card dimmed" data-pos="4" data-target="harvest" id="portal-card-harvest">
+      <div class="pcd-icon">❧</div>
+      <div class="pcd-label">Harvest</div>
+    </div>
+    <div class="portal-card" data-pos="5" data-target="standards">
       <div class="pcd-icon">✦</div>
       <div class="pcd-label">Standards</div>
     </div>
-    <div class="portal-card dimmed" data-pos="5" data-target="freshtalk" id="portal-card-freshtalk">
+    <div class="portal-card dimmed" data-pos="6" data-target="freshtalk" id="portal-card-freshtalk">
       <div class="pcd-icon">❀</div>
       <div class="pcd-label">Fresh talk</div>
     </div>
@@ -2233,6 +2280,12 @@
   </div>
 </div>
 
+<div id="harvest-view" style="display:none;">
+  <div class="harvest-view" id="harvest-content">
+    <div class="loading">Loading harvest list…</div>
+  </div>
+</div>
+
 <div class="modal-backdrop" id="modal-backdrop">
   <div class="modal" id="modal"></div>
 </div>
@@ -2286,7 +2339,7 @@
   // ====================================================================
   // CONFIG + STATE
   // ====================================================================
-  const VERSION = "v1.32";
+  const VERSION = "v1.33";
   const DATA_PATH = "data";
   const params = new URLSearchParams(window.location.search);
   const today = new Date().toISOString().split('T')[0];
@@ -2296,6 +2349,8 @@
 
   let dinnerData = null;
   let referenceData = null;       // series-level reference content (menu + server ref + plateware + wines)
+  let harvestData = null;         // per-series harvest lists (data/harvest/YYYY-MM.json)
+  let harvestWeekend = null;      // the weekend entry within harvestData matching the current dinner date
   let trainingData = null;        // standing server training content (Setup / Breakdown / Standards)
   const expandedDishes = new Set(); // dish names currently expanded in the Reference view
   const expandedWines = new Set();  // wine names currently expanded in the Reference view
@@ -2306,7 +2361,7 @@
   let selectedGuestId = null;        // for seating mode
 
   // Unified state: { checkins: {gid: {...}}, seats: {seatId: gid}, endcaps: {seatId: true} }
-  let state = { checkins: {}, seats: {}, endcaps: {}, courseState: emptyCourseState() };
+  let state = { checkins: {}, seats: {}, endcaps: {}, courseState: emptyCourseState(), harvest: {} };
   let stateBackend = 'localStorage';
   let unsubscribe = null;
 
@@ -2413,6 +2468,7 @@
           seats: parsed.seats || {},
           endcaps: parsed.endcaps || {},
           courseState: parsed.courseState || emptyCourseState(),
+          harvest: parsed.harvest || {},
         };
       }
     } catch (e) { /* fresh state */ }
@@ -2435,6 +2491,7 @@
           seats: data.seats || {},
           endcaps: data.endcaps || {},
           courseState: data.courseState || emptyCourseState(),
+          harvest: data.harvest || {},
         };
       } else {
         // First time on this dinner — write our local state up
@@ -2500,6 +2557,21 @@
       const r = await fetch(`${DATA_PATH}/reference/${seriesId}.json`);
       if (!r.ok) return null;
       return await r.json();
+    } catch (e) { return null; }
+  }
+
+  // Load the per-series harvest list (data/harvest/YYYY-MM.json) and resolve
+  // the weekend entry containing this dinner date. 404 = no harvest list for
+  // this series; the Harvest tab + portal card stay hidden/dimmed.
+  async function loadHarvest(date) {
+    const seriesId = date.slice(0, 7); // YYYY-MM
+    harvestWeekend = null;
+    try {
+      const r = await fetch(`${DATA_PATH}/harvest/${seriesId}.json`);
+      if (!r.ok) return null;
+      const data = await r.json();
+      harvestWeekend = (data.weekends || []).find(w => (w.dates || []).includes(date)) || null;
+      return data;
     } catch (e) { return null; }
   }
 
@@ -3045,7 +3117,7 @@
   // the Home button + dinner-view tabs) visibility.
   function switchView(viewName) {
     activeView = viewName;
-    const allViews = ['portal','list','seating','freshtalk','service','setup-breakdown','standards'];
+    const allViews = ['portal','list','seating','freshtalk','service','setup-breakdown','standards','harvest'];
     allViews.forEach(v => {
       const el = document.getElementById(v + '-view');
       if (el) el.style.display = (v === viewName) ? '' : 'none';
@@ -3059,7 +3131,7 @@
     // Photo background on body whenever we've left the portal.
     document.body.classList.toggle('in-dinner-view', !onPortal);
     // Mark the active vtab if we're in any view that has a tab in the bar.
-    const tabbedViews = ['list','seating','freshtalk','service','setup-breakdown'];
+    const tabbedViews = ['list','seating','freshtalk','service','setup-breakdown','harvest'];
     document.querySelectorAll('.vtab').forEach(b => b.classList.remove('active'));
     if (tabbedViews.includes(viewName)) {
       const btn = document.querySelector(`.vtab[data-view="${viewName}"]`);
@@ -3166,6 +3238,7 @@
     else if (activeView === 'seating') renderSeating();
     else if (activeView === 'freshtalk') renderFreshTalk();
     else if (activeView === 'service') renderService();
+    else if (activeView === 'harvest') renderHarvest();
   }
 
   // ====================================================================
@@ -3194,6 +3267,9 @@
       if (ftCard) ftCard.classList.add('dimmed');
       if (svcCard) svcCard.classList.add('dimmed');
     }
+    // Harvest card: dim when this dinner has no harvest weekend entry
+    const hvCard = document.getElementById('portal-card-harvest');
+    if (hvCard) hvCard.classList.toggle('dimmed', !harvestWeekend);
   }
 
   async function loadTraining() {
@@ -3741,6 +3817,84 @@
     updateVtabPill();
   }
 
+  // ====================================================================
+  // HARVEST VIEW (v1.33) — Kelly's interactive pick list
+  // ====================================================================
+  // Checkbox state lives in the per-dinner Firestore doc (state.harvest),
+  // so each dinner date keeps its own picked/unpicked record forever —
+  // past dinners show their archived state via the dinner switcher.
+  // Unchecking sets false (not delete) so setDoc merge:true propagates it.
+  function renderHarvest() {
+    const container = document.getElementById('harvest-content');
+    if (!container) return;
+    if (!harvestWeekend) {
+      container.innerHTML = `<div class="loading">No harvest list for this series yet.</div>`;
+      return;
+    }
+    const w = harvestWeekend;
+    const hv = state.harvest || {};
+    const items = w.items || [];
+    const confirms = w.confirm || [];
+    const picked = items.filter(it => hv[it.id]).length;
+    const meta = availableDinners.find(d => d.date === dinnerDate);
+    const isPast = !!(meta && meta.is_past);
+
+    const itemRow = (it) => `
+      <div class="hv-item ${hv[it.id] ? 'done' : ''}" data-hv-id="${escape(it.id)}" role="checkbox" aria-checked="${hv[it.id] ? 'true' : 'false'}" tabindex="0">
+        <span class="hv-box">${hv[it.id] ? '✓' : ''}</span>
+        <span class="hv-text">
+          <span class="hv-line"><span class="hv-name">${escape(it.name)}</span>${it.qty ? ` <span class="hv-qty">${escape(it.qty)}</span>` : ''}</span>
+          ${it.note ? `<span class="hv-note">${escape(it.note)}</span>` : ''}
+        </span>
+      </div>`;
+
+    container.innerHTML = `
+      <div class="hv-header">
+        <div class="hv-eyebrow">Harvest · ${escape(w.label || '')}</div>
+        <div class="hv-title">${escape(dinnerData?.display_date || dinnerDate)}</div>
+        <div class="hv-progress">${picked} of ${items.length} picked${isPast ? ' · past dinner (archived)' : ''}</div>
+        ${w.pdf ? `<a class="hv-pdf" href="${escape(w.pdf)}" target="_blank" rel="noopener">Printable PDF ⤓</a>` : ''}
+      </div>
+      ${w.intro ? `<div class="hv-intro">${escape(w.intro)}</div>` : ''}
+      <div class="hv-section">Pick fresh each morning</div>
+      ${items.map(itemRow).join('')}
+      ${confirms.length ? `<div class="hv-section">Just confirm, nothing to pick</div>${confirms.map(itemRow).join('')}` : ''}
+      ${w.footnote ? `<div class="hv-footnote">${escape(w.footnote)}</div>` : ''}
+    `;
+
+    container.querySelectorAll('.hv-item').forEach(el => {
+      const toggle = async () => {
+        const id = el.dataset.hvId;
+        if (!state.harvest) state.harvest = {};
+        state.harvest[id] = !state.harvest[id];
+        await pushState();
+        if (stateBackend !== 'firebase') refresh();
+      };
+      el.addEventListener('click', toggle);
+      el.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+      });
+    });
+  }
+
+  // Show/hide the Harvest vtab + portal card — needs dinnerData AND a
+  // harvest weekend entry for the current date.
+  function updateHarvestTabVisibility() {
+    const btn = document.getElementById('vtab-harvest');
+    if (!btn) return;
+    const ready = !!(dinnerData && !dinnerData._missing && harvestWeekend);
+    const portalCard = document.getElementById('portal-card-harvest');
+    if (ready) {
+      btn.hidden = false;
+      if (portalCard) portalCard.classList.remove('dimmed');
+    } else {
+      btn.hidden = true;
+      if (portalCard) portalCard.classList.add('dimmed');
+      if (activeView === 'harvest') switchView('portal');
+    }
+    updateVtabPill();
+  }
+
   // (Reference view phased out in v1.10 — Fresh-talk now serves both
   // pre-service walkthrough and mid-service lookup via tap-to-collapse cards.)
   /*
@@ -3994,7 +4148,7 @@
       unsubscribe = null;
     }
     dinnerDate = newDate;
-    state = { checkins: {}, seats: {}, endcaps: {}, courseState: emptyCourseState() };
+    state = { checkins: {}, seats: {}, endcaps: {}, courseState: emptyCourseState(), harvest: {} };
     selectedGuestId = null;
     updateUrlDate(newDate);
 
@@ -4013,6 +4167,8 @@
       seedExpandedSetsFromReference();
       updateFreshTalkTabVisibility();
       updateServiceTabVisibility();
+      harvestData = await loadHarvest(dinnerDate);
+      updateHarvestTabVisibility();
 
       if (stateBackend === 'firebase') {
         const ok = await initFirebase();
@@ -4081,6 +4237,12 @@
       seedExpandedSetsFromReference();
       updateFreshTalkTabVisibility();
       updateServiceTabVisibility();
+      harvestData = await loadHarvest(dinnerDate);
+      updateHarvestTabVisibility();
+
+      // Deep link: ?view=harvest opens straight into the harvest list
+      // (the link Sam texts Kelly). Only honored when the list exists.
+      if (params.get('view') === 'harvest' && harvestWeekend) switchView('harvest');
 
       // Try Firebase if available, otherwise localStorage
       const fbAttempt = await initFirebase();
