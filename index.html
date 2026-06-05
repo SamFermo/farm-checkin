@@ -155,10 +155,19 @@
     padding: 4px;
     box-shadow: 0 3px 10px rgba(58, 42, 22, 0.22),
                 inset 0 1px 3px rgba(58, 42, 22, 0.08);
+    /* v1.35: 6 tabs outgrow phone screens — the bar scrolls horizontally,
+       scrollbar hidden. The pill is positioned by offsetLeft (scroll-immune)
+       and the active tab auto-centers on switch. */
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
   }
+  .view-toggle::-webkit-scrollbar { display: none; }
   .vtab {
     position: relative;
     z-index: 2;
+    flex: 0 0 auto;
     background: transparent; border: 0;
     padding: 8px 16px;
     font-size: 11px; font-weight: 700;
@@ -2342,8 +2351,8 @@
   // ====================================================================
   // CONFIG + STATE
   // ====================================================================
-  const VERSION = "v1.34";
-  const BUILD = '1780687873'; // stamped by deploy-to-github.command at every deploy
+  const VERSION = "v1.35";
+  const BUILD = '1780688661'; // stamped by deploy-to-github.command at every deploy
   const DATA_PATH = "data";
   const params = new URLSearchParams(window.location.search);
   const today = new Date().toISOString().split('T')[0];
@@ -3182,12 +3191,18 @@
       pill.style.width = '0';
       return;
     }
-    const wrapRect = wrap.getBoundingClientRect();
-    const activeRect = active.getBoundingClientRect();
-    const left = activeRect.left - wrapRect.left - 4;  // -4 for the bar's left padding
+    // offsetLeft is layout-relative (ignores the bar's scroll position) —
+    // getBoundingClientRect drifted once the bar became scrollable (v1.35).
+    const left = active.offsetLeft - 4;  // -4 for the bar's left padding
     pill.style.transform = `translateX(${left}px)`;
-    pill.style.width = `${activeRect.width}px`;
+    pill.style.width = `${active.offsetWidth}px`;
     pill.style.opacity = '1';
+    // Keep the active tab in view when the bar overflows (phones).
+    if (wrap.scrollWidth > wrap.clientWidth) {
+      const target = active.offsetLeft - (wrap.clientWidth - active.offsetWidth) / 2;
+      try { wrap.scrollTo({ left: Math.max(0, target), behavior: 'smooth' }); }
+      catch (e) { wrap.scrollLeft = Math.max(0, target); }
+    }
   }
   // Reposition on window resize too (text reflow can shift tab widths).
   window.addEventListener('resize', updateVtabPill);
