@@ -1831,7 +1831,7 @@
 
   .portal-card {
     position: absolute;
-    width: 26%;
+    width: 24%;  /* was 26% at 6 cards; 24% keeps clean air between all 7 */
     aspect-ratio: 1 / 1;
     background: var(--card);
     border: 1px solid var(--border);
@@ -1870,14 +1870,17 @@
   /* 6 cards at 60° apart around the center (r ≈ 37% of container).
      Card centers: pos0 top (50%, 13%), pos1 UR (82%, 31.5%), pos2 LR (82%, 68.5%),
                    pos3 bot (50%, 87%), pos4 LL (18%, 68.5%), pos5 UL (18%, 31.5%). */
-  /* 7 cards spaced evenly around the ellipse (v1.33 added Harvest) */
-  .portal-card[data-pos="0"] { top: 13%; left: 50%; transform: translate(-50%, -50%); }
-  .portal-card[data-pos="1"] { top: 27%; left: 75%; transform: translate(-50%, -50%); }
-  .portal-card[data-pos="2"] { top: 58%; left: 81%; transform: translate(-50%, -50%); }
-  .portal-card[data-pos="3"] { top: 83%; left: 64%; transform: translate(-50%, -50%); }
-  .portal-card[data-pos="4"] { top: 83%; left: 36%; transform: translate(-50%, -50%); }
-  .portal-card[data-pos="5"] { top: 58%; left: 19%; transform: translate(-50%, -50%); }
-  .portal-card[data-pos="6"] { top: 27%; left: 25%; transform: translate(-50%, -50%); }
+  /* 7 cards on a TRUE circle, r = 37% of the square portal, equal 51.43°
+     steps from the top (v1.34 — the ellipse layout caused corner overlaps).
+     left = 50 + 37·sin(θ), top = 50 − 37·cos(θ). Equal angles on a circle
+     = equal center-to-center spacing between every adjacent pair. */
+  .portal-card[data-pos="0"] { top: 13%;   left: 50%;   transform: translate(-50%, -50%); }
+  .portal-card[data-pos="1"] { top: 26.9%; left: 78.9%; transform: translate(-50%, -50%); }
+  .portal-card[data-pos="2"] { top: 58.2%; left: 86.1%; transform: translate(-50%, -50%); }
+  .portal-card[data-pos="3"] { top: 83.3%; left: 66.1%; transform: translate(-50%, -50%); }
+  .portal-card[data-pos="4"] { top: 83.3%; left: 33.9%; transform: translate(-50%, -50%); }
+  .portal-card[data-pos="5"] { top: 58.2%; left: 13.9%; transform: translate(-50%, -50%); }
+  .portal-card[data-pos="6"] { top: 26.9%; left: 21.1%; transform: translate(-50%, -50%); }
 
   .portal-card:active {
     transform: translate(-50%, -50%) scale(0.96);
@@ -2339,7 +2342,8 @@
   // ====================================================================
   // CONFIG + STATE
   // ====================================================================
-  const VERSION = "v1.33";
+  const VERSION = "v1.34";
+  const BUILD = '1780687873'; // stamped by deploy-to-github.command at every deploy
   const DATA_PATH = "data";
   const params = new URLSearchParams(window.location.search);
   const today = new Date().toISOString().split('T')[0];
@@ -2527,6 +2531,30 @@
     const el = document.getElementById('sync-status');
     el.className = `sync-status ${cls}`;
     el.textContent = text;
+  }
+
+  // ====================================================================
+  // STALE-CACHE AUTO-RELOAD (v1.34, ported from sf-portal)
+  // ====================================================================
+  // iOS home-screen apps cache index.html hard, but data fetches load fresh.
+  // deploy-to-github.command stamps the same build id into this file's BUILD
+  // constant and into data/index.json. If the freshly-fetched index.json
+  // carries a newer build than this HTML, hop to a cache-busted URL once
+  // (preserving date/view params). The ?u= guard prevents reload loops.
+  function staleRedirectUrl(idxData, currentHref) {
+    if (!idxData || !idxData.build || BUILD === 'dev') return null;
+    if (String(idxData.build) === String(BUILD)) return null;
+    const url = new URL(currentHref);
+    if (url.searchParams.get('u') === String(idxData.build)) return null; // already tried
+    url.searchParams.set('u', idxData.build);
+    return url.toString();
+  }
+  function staleCheck(idxData) {
+    try {
+      const target = staleRedirectUrl(idxData, window.location.href);
+      if (target) { window.location.replace(target); return true; }
+    } catch (e) { /* never block init on the freshness check */ }
+    return false;
   }
 
   // ====================================================================
@@ -4214,9 +4242,10 @@
       // Load the index first so we can resolve a sensible default and
       // populate the switcher even before the per-dinner JSON arrives.
       try {
-        const idxResp = await fetch(`${DATA_PATH}/index.json`);
+        const idxResp = await fetch(`${DATA_PATH}/index.json?t=${Date.now()}`);
         if (idxResp.ok) {
           const idxData = await idxResp.json();
+          if (staleCheck(idxData)) return; // newer build live — reloading now
           availableDinners = idxData.dinners || [];
         }
       } catch (e) { /* index unavailable; fall back to URL/today */ }
