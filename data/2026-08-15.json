@@ -1,8 +1,8 @@
 {
   "dinner_date": "2026-08-15",
   "display_date": "Saturday, August 15, 2026",
-  "seated_covers": 20,
-  "party_count": 9,
+  "seated_covers": 22,
+  "party_count": 10,
   "cancelled": [],
   "guests": [
     {
@@ -106,6 +106,18 @@
     },
     {
       "id": "g-2026-08-15-009",
+      "purchaser": "Kellie Basham",
+      "party_size": 2,
+      "email": "kelliembasham@gmail.com",
+      "notes": "one alergic to peanuts",
+      "allergens": [
+        "peanut"
+      ],
+      "returning": null,
+      "is_allergen_party": true
+    },
+    {
+      "id": "g-2026-08-15-010",
       "purchaser": "Abraham Curry",
       "party_size": 4,
       "email": "abecurry@gmail.com",
