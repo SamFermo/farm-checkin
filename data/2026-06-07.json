@@ -1,7 +1,7 @@
 {
   "dinner_date": "2026-06-07",
   "display_date": "Sunday, June 7, 2026",
-  "seated_covers": 27,
+  "seated_covers": 26,
   "party_count": 12,
   "cancelled": [],
   "guests": [
@@ -18,7 +18,7 @@
     {
       "id": "g-2026-06-07-002",
       "purchaser": "Jerry Masters",
-      "party_size": 3,
+      "party_size": 2,
       "email": "Jerrymasters@comcast.net",
       "notes": "Anderson Group",
       "allergens": [],
