@@ -33,7 +33,7 @@
       "display_date": "Saturday, June 6, 2026",
       "seated_covers": 26,
       "party_count": 11,
-      "is_past": false
+      "is_past": true
     },
     {
       "date": "2026-06-07",
@@ -141,7 +141,7 @@
       "is_past": false
     }
   ],
-  "generated_at": "2026-06-06T20:36:46",
+  "generated_at": "2026-06-07T13:50:57",
   "known_guests": [
     "Aaron Stephens",
     "Abraham Curry",
@@ -317,5 +317,5 @@
     "William Aufhammer",
     "Yaskara Reyna"
   ],
-  "build": "1780803407"
+  "build": "1780865457"
 }
