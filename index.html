@@ -2401,7 +2401,7 @@
   // CONFIG + STATE
   // ====================================================================
   const VERSION = "v1.35";
-  const BUILD = '1780802883'; // stamped by deploy-to-github.command at every deploy
+  const BUILD = '1780803407'; // stamped by deploy-to-github.command at every deploy
   const DATA_PATH = "data";
   const params = new URLSearchParams(window.location.search);
   const today = new Date().toISOString().split('T')[0];
@@ -2575,7 +2575,7 @@
       try {
         const fb = window._firebase;
         const docRef = fb.doc(fb.db, 'dinners', dinnerDate);
-        await fb.setDoc(docRef, state, { merge: true });
+        await fb.setDoc(docRef, state);
         setSyncStatus('online', 'synced');
       } catch (err) {
         console.error('Firestore write failed:', err);
