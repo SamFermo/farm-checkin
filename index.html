@@ -1206,6 +1206,55 @@
   }
   .modal-note-input::placeholder { color: var(--text-mute); }
   .modal-note-input:focus { outline: 1.5px solid var(--accent); outline-offset: -1px; font-style: normal; }
+
+  /* Guest naming (party member names) */
+  .guest-names-section { margin-top: 4px; }
+  .guest-names-section h4 { margin: 0 0 6px; }
+  .gn-row {
+    display: flex; align-items: center; gap: 6px;
+    margin-bottom: 6px; position: relative;
+  }
+  .gn-label {
+    font-size: 12px; color: var(--text-soft); min-width: 24px;
+    font-weight: 600; text-align: right;
+  }
+  .gn-input {
+    flex: 1;
+    padding: 8px 10px;
+    border: 1px solid var(--border); border-radius: 6px;
+    background: var(--bg);
+    font-family: 'Caladea', Georgia, serif;
+    font-size: 14px;
+    color: var(--text);
+    -webkit-appearance: none;
+  }
+  .gn-input:focus { outline: 1.5px solid var(--accent); outline-offset: -1px; }
+  .gn-input.matched { border-color: var(--accent); background: #f0f4ec; }
+  .gn-clear {
+    background: none; border: none; font-size: 18px;
+    color: var(--text-mute); cursor: pointer; padding: 4px;
+    line-height: 1;
+  }
+  .gn-clear:active { color: var(--rust); }
+  .gn-dropdown {
+    position: absolute; top: 100%; left: 30px; right: 30px;
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 6px; box-shadow: var(--shadow-lift);
+    max-height: 180px; overflow-y: auto; z-index: 20;
+    display: none;
+  }
+  .gn-dropdown.open { display: block; }
+  .gn-option {
+    padding: 10px 12px; font-size: 14px; cursor: pointer;
+    font-family: 'Caladea', Georgia, serif;
+  }
+  .gn-option:active, .gn-option.highlighted { background: var(--accent-soft); }
+  .gn-option + .gn-option { border-top: 1px solid var(--border-soft); }
+  .gn-hint {
+    font-size: 11px; color: var(--text-mute); font-style: italic;
+    margin-top: 2px;
+  }
+
   .modal-actions {
     display: flex; gap: 8px; margin-top: 16px;
   }
@@ -2352,13 +2401,14 @@
   // CONFIG + STATE
   // ====================================================================
   const VERSION = "v1.35";
-  const BUILD = '1780763827'; // stamped by deploy-to-github.command at every deploy
+  const BUILD = '1780802883'; // stamped by deploy-to-github.command at every deploy
   const DATA_PATH = "data";
   const params = new URLSearchParams(window.location.search);
   const today = new Date().toISOString().split('T')[0];
   const initialDateParam = params.get('date');   // explicit user request, may be null
   let dinnerDate = initialDateParam || today;    // refined after index.json loads
   let availableDinners = [];                     // populated from data/index.json
+  let knownGuests = [];                          // all-time purchaser names for autocomplete
 
   let dinnerData = null;
   let referenceData = null;       // series-level reference content (menu + server ref + plateware + wines)
@@ -2374,7 +2424,7 @@
   let selectedGuestId = null;        // for seating mode
 
   // Unified state: { checkins: {gid: {...}}, seats: {seatId: gid}, endcaps: {seatId: true} }
-  let state = { checkins: {}, seats: {}, endcaps: {}, courseState: emptyCourseState(), harvest: {} };
+  let state = { checkins: {}, seats: {}, endcaps: {}, courseState: emptyCourseState(), harvest: {}, guest_names: {} };
   let stateBackend = 'localStorage';
   let unsubscribe = null;
 
@@ -2482,6 +2532,7 @@
           endcaps: parsed.endcaps || {},
           courseState: parsed.courseState || emptyCourseState(),
           harvest: parsed.harvest || {},
+          guest_names: parsed.guest_names || {},
         };
       }
     } catch (e) { /* fresh state */ }
@@ -2505,6 +2556,7 @@
           endcaps: data.endcaps || {},
           courseState: data.courseState || emptyCourseState(),
           harvest: data.harvest || {},
+          guest_names: data.guest_names || {},
         };
       } else {
         // First time on this dinner — write our local state up
@@ -2783,6 +2835,9 @@
 
     const noteHTML = g.notes ? `<div class="guest-notes">${escape(g.notes)}</div>` : '';
     const stateNote = ci.note ? `<div class="guest-notes" style="color:var(--accent-dark);">📝 ${escape(ci.note)}</div>` : '';
+    const gn = state.guest_names[g.id] || [];
+    const namedGuests = gn.filter((n, i) => i > 0 && n).join(', ');
+    const gnHTML = namedGuests ? `<div class="guest-notes" style="color:var(--wood-soft); font-size:12px;">+${escape(namedGuests)}</div>` : '';
     const stamp = ci.checked_in_at ? `<div class="timestamp">Checked in at ${formatTime(ci.checked_in_at)}</div>` : '';
     const partyClass = isFull ? 'full' : (isPartial ? 'partial' : '');
 
@@ -2794,6 +2849,7 @@
         </div>
         ${badges.length ? `<div class="guest-badges">${badges.join('')}</div>` : ''}
         ${noteHTML}
+        ${gnHTML}
         ${stateNote}
         ${stamp}
       </div>
@@ -2938,17 +2994,8 @@
       return;
     }
 
-    // Place at tapped seat
+    // Place at tapped seat (one at a time — no auto-adjacent fill)
     state.seats[seatId] = selectedGuestId;
-
-    // Auto-fill remaining party members in adjacent seats on the same table side
-    const remaining = g.party_size - seated - 1;
-    if (remaining > 0) {
-      const candidates = adjacentOpenSeats(seatId, remaining);
-      for (const sid of candidates) {
-        state.seats[sid] = selectedGuestId;
-      }
-    }
 
     await pushState();
     // If now fully seated, clear selection
@@ -3068,6 +3115,30 @@
         <div class="seats-list">${assigned.map(s => formatSeat(s)).join(' · ')}</div>
       </div>` : '';
 
+    // Guest names section — name individual guests in the party
+    const savedNames = state.guest_names[guestId] || [];
+    const nameRows = [];
+    for (let i = 0; i < g.party_size; i++) {
+      const val = i === 0 ? g.purchaser : (savedNames[i] || '');
+      const isFirst = i === 0;
+      nameRows.push(`
+        <div class="gn-row">
+          <span class="gn-label">${i + 1}.</span>
+          <input class="gn-input ${isFirst ? 'matched' : ''}" type="text"
+            data-idx="${i}" value="${escape(val)}"
+            ${isFirst ? 'readonly' : `placeholder="Guest name"`}
+            autocomplete="off" autocorrect="off" spellcheck="false">
+          ${isFirst ? '' : `<button class="gn-clear" data-idx="${i}">&times;</button>`}
+          <div class="gn-dropdown" data-idx="${i}"></div>
+        </div>`);
+    }
+    const guestNamesSection = g.party_size > 1 ? `
+      <div class="modal-section guest-names-section">
+        <h4>Guests in party</h4>
+        ${nameRows.join('')}
+        <div class="gn-hint">Names autocomplete against the master guest list</div>
+      </div>` : '';
+
     const noteInput = `
       <div class="modal-section">
         <h4>Add a quick note (optional)</h4>
@@ -3083,7 +3154,7 @@
     document.getElementById('modal').innerHTML = `
       <h2 class="modal-title">${escape(g.purchaser)}</h2>
       <p class="modal-sub">Party of ${g.party_size}${g.email ? ` · ${escape(g.email)}` : ''}</p>
-      ${returningSection}${allergenSection}${notesSection}${seatsSection}${noteInput}
+      ${returningSection}${allergenSection}${notesSection}${seatsSection}${guestNamesSection}${noteInput}
       <div class="modal-actions">${actions}</div>
     `;
     document.getElementById('modal-backdrop').classList.add('open');
@@ -3094,6 +3165,104 @@
     } else {
       document.getElementById('undo-btn').onclick = () => doUndo(guestId);
     }
+
+    // Wire guest name autocomplete
+    if (g.party_size > 1) wireGuestNameInputs(guestId, g);
+  }
+
+  function wireGuestNameInputs(guestId, g) {
+    const section = document.querySelector('.guest-names-section');
+    if (!section) return;
+    let activeDropdownIdx = null;
+
+    section.querySelectorAll('.gn-input:not([readonly])').forEach(input => {
+      const idx = parseInt(input.dataset.idx);
+
+      input.addEventListener('input', () => {
+        const q = input.value.trim().toLowerCase();
+        const dropdown = section.querySelector(`.gn-dropdown[data-idx="${idx}"]`);
+        if (q.length < 1) { dropdown.classList.remove('open'); return; }
+        // Filter known guests, exclude purchaser and already-entered names
+        const entered = collectGuestNames(section, g);
+        const matches = knownGuests.filter(n =>
+          n.toLowerCase().includes(q) &&
+          n !== g.purchaser &&
+          !entered.includes(n)
+        ).slice(0, 8);
+        if (matches.length === 0) { dropdown.classList.remove('open'); return; }
+        dropdown.innerHTML = matches.map(n =>
+          `<div class="gn-option" data-name="${escape(n)}">${highlightMatch(n, q)}</div>`
+        ).join('');
+        dropdown.classList.add('open');
+        activeDropdownIdx = idx;
+        // Wire option clicks
+        dropdown.querySelectorAll('.gn-option').forEach(opt => {
+          opt.addEventListener('click', (e) => {
+            e.stopPropagation();
+            input.value = opt.dataset.name;
+            input.classList.add('matched');
+            dropdown.classList.remove('open');
+            saveGuestNames(guestId, section, g);
+          });
+        });
+      });
+
+      input.addEventListener('blur', () => {
+        setTimeout(() => {
+          section.querySelector(`.gn-dropdown[data-idx="${idx}"]`)?.classList.remove('open');
+          saveGuestNames(guestId, section, g);
+        }, 200);
+      });
+
+      input.addEventListener('focus', () => {
+        input.classList.remove('matched');
+      });
+    });
+
+    // Clear buttons
+    section.querySelectorAll('.gn-clear').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const idx = parseInt(btn.dataset.idx);
+        const input = section.querySelector(`.gn-input[data-idx="${idx}"]`);
+        if (input) {
+          input.value = '';
+          input.classList.remove('matched');
+          saveGuestNames(guestId, section, g);
+        }
+      });
+    });
+  }
+
+  function collectGuestNames(section, g) {
+    const names = [];
+    section.querySelectorAll('.gn-input').forEach(input => {
+      const v = input.value.trim();
+      if (v && v !== g.purchaser) names.push(v);
+    });
+    return names;
+  }
+
+  async function saveGuestNames(guestId, section, g) {
+    const names = [];
+    section.querySelectorAll('.gn-input').forEach(input => {
+      names.push(input.value.trim());
+    });
+    // Only save if there are non-purchaser names entered
+    const hasNames = names.some((n, i) => i > 0 && n);
+    if (hasNames) {
+      state.guest_names[guestId] = names;
+    } else {
+      delete state.guest_names[guestId];
+    }
+    await pushState();
+  }
+
+  function highlightMatch(name, query) {
+    const idx = name.toLowerCase().indexOf(query.toLowerCase());
+    if (idx < 0) return escape(name);
+    return escape(name.slice(0, idx)) +
+      `<strong>${escape(name.slice(idx, idx + query.length))}</strong>` +
+      escape(name.slice(idx + query.length));
   }
 
   function formatSeat(seatId) {
@@ -3111,6 +3280,12 @@
       checked_in_at: new Date().toISOString(),
       note: note || null,
     };
+    // Persist any guest names entered in the modal
+    const section = document.querySelector('.guest-names-section');
+    if (section) {
+      const g = partyOf(guestId);
+      if (g) await saveGuestNames(guestId, section, g);
+    }
     await pushState();
     showToast('✓ Checked in');
     closeModal();
@@ -3443,8 +3618,8 @@
   // (served → clearing → cleared → ready → fired). "fired" closes the
   // current course and auto-advances the next to "served". History is
   // append-only with timestamps so we get a real pacing log per dinner.
-  const COURSE_STATES = ['served', 'clearing', 'cleared', 'ready', 'fired'];
-  const STATE_LABELS = { served: 'Served', clearing: 'Clearing', cleared: 'Cleared', ready: 'Ready', fired: 'Fired' };
+  const COURSE_STATES = ['plates_walking', 'clearing', 'cleared', 'fired'];
+  const STATE_LABELS = { plates_walking: 'Plates walking', clearing: 'Clearing', cleared: 'Cleared', fired: 'Fired' };
 
   function courseStateOrEmpty() {
     return state.courseState || emptyCourseState();
@@ -3469,18 +3644,18 @@
     const courses = referenceData?.courses || [];
     const now = new Date().toISOString();
     if (cs.current_index === null) {
-      cs.history.push({ course_index: 0, state: 'served', at: now });
+      cs.history.push({ course_index: 0, state: 'plates_walking', at: now });
       cs.current_index = 0;
-      cs.current_state = 'served';
+      cs.current_state = 'plates_walking';
     } else {
       if (cs.current_state !== 'fired') {
         cs.history.push({ course_index: cs.current_index, state: 'fired', at: now });
       }
       const next = cs.current_index + 1;
       if (next < courses.length) {
-        cs.history.push({ course_index: next, state: 'served', at: now });
+        cs.history.push({ course_index: next, state: 'plates_walking', at: now });
         cs.current_index = next;
-        cs.current_state = 'served';
+        cs.current_state = 'plates_walking';
       } else {
         cs.current_state = 'fired';
       }
@@ -3541,7 +3716,7 @@
           Service hasn't started yet. Tap below when the first plates leave the kitchen.
         </div>
         <div class="sv-actions" style="margin-top:14px;">
-          <button class="sv-btn fire" data-action="fire">Fire course 1 → ${escape(firstCourse)}</button>
+          <button class="sv-btn fire" data-action="fire">Fire course 1 · ${escape(firstCourse)}</button>
         </div>`;
     } else if (cur === 'fired' && idx >= courses.length - 1) {
       currentCardHTML = `
@@ -3562,13 +3737,12 @@
 
       // Action buttons: show only the valid next transitions for this state
       const actions = [];
-      if (cur === 'served') actions.push({ label: 'Start clearing', state: 'clearing', primary: true });
-      if (cur === 'clearing') actions.push({ label: 'Mark cleared', state: 'cleared', primary: true });
-      if (cur === 'cleared') actions.push({ label: 'Ready for fire', state: 'ready', primary: true });
+      if (cur === 'plates_walking') actions.push({ label: 'Clearing', state: 'clearing', primary: true });
+      if (cur === 'clearing') actions.push({ label: 'Cleared', state: 'cleared', primary: true });
       // Fire next is always available except when already fired on the last course
       const isLast = idx >= courses.length - 1;
       const nextCourseName = isLast ? null : courses[idx + 1].label;
-      const fireLabel = isLast ? 'Mark service complete' : `Fire next course → ${nextCourseName}`;
+      const fireLabel = isLast ? 'Mark service complete' : `Fire next course · ${nextCourseName}`;
       const actionsHTML = actions.map(a =>
         `<button class="sv-btn primary" data-action="state" data-state="${a.state}">${escape(a.label)}</button>`
       ).join('');
@@ -3595,17 +3769,17 @@
       if (courseHist.length === 0) {
         // not yet started
       } else {
-        const firstServed = courseHist.find(h => h.state === 'served');
+        const firstServed = courseHist.find(h => h.state === 'plates_walking');
         const firedTrans = courseHist.find(h => h.state === 'fired');
         if (firedTrans) {
           cls = 'completed'; marker = '✓';
           const mins = Math.round((new Date(firedTrans.at) - new Date(firstServed.at)) / 60000);
-          meta = `served ${formatClock(firstServed.at)} · fired ${formatClock(firedTrans.at)}`;
+          meta = `fired ${formatClock(firstServed.at)} · cleared ${formatClock(firedTrans.at)}`;
           duration = `${mins} min`;
         } else {
           cls = 'in-progress'; marker = '●';
           const lastTrans = courseHist[courseHist.length - 1];
-          meta = `served ${formatClock(firstServed.at)} · ${STATE_LABELS[lastTrans.state].toLowerCase()} now`;
+          meta = `fired ${formatClock(firstServed.at)} · ${STATE_LABELS[lastTrans.state].toLowerCase()} now`;
           const mins = minutesAgo(firstServed.at);
           duration = `${mins} min`;
         }
@@ -4262,6 +4436,7 @@
           const idxData = await idxResp.json();
           if (staleCheck(idxData)) return; // newer build live — reloading now
           availableDinners = idxData.dinners || [];
+          knownGuests = idxData.known_guests || [];
         }
       } catch (e) { /* index unavailable; fall back to URL/today */ }
 
