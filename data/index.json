@@ -38,7 +38,7 @@
     {
       "date": "2026-06-07",
       "display_date": "Sunday, June 7, 2026",
-      "seated_covers": 27,
+      "seated_covers": 26,
       "party_count": 12,
       "is_past": false
     },
@@ -317,5 +317,5 @@
     "William Aufhammer",
     "Yaskara Reyna"
   ],
-  "build": "1780865457"
+  "build": "1780869567"
 }
