@@ -53,8 +53,8 @@
         {
           "name": "Asparagus on Endive",
           "pronunciation": "ON-deev",
-          "components": "sorrel, cr\u00e8me fra\u00eeche, radish, chive blossom, lovage honey",
-          "story": "Inner endive leaves used as a small vessel. Filled with sliced asparagus folded into sorrel chiffonade, cr\u00e8me fra\u00eeche, olive oil, and Maldon salt. Topped with radish batons, a chive blossom, an asparagus tip, and a drizzle of lovage honey.",
+          "components": "sorrel, cr\u00e8me fra\u00eeche, turnip, chive blossom, lovage honey",
+          "story": "Inner endive leaves used as a small vessel. Filled with sliced asparagus folded into sorrel chiffonade, cr\u00e8me fra\u00eeche, olive oil, and Maldon salt. Topped with turnip batons, a chive blossom, an asparagus tip, and a drizzle of lovage honey.",
           "ingredients": [
             {
               "term": "Endive",
@@ -143,8 +143,8 @@
         {
           "name": "Paccheri",
           "pronunciation": "pah-KEH-ree",
-          "components": "sea bean & pistachio pesto, smoked lamb sausage, black morels, lemon balm, parmigiano",
-          "story": "Tube-shaped pasta from southern Italy \u2014 our cut here is essentially a shorter rigatoni. Joe extrudes ours fresh at the restaurant. We lay down a vibrant sea bean and pistachio pesto on the plate first, then top with smoked lamb sausage from Tim's smoker, black morels, paccheri tossed in a butter sauce with fresh lemon balm. Finished with shaved Parmigiano and raw fresh sea beans.",
+          "components": "sea bean pesto, smoked lamb sausage, black morels, lemon balm, parmigiano",
+          "story": "Tube-shaped pasta from southern Italy \u2014 our cut here is essentially a shorter rigatoni. Joe extrudes ours fresh at the restaurant. We lay down a vibrant sea bean pesto on the plate first, then top with smoked lamb sausage from Tim's smoker, black morels, paccheri tossed in a butter sauce with fresh lemon balm. Finished with shaved Parmigiano and raw fresh sea beans.",
           "ingredients": [
             {
               "term": "Paccheri",
@@ -157,9 +157,9 @@
               "note": "a wild succulent that grows in coastal salt marshes, also called samphire or salicornia; naturally briny, crisp, vivid green"
             },
             {
-              "term": "Pistachio",
+              "term": "Sunflower seed",
               "pronunciation": null,
-              "note": "toasted and ground into the pesto base for richness and a subtle sweetness against the sea bean's salinity"
+              "note": "toasted and ground into the pesto base for richness against the sea bean's salinity; used in place of pistachio so the pesto is tree-nut-free"
             },
             {
               "term": "Smoked lamb sausage",
@@ -193,8 +193,8 @@
         {
           "name": "Smoked Swan House Pork Belly",
           "pronunciation": null,
-          "components": "green garlic & lovage salsa verde, charred spring onion, oregano oil, sorrel",
-          "story": "Pork belly from Swan House Farm. Braised low and slow in an aromatic stock, then lightly smoked on the Big Green Egg, then roasted to finish for crisp edges. Plated with a green garlic and lovage salsa verde, charred spring onion in oregano oil, a pork demi made from the reduced braising liquid, a drizzle of chive oil, and a finishing chiffonade of sorrel.",
+          "components": "green garlic & lovage salsa verde, grilled cabbage, oregano oil, sorrel",
+          "story": "Pork belly from Swan House Farm. Braised low and slow in an aromatic stock, then lightly smoked on the Big Green Egg, then roasted to finish for crisp edges. Plated with a green garlic and lovage salsa verde, grilled cabbage in oregano oil, a pork demi made from the reduced braising liquid, a drizzle of chive oil, and a finishing chiffonade of sorrel.",
           "ingredients": [
             {
               "term": "Pork belly",
@@ -222,9 +222,9 @@
               "note": "short for demi-glace; a deeply concentrated stock-based sauce. Ours is built from the belly's braising liquid reduced down."
             },
             {
-              "term": "Spring onion",
+              "term": "Grilled cabbage",
               "pronunciation": null,
-              "note": "young onion harvested before the bulb fully forms; sweeter and milder than a mature onion"
+              "note": "sweet pointed cabbage from Kelly's garden, charred over live fire for smoky-sweet edges, then dressed in oregano oil"
             },
             {
               "term": "Oregano oil",
@@ -241,10 +241,10 @@
       "plateware": "Small bowl. Small spoon.",
       "dishes": [
         {
-          "name": "Rhubarb Pavlova",
+          "name": "Strawberry Pavlova",
           "pronunciation": "pav-LOH-vah",
           "components": "lemon balm pastry cream, rose, honeysuckle, edible flowers",
-          "story": "A meringue-based dessert named after Russian ballerina Anna Pavlova who toured Australia and New Zealand in the 1920s. The meringue is crisp on the outside, marshmallow-soft inside, and this version is baked from rose sugar rather than plain caster sugar \u2014 meaning rose petals from the farm have been processed into the sugar itself, so the floral notes live inside the meringue. Topped with a spoonful of rhubarb compote folded with honeysuckle syrup, a loose dollop of lemon balm pastry cream, and a scatter of fresh rose petals, honeysuckle blossoms, and other edible flowers. Finished with a pinch of Maldon and a drizzle of olive oil.",
+          "story": "A meringue-based dessert named after Russian ballerina Anna Pavlova who toured Australia and New Zealand in the 1920s. The meringue is crisp on the outside, marshmallow-soft inside, and this version is baked from rose sugar rather than plain caster sugar \u2014 meaning rose petals from the farm have been processed into the sugar itself, so the floral notes live inside the meringue. Topped with a spoonful of macerated strawberries folded with honeysuckle syrup, a loose dollop of lemon balm pastry cream, and a scatter of fresh rose petals, honeysuckle blossoms, and other edible flowers. Finished with a pinch of Maldon and a drizzle of olive oil.",
           "ingredients": [
             {
               "term": "Pavlova",
@@ -267,9 +267,9 @@
               "note": "classic French custard of egg yolks, sugar, cornstarch, and dairy, thickened on the stove. Ours is infused with lemon balm via a 24-hour cold steep."
             },
             {
-              "term": "Rhubarb compote",
+              "term": "Macerated strawberries",
               "pronunciation": null,
-              "note": "rhubarb cooked briefly with sugar and lemon, just until softened; loose and juicy, not jammy. Folded with honeysuckle syrup for this menu."
+              "note": "fresh Hayton Farms strawberries tossed with a little sugar and left to release their juices; loose and bright. Folded with honeysuckle syrup for this menu."
             }
           ]
         }
