@@ -40,7 +40,7 @@
       "display_date": "Sunday, June 7, 2026",
       "seated_covers": 26,
       "party_count": 12,
-      "is_past": false
+      "is_past": true
     },
     {
       "date": "2026-06-13",
@@ -141,7 +141,7 @@
       "is_past": false
     }
   ],
-  "generated_at": "2026-06-07T13:50:57",
+  "generated_at": "2026-06-10T00:16:06",
   "known_guests": [],
-  "build": "1780870580"
+  "build": "1781075766"
 }
