@@ -1608,6 +1608,59 @@
   .seat.occupied.party-11 { background: #c0d4d8; border-color: #5a808a; color: #2a4a5a; }   /* sky */
   .seat.occupied.party-12 { background: #d8b8c4; border-color: #805868; color: #403040; }   /* plum */
 
+  /* ---- Shared-party group cues (e.g. "Anderson Group") ---- */
+  /* Group chip on picker cards */
+  .pill-group {
+    background: var(--bg-deeper);
+    border: 0.5px solid var(--border);
+    text-transform: none;
+    letter-spacing: 0.2px;
+  }
+  .pill-group::before { content: '⬡ '; }
+  /* Colored left edge on grouped picker cards */
+  .picker-card.has-group { border-left-width: 3px; }
+  /* Legend under the picker head */
+  .group-legend {
+    display: flex; flex-wrap: wrap; gap: 10px 14px;
+    margin-top: 6px;
+    font-family: 'Caladea', Georgia, serif; font-style: italic;
+    font-size: 11.5px; color: var(--text-soft);
+  }
+  .group-legend .gl-item { display: inline-flex; align-items: center; gap: 5px; }
+  .group-legend .gl-dot { width: 11px; height: 11px; border-radius: 3px; flex: 0 0 auto; }
+  /* Ring around grouped seats on the table grid */
+  .seat.occupied[class*="grp-"] { box-shadow: inset 0 0 0 2.5px var(--grp); }
+
+  .pill-group.g-1, .picker-card.has-group.g-1 { border-left-color: #3a6ea5; }
+  .pill-group.g-1 { color: #284f74; border-color: #3a6ea5; background: #e7eef6; }
+  .gl-dot.g-1 { background: #3a6ea5; }
+  .seat.occupied.grp-1 { --grp: #3a6ea5; }
+
+  .pill-group.g-2, .picker-card.has-group.g-2 { border-left-color: #9c4f96; }
+  .pill-group.g-2 { color: #6e3669; border-color: #9c4f96; background: #f1e7f0; }
+  .gl-dot.g-2 { background: #9c4f96; }
+  .seat.occupied.grp-2 { --grp: #9c4f96; }
+
+  .pill-group.g-3, .picker-card.has-group.g-3 { border-left-color: #2e7d32; }
+  .pill-group.g-3 { color: #205523; border-color: #2e7d32; background: #e6f1e7; }
+  .gl-dot.g-3 { background: #2e7d32; }
+  .seat.occupied.grp-3 { --grp: #2e7d32; }
+
+  .pill-group.g-4, .picker-card.has-group.g-4 { border-left-color: #c2185b; }
+  .pill-group.g-4 { color: #8a1140; border-color: #c2185b; background: #f8e6ee; }
+  .gl-dot.g-4 { background: #c2185b; }
+  .seat.occupied.grp-4 { --grp: #c2185b; }
+
+  .pill-group.g-5, .picker-card.has-group.g-5 { border-left-color: #5b4636; }
+  .pill-group.g-5 { color: #3e2f24; border-color: #5b4636; background: #efeae6; }
+  .gl-dot.g-5 { background: #5b4636; }
+  .seat.occupied.grp-5 { --grp: #5b4636; }
+
+  .pill-group.g-6, .picker-card.has-group.g-6 { border-left-color: #00838f; }
+  .pill-group.g-6 { color: #005c64; border-color: #00838f; background: #e0f0f1; }
+  .gl-dot.g-6 { background: #00838f; }
+  .seat.occupied.grp-6 { --grp: #00838f; }
+
   .status-footer {
     position: fixed; bottom: 0; left: 0; right: 0;
     background: var(--card);
@@ -2148,6 +2201,43 @@
 
   /* ---- Harvest view (v1.33) ---- */
   .harvest-view { max-width: 560px; margin: 0 auto; padding: 12px 14px 60px; }
+  /* Farm Orders (Kelly's side of the order loop) */
+  .ord-card { background: var(--card); border: 1px solid var(--card-edge); border-radius: 12px; margin: 10px 0; overflow: hidden; }
+  .ord-card.st-placed { border-left: 4px solid var(--rust); }
+  .ord-card.st-acked { border-left: 4px solid var(--gold); }
+  .ord-card.st-delivered { border-left: 4px solid var(--accent); opacity: .82; }
+  .ord-card.st-cancelled { opacity: .55; }
+  .ord-card-head { display: flex; justify-content: space-between; align-items: center; padding: 12px 14px; cursor: pointer; gap: 10px; }
+  .ord-card-when { font-weight: 700; color: var(--text); font-size: 15px; }
+  .ord-card-sub { font-size: 12.5px; color: var(--text-soft); margin-top: 2px; }
+  .ord-badge { font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 999px; white-space: nowrap; }
+  .ord-badge.b-placed { background: var(--rust-soft); color: var(--rust); }
+  .ord-badge.b-acked { background: var(--gold-soft); color: var(--gold); }
+  .ord-badge.b-delivered { background: var(--accent-soft); color: var(--accent-dark); }
+  .ord-badge.b-cancelled { background: #e8e0d0; color: var(--text-mute); }
+  .ord-card-body { padding: 4px 14px 14px; border-top: 1px solid var(--border-soft); }
+  .ord-card-note { font-style: italic; color: var(--text-soft); font-size: 13.5px; margin: 10px 0; }
+  .ord-pickhead { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-mute); font-weight: 700; margin: 10px 0 6px; }
+  .ord-l { display: flex; gap: 10px; padding: 9px 0; border-bottom: 1px solid var(--border-soft); }
+  .ord-l.packed .ord-l-name { text-decoration: line-through; color: var(--text-mute); }
+  .ord-l-check { flex: 0 0 26px; width: 26px; height: 26px; border: 2px solid var(--accent); border-radius: 7px; display: flex; align-items: center; justify-content: center; color: var(--accent-dark); font-weight: 800; cursor: pointer; background: var(--card); }
+  .ord-l.packed .ord-l-check { background: var(--accent-soft); }
+  .ord-l-body { flex: 1; }
+  .ord-l-name { font-size: 15px; color: var(--text); font-weight: 600; }
+  .ord-l-flag { font-size: 10px; font-weight: 800; padding: 1px 6px; border-radius: 5px; vertical-align: middle; }
+  .ord-l-flag.f-short { background: var(--rust-soft); color: var(--rust); }
+  .ord-l-flag.f-sub { background: var(--gold-soft); color: var(--gold); }
+  .ord-l-note { display: block; font-size: 12.5px; color: var(--rust); margin-top: 2px; }
+  .ord-l-actions { display: flex; gap: 6px; margin-top: 6px; }
+  .ord-mini { font-size: 11.5px; font-weight: 700; padding: 4px 11px; border-radius: 999px; border: 1px solid var(--border); background: var(--card); color: var(--text-soft); cursor: pointer; }
+  .ord-mini-clear { border-color: var(--accent); color: var(--accent); }
+  .ord-confirm-row { margin: 12px 0 4px; }
+  .ord-cf-label { font-size: 12px; color: var(--text-soft); font-weight: 600; display: flex; flex-direction: column; gap: 4px; }
+  .ord-cf-date { font-size: 14px; padding: 8px 10px; border: 1px solid var(--border); border-radius: 8px; background: var(--card); color: var(--text); font-family: inherit; }
+  .ord-actions { display: flex; gap: 10px; margin-top: 12px; }
+  .ord-btn { flex: 1; padding: 11px; border-radius: 10px; border: none; font-size: 14px; font-weight: 700; cursor: pointer; font-family: inherit; }
+  .ord-btn-ack { background: var(--accent); color: #fff; }
+  .ord-btn-deliv { background: var(--gold-soft); color: var(--gold); border: 1px solid var(--gold); }
   .hv-header { text-align: center; padding: 10px 0 4px; }
   .hv-eyebrow { font-size: 11px; text-transform: uppercase; letter-spacing: 1.4px; color: var(--accent); font-weight: 600; }
   .hv-title { font-family: Caladea, Cambria, Georgia, serif; font-size: 22px; color: var(--text); margin-top: 2px; }
@@ -2211,6 +2301,7 @@
     <button class="vtab" data-view="freshtalk" id="vtab-freshtalk" hidden>Fresh talk</button>
     <button class="vtab" data-view="service" id="vtab-service" hidden>Service</button>
     <button class="vtab" data-view="harvest" id="vtab-harvest" hidden>Harvest</button>
+    <button class="vtab" data-view="orders" id="vtab-orders" hidden>Orders</button>
     <button class="vtab" data-view="setup-breakdown">Setup &amp; Breakdown</button>
   </div>
 </div>
@@ -2347,6 +2438,12 @@
   </div>
 </div>
 
+<div id="orders-view" style="display:none;">
+  <div class="harvest-view" id="orders-content">
+    <div class="loading">Loading orders…</div>
+  </div>
+</div>
+
 <div class="modal-backdrop" id="modal-backdrop">
   <div class="modal" id="modal"></div>
 </div>
@@ -2373,20 +2470,43 @@
 
 <!-- Firebase SDK (only loaded if config is present) -->
 <script type="module">
+  // remy-orders: SEPARATE Firebase project (the farm order loop). Web API key
+  // public by design; Firestore rules enforce auth. Kelly's Orders view reads
+  // and updates this; Chris's sf-portal writes orders into it.
+  window.REMY_ORDERS_CONFIG = {
+    apiKey: "AIzaSyCYx8NdTrmmH73J8DYsd94LvXKyOOiFyeU",
+    authDomain: "remy-orders.firebaseapp.com",
+    projectId: "remy-orders",
+    storageBucket: "remy-orders.firebasestorage.app",
+    messagingSenderId: "8525936717",
+    appId: "1:8525936717:web:99fa76a1171b6f53cb4404"
+  };
   if (window.FIREBASE_CONFIG) {
     try {
       const { initializeApp } = await import('https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js');
-      const { getFirestore, doc, onSnapshot, setDoc, updateDoc, deleteField, serverTimestamp } =
+      const { getFirestore, doc, onSnapshot, setDoc, updateDoc, deleteField, serverTimestamp,
+              collection, query, orderBy, limit } =
         await import('https://www.gstatic.com/firebasejs/10.13.0/firebase-firestore.js');
       const { getAuth, signInAnonymously } =
         await import('https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js');
-      window._firebase = { initializeApp, getFirestore, doc, onSnapshot, setDoc, updateDoc, deleteField, serverTimestamp, getAuth, signInAnonymously };
+      window._firebase = { initializeApp, getFirestore, doc, onSnapshot, setDoc, updateDoc, deleteField, serverTimestamp, collection, query, orderBy, limit, getAuth, signInAnonymously };
       const app = initializeApp(window.FIREBASE_CONFIG);
       window._firebase.app = app;
       window._firebase.db = getFirestore(app);
       const auth = getAuth(app);
       await signInAnonymously(auth);
       window._firebase.ready = true;
+
+      // Second app for remy-orders.
+      try {
+        const remyApp = initializeApp(window.REMY_ORDERS_CONFIG, 'remy');
+        const remyAuth = getAuth(remyApp);
+        await signInAnonymously(remyAuth);
+        window._remy = { db: getFirestore(remyApp), doc, onSnapshot, setDoc, updateDoc,
+                         collection, query, orderBy, limit, serverTimestamp, ready: true };
+      } catch (e2) {
+        console.error('remy-orders init failed:', e2);
+      }
     } catch (err) {
       console.error('Firebase init failed, falling back to localStorage:', err);
     }
@@ -2400,8 +2520,8 @@
   // ====================================================================
   // CONFIG + STATE
   // ====================================================================
-  const VERSION = "v1.35";
-  const BUILD = '1780869567'; // stamped by deploy-to-github.command at every deploy
+  const VERSION = "v1.36";
+  const BUILD = '1781075766'; // stamped by deploy-to-github.command at every deploy
   const DATA_PATH = "data";
   const params = new URLSearchParams(window.location.search);
   const today = new Date().toISOString().split('T')[0];
@@ -2716,6 +2836,27 @@
     return (idx % 12) + 1;
   }
 
+  // Shared-party groups (e.g. "Anderson Group"): several separate bookings Tim
+  // tags as one party. The signal lives in the comma-separated notes field.
+  function groupOf(g) {
+    const segs = (g?.notes || '').split(',');
+    for (const s of segs) { if (/\bgroup\b/i.test(s)) return s.trim(); }
+    return null;
+  }
+  // Map each distinct group name -> stable color index 1..6 (by first appearance).
+  function groupColorMap() {
+    const map = {}; let n = 0;
+    for (const g of (dinnerData?.guests || [])) {
+      const grp = groupOf(g);
+      if (grp && !(grp in map)) { map[grp] = (n % 6) + 1; n++; }
+    }
+    return map;
+  }
+  // Short chip label: drop a trailing "Group" word ("Anderson Group" -> "Anderson").
+  function groupShort(name) {
+    return (name || '').replace(/\s*group\s*$/i, '').trim() || name;
+  }
+
   function partyOf(guestId) {
     return dinnerData?.guests.find(g => g.id === guestId);
   }
@@ -2885,6 +3026,7 @@
 
   function renderGuestPicker() {
     const picker = document.getElementById('guest-picker');
+    const gmap = groupColorMap();
     const guests = [...dinnerData.guests].sort((a, b) =>
       surname(a.purchaser).localeCompare(surname(b.purchaser))
     );
@@ -2893,11 +3035,14 @@
       const full = seated >= g.party_size;
       const isSelected = selectedGuestId === g.id;
       const remaining = g.party_size - seated;
+      const grp = groupOf(g);
+      const gi = grp ? gmap[grp] : 0;
       const pills = [];
+      if (grp) pills.push(`<span class="pill pill-group g-${gi}">${escape(groupShort(grp))}</span>`);
       if (g.allergens?.length) pills.push(`<span class="pill pill-allergen">${escape(g.allergens.join('·'))}</span>`);
       if (g.returning) pills.push(`<span class="pill pill-returning">★ ${g.returning.prior_count}×</span>`);
       return `
-        <div class="picker-card ${full ? 'fully-seated' : ''} ${isSelected ? 'selected' : ''}" data-id="${g.id}">
+        <div class="picker-card ${full ? 'fully-seated' : ''} ${isSelected ? 'selected' : ''} ${grp ? `has-group g-${gi}` : ''}" data-id="${g.id}">
           <div class="name">${escape(g.purchaser)}</div>
           <div class="meta">
             ${pills.join(' ')}
@@ -2906,10 +3051,17 @@
         </div>
       `;
     }).join('');
+    const groupEntries = Object.entries(gmap);
+    const legend = groupEntries.length
+      ? `<div class="group-legend">${groupEntries.map(([name, idx]) =>
+          `<span class="gl-item"><span class="gl-dot g-${idx}"></span>${escape(name)}</span>`
+        ).join('')}</div>`
+      : '';
     picker.innerHTML = `
       <div class="picker-head">
         <h3>Guests · tap to select, then tap a seat</h3>
         <p class="picker-help">Selecting a 4-top auto-fills the adjacent open seats on the same side.</p>
+        ${legend}
       </div>
       <div class="picker-grid">${cards}</div>
     `;
@@ -2951,6 +3103,8 @@
     if (isCap && !capEnabled) classes.push('disabled');
     if (occ) {
       classes.push('occupied', `party-${partyColor(occGuestId)}`);
+      const grp = groupOf(occ);
+      if (grp) classes.push(`grp-${groupColorMap()[grp]}`);
       if (occ.allergens?.length) classes.push('allergen-here');
       if (occ.returning) classes.push('returning-here');
     }
@@ -3329,7 +3483,7 @@
   // the Home button + dinner-view tabs) visibility.
   function switchView(viewName) {
     activeView = viewName;
-    const allViews = ['portal','list','seating','freshtalk','service','setup-breakdown','standards','harvest'];
+    const allViews = ['portal','list','seating','freshtalk','service','setup-breakdown','standards','harvest','orders'];
     allViews.forEach(v => {
       const el = document.getElementById(v + '-view');
       if (el) el.style.display = (v === viewName) ? '' : 'none';
@@ -3343,12 +3497,13 @@
     // Photo background on body whenever we've left the portal.
     document.body.classList.toggle('in-dinner-view', !onPortal);
     // Mark the active vtab if we're in any view that has a tab in the bar.
-    const tabbedViews = ['list','seating','freshtalk','service','setup-breakdown','harvest'];
+    const tabbedViews = ['list','seating','freshtalk','service','setup-breakdown','harvest','orders'];
     document.querySelectorAll('.vtab').forEach(b => b.classList.remove('active'));
     if (tabbedViews.includes(viewName)) {
       const btn = document.querySelector(`.vtab[data-view="${viewName}"]`);
       if (btn) btn.classList.add('active');
     }
+    if (viewName === 'orders') renderOrdersView();
     // Position the sliding pill under the active tab.
     updateVtabPill();
     refresh();
@@ -4041,6 +4196,145 @@
   // so each dinner date keeps its own picked/unpicked record forever —
   // past dinners show their archived state via the dinner switcher.
   // Unchecking sets false (not delete) so setDoc merge:true propagates it.
+  // ====================================================================
+  // FARM ORDERS — Kelly's side of the order loop (remy-orders project)
+  // ====================================================================
+  let ordersData = [];        // live list of order docs
+  let ordersUnsub = null;
+  let ordersExpanded = {};     // order_id -> bool (detail open)
+
+  function startOrdersSync() {
+    const R = window._remy;
+    const btn = document.getElementById('vtab-orders');
+    if (!R || !R.ready) { if (btn) btn.hidden = true; return; }
+    if (btn) btn.hidden = false;
+    if (ordersUnsub) return;
+    try {
+      const q = R.query(R.collection(R.db, 'orders'), R.orderBy('placed_at', 'desc'), R.limit(40));
+      ordersUnsub = R.onSnapshot(q, (snap) => {
+        ordersData = snap.docs.map(d => d.data());
+        const openCount = ordersData.filter(o => (o.status || 'placed') === 'placed').length;
+        if (btn) btn.textContent = openCount ? `Orders (${openCount})` : 'Orders';
+        if (activeView === 'orders') renderOrdersView();
+        updateVtabPill();
+      }, (e) => { console.error('orders sync error', e); });
+    } catch (e) { console.error('orders sync failed', e); }
+  }
+
+  async function ordersUpdate(orderId, patch) {
+    const R = window._remy;
+    if (!R || !R.ready) return;
+    try { await R.updateDoc(R.doc(R.db, 'orders', orderId), patch); }
+    catch (e) { console.error('order update failed', e); alert('Could not save — check connection.'); }
+  }
+
+  function ordersStatusLabel(o) {
+    const s = o.status || 'placed';
+    return s === 'acked' ? 'Got it' : s === 'delivered' ? 'Delivered' : s === 'cancelled' ? 'Cancelled' : 'New';
+  }
+
+  function renderOrdersView() {
+    const c = document.getElementById('orders-content');
+    if (!c) return;
+    const R = window._remy;
+    if (!R || !R.ready) { c.innerHTML = `<div class="loading">Orders sync unavailable. Pull to refresh.</div>`; return; }
+    if (!ordersData.length) {
+      c.innerHTML = `<div class="hv-header"><div class="hv-eyebrow">Farm Orders</div><div class="hv-title">San Fermo → Swan House</div></div>
+        <div class="hv-intro">No orders yet. When Chris sends one from the restaurant, it lands here.</div>`;
+      return;
+    }
+    const fmtDate = (iso) => { try { return new Date(iso).toLocaleDateString('en-US',{weekday:'short',month:'numeric',day:'numeric'}); } catch(e){ return iso||''; } };
+    const orderCard = (o) => {
+      const open = !!ordersExpanded[o.order_id];
+      const st = o.status || 'placed';
+      const lines = o.lines || [];
+      const packed = lines.filter(l => l.packed).length;
+      const reqd = o.requested_date ? `needed ${fmtDate(o.requested_date)}` : 'no date set';
+      const lineRow = (l, i) => {
+        const flag = l.farm_status === 'short' ? 'short' : l.farm_status === 'sub' ? 'sub' : '';
+        return `<div class="ord-l ${l.packed ? 'packed' : ''}">
+          <span class="ord-l-check" data-ord="${escape(o.order_id)}" data-li="${i}" role="checkbox" aria-checked="${l.packed?'true':'false'}">${l.packed ? '✓' : ''}</span>
+          <span class="ord-l-body">
+            <span class="ord-l-name">${escape(l.qty)} ${escape(l.unit)} ${escape(l.item)}${flag ? ` <span class="ord-l-flag f-${flag}">${flag.toUpperCase()}</span>` : ''}</span>
+            ${l.farm_note ? `<span class="ord-l-note">${escape(l.farm_note)}</span>` : ''}
+            <span class="ord-l-actions">
+              <button class="ord-mini" data-flag="short" data-ord="${escape(o.order_id)}" data-li="${i}">Short</button>
+              <button class="ord-mini" data-flag="sub" data-ord="${escape(o.order_id)}" data-li="${i}">Sub</button>
+              ${flag ? `<button class="ord-mini ord-mini-clear" data-flag="clear" data-ord="${escape(o.order_id)}" data-li="${i}">Clear</button>` : ''}
+            </span>
+          </span>
+        </div>`;
+      };
+      return `<div class="ord-card st-${st}">
+        <div class="ord-card-head" data-toggle="${escape(o.order_id)}">
+          <div>
+            <div class="ord-card-when">${fmtDate(o.placed_at)} · ${escape(o.placed_by||'')}</div>
+            <div class="ord-card-sub">${lines.length} item${lines.length>1?'s':''} · ${escape(reqd)}</div>
+          </div>
+          <span class="ord-badge b-${st}">${escape(ordersStatusLabel(o))}</span>
+        </div>
+        ${open ? `
+          <div class="ord-card-body">
+            ${o.order_note ? `<div class="ord-card-note">“${escape(o.order_note)}”</div>` : ''}
+            <div class="ord-pickhead">${packed} of ${lines.length} packed</div>
+            ${lines.map(lineRow).join('')}
+            <div class="ord-confirm-row">
+              <label class="ord-cf-label">Delivery date<input type="date" class="ord-cf-date" data-ord="${escape(o.order_id)}" value="${escape(o.confirmed_date||o.requested_date||'')}"></label>
+            </div>
+            <div class="ord-actions">
+              ${st==='placed' ? `<button class="ord-btn ord-btn-ack" data-ack="${escape(o.order_id)}">Got it 👍</button>` : ''}
+              ${st!=='delivered' && st!=='cancelled' ? `<button class="ord-btn ord-btn-deliv" data-deliv="${escape(o.order_id)}">Mark delivered</button>` : ''}
+            </div>
+          </div>` : ''}
+      </div>`;
+    };
+    c.innerHTML = `
+      <div class="hv-header">
+        <div class="hv-eyebrow">Farm Orders</div>
+        <div class="hv-title">San Fermo → Swan House</div>
+        <div class="hv-progress">${ordersData.filter(o=>(o.status||'placed')==='placed').length} new · ${ordersData.length} recent</div>
+      </div>
+      ${ordersData.map(orderCard).join('')}`;
+
+    // Wire interactions
+    c.querySelectorAll('[data-toggle]').forEach(el => el.addEventListener('click', () => {
+      const id = el.dataset.toggle; ordersExpanded[id] = !ordersExpanded[id]; renderOrdersView();
+    }));
+    c.querySelectorAll('.ord-l-check').forEach(el => el.addEventListener('click', async (ev) => {
+      ev.stopPropagation();
+      const id = el.dataset.ord, i = +el.dataset.li;
+      const o = ordersData.find(x => x.order_id === id); if (!o) return;
+      const lines = (o.lines||[]).map((l,ix) => ix===i ? Object.assign({}, l, { packed: !l.packed }) : l);
+      o.lines = lines; renderOrdersView();
+      await ordersUpdate(id, { lines });
+    }));
+    c.querySelectorAll('.ord-mini').forEach(el => el.addEventListener('click', async (ev) => {
+      ev.stopPropagation();
+      const id = el.dataset.ord, i = +el.dataset.li, flag = el.dataset.flag;
+      const o = ordersData.find(x => x.order_id === id); if (!o) return;
+      let note = '';
+      if (flag === 'short' || flag === 'sub') {
+        note = prompt(flag === 'short' ? 'How much can you send / what changed?' : 'Substitute with what?', '') || '';
+      }
+      const lines = (o.lines||[]).map((l,ix) => ix===i ? Object.assign({}, l, { farm_status: flag==='clear'?null:flag, farm_note: flag==='clear'?'':note }) : l);
+      o.lines = lines; renderOrdersView();
+      await ordersUpdate(id, { lines });
+    }));
+    c.querySelectorAll('.ord-cf-date').forEach(el => el.addEventListener('change', async () => {
+      await ordersUpdate(el.dataset.ord, { confirmed_date: el.value || null });
+    }));
+    c.querySelectorAll('[data-ack]').forEach(el => el.addEventListener('click', async (ev) => {
+      ev.stopPropagation();
+      await ordersUpdate(el.dataset.ack, { status: 'acked', farm_ack: { by: 'farm', at: new Date().toISOString() } });
+    }));
+    c.querySelectorAll('[data-deliv]').forEach(el => el.addEventListener('click', async (ev) => {
+      ev.stopPropagation();
+      const id = el.dataset.deliv;
+      const o = ordersData.find(x => x.order_id === id);
+      await ordersUpdate(id, { status: 'delivered', delivered: { at: new Date().toISOString() }, confirmed_date: (o && o.confirmed_date) || new Date().toISOString().slice(0,10) });
+    }));
+  }
+
   function renderHarvest() {
     const container = document.getElementById('harvest-content');
     if (!container) return;
@@ -4462,6 +4756,11 @@
       // Deep link: ?view=harvest opens straight into the harvest list
       // (the link Sam texts Kelly). Only honored when the list exists.
       if (params.get('view') === 'harvest' && harvestWeekend) switchView('harvest');
+
+      // Orders loop: not dinner-bound. Start the live listener as soon as remy
+      // is reachable, surface the vtab, and honor the ?view=orders deep link.
+      startOrdersSync();
+      if (params.get('view') === 'orders') switchView('orders');
 
       // Try Firebase if available, otherwise localStorage
       const fbAttempt = await initFirebase();
