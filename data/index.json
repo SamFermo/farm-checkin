@@ -38,15 +38,15 @@
     {
       "date": "2026-06-07",
       "display_date": "Sunday, June 7, 2026",
-      "seated_covers": 26,
-      "party_count": 12,
+      "seated_covers": 28,
+      "party_count": 13,
       "is_past": true
     },
     {
       "date": "2026-06-13",
       "display_date": "Saturday, June 13, 2026",
-      "seated_covers": 26,
-      "party_count": 10,
+      "seated_covers": 24,
+      "party_count": 9,
       "is_past": false
     },
     {
@@ -66,8 +66,8 @@
     {
       "date": "2026-07-12",
       "display_date": "Sunday, July 12, 2026",
-      "seated_covers": 24,
-      "party_count": 11,
+      "seated_covers": 26,
+      "party_count": 12,
       "is_past": false
     },
     {
@@ -80,8 +80,8 @@
     {
       "date": "2026-07-19",
       "display_date": "Sunday, July 19, 2026",
-      "seated_covers": 26,
-      "party_count": 8,
+      "seated_covers": 24,
+      "party_count": 7,
       "is_past": false
     },
     {
@@ -101,15 +101,15 @@
     {
       "date": "2026-08-15",
       "display_date": "Saturday, August 15, 2026",
-      "seated_covers": 22,
-      "party_count": 10,
+      "seated_covers": 26,
+      "party_count": 11,
       "is_past": false
     },
     {
       "date": "2026-08-16",
       "display_date": "Sunday, August 16, 2026",
-      "seated_covers": 20,
-      "party_count": 10,
+      "seated_covers": 26,
+      "party_count": 11,
       "is_past": false
     },
     {
@@ -136,12 +136,12 @@
     {
       "date": "2026-09-13",
       "display_date": "Sunday, September 13, 2026",
-      "seated_covers": 20,
-      "party_count": 8,
+      "seated_covers": 24,
+      "party_count": 9,
       "is_past": false
     }
   ],
-  "generated_at": "2026-06-10T00:18:49",
+  "generated_at": "2026-06-11T11:05:50",
   "known_guests": [
     "Aaron Stephens",
     "Abraham Curry",
@@ -161,6 +161,7 @@
     "Angela Lewis",
     "ANGIE  WANG",
     "ANNE MARIE FERNANDES",
+    "Annessa Anderson",
     "Ashley Baker",
     "AVIVA ELMAN",
     "Babak Shamsi",
@@ -176,13 +177,13 @@
     "Catherine J Trogdon",
     "Catherine Markham",
     "Cecilia beer",
-    "Charles Eberhardt",
     "Chelsea Lupo",
     "Chris Lee",
     "Christopher Pynn",
     "Claire Goveia",
     "Colin Dootson",
     "Connor Mara",
+    "Constance Locklear",
     "Daniel R Wandsnider",
     "Darwin J May",
     "David C Wells",
@@ -306,6 +307,7 @@
     "Tamara Schaefbauer",
     "Tami Hurwitz",
     "Tara Cunningham",
+    "Taylor Klinefelter",
     "Teresa Nehls",
     "Thomas Finley",
     "Thomas Mulvey",
@@ -313,9 +315,10 @@
     "Timothy Stephens",
     "Todd Rosin",
     "TROY PHILP",
+    "Victoria E Baxter",
     "Warren T Hill",
     "William Aufhammer",
     "Yaskara Reyna"
   ],
-  "build": "1781121497"
+  "build": "1781201150"
 }
