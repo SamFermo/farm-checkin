@@ -1,8 +1,8 @@
 {
   "dinner_date": "2026-07-12",
   "display_date": "Sunday, July 12, 2026",
-  "seated_covers": 24,
-  "party_count": 11,
+  "seated_covers": 26,
+  "party_count": 12,
   "cancelled": [],
   "guests": [
     {
@@ -124,6 +124,16 @@
     },
     {
       "id": "g-2026-07-12-011",
+      "purchaser": "Constance Locklear",
+      "party_size": 2,
+      "email": "cmlocklear@hotmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-07-12-012",
       "purchaser": "AMANDA NELSON",
       "party_size": 4,
       "email": "mailto:Mandeewong@gmail.com",
