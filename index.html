@@ -2537,7 +2537,7 @@
   // CONFIG + STATE
   // ====================================================================
   const VERSION = "v1.36";
-  const BUILD = '1781202446'; // stamped by deploy-to-github.command at every deploy
+  const BUILD = '1781203531'; // stamped by deploy-to-github.command at every deploy
   const DATA_PATH = "data";
   const params = new URLSearchParams(window.location.search);
   const today = new Date().toISOString().split('T')[0];
@@ -4657,12 +4657,18 @@
   //   4. Otherwise, the most recent past dinner.
   function pickDefaultDinner(dinners, preferred) {
     if (!dinners.length) return preferred || today;
-    if (preferred && dinners.some(d => d.date === preferred)) return preferred;
-    const todayMatch = dinners.find(d => d.date === today);
-    if (todayMatch) return todayMatch.date;
-    const upcoming = dinners.find(d => !d.is_past);
-    if (upcoming) return upcoming.date;
-    return dinners[dinners.length - 1].date;
+    const sorted = [...dinners].sort((a, b) => a.date.localeCompare(b.date));
+    // Honor an explicit ?date= ONLY for today or upcoming dinners. replaceState
+    // bakes the date into the URL, and home-screen apps / refreshes preserve it —
+    // which pinned the app to June 6th forever. Stale past params now self-heal:
+    // a refresh always lands on today's dinner or the next upcoming one.
+    if (preferred) {
+      const m = sorted.find(d => d.date === preferred);
+      if (m && m.date >= today) return m.date;
+    }
+    const todayOrNext = sorted.find(d => d.date >= today);
+    if (todayOrNext) return todayOrNext.date;
+    return sorted[sorted.length - 1].date;   // season over: most recent past dinner
   }
 
   function renderDinnerSwitcher() {
