@@ -1,8 +1,8 @@
 {
   "dinner_date": "2026-08-16",
   "display_date": "Sunday, August 16, 2026",
-  "seated_covers": 20,
-  "party_count": 10,
+  "seated_covers": 26,
+  "party_count": 11,
   "cancelled": [],
   "guests": [
     {
@@ -128,6 +128,16 @@
       ],
       "returning": null,
       "is_allergen_party": true
+    },
+    {
+      "id": "g-2026-08-16-011",
+      "purchaser": "Annessa Anderson",
+      "party_size": 6,
+      "email": "reid.annessa@gmail.com",
+      "notes": "Vick's friends",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
     }
   ]
 }
