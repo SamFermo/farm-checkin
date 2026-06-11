@@ -1,8 +1,8 @@
 {
   "dinner_date": "2026-08-15",
   "display_date": "Saturday, August 15, 2026",
-  "seated_covers": 22,
-  "party_count": 10,
+  "seated_covers": 26,
+  "party_count": 11,
   "cancelled": [],
   "guests": [
     {
@@ -129,6 +129,22 @@
           "2026"
         ],
         "is_multi_year": false
+      },
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-08-15-011",
+      "purchaser": "Victoria E Baxter",
+      "party_size": 4,
+      "email": "baxterv000@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": {
+        "prior_count": 2,
+        "years": [
+          "2024"
+        ],
+        "is_multi_year": true
       },
       "is_allergen_party": false
     }
