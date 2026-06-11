@@ -1,8 +1,8 @@
 {
   "dinner_date": "2026-06-07",
   "display_date": "Sunday, June 7, 2026",
-  "seated_covers": 26,
-  "party_count": 12,
+  "seated_covers": 28,
+  "party_count": 13,
   "cancelled": [],
   "guests": [
     {
@@ -134,6 +134,16 @@
     },
     {
       "id": "g-2026-06-07-012",
+      "purchaser": "Brandon Wood",
+      "party_size": 2,
+      "email": "lunodragon@gmail.com",
+      "notes": "",
+      "allergens": [],
+      "returning": null,
+      "is_allergen_party": false
+    },
+    {
+      "id": "g-2026-06-07-013",
       "purchaser": "Matthew Huntley",
       "party_size": 4,
       "email": "huntmr1@gmail.com",
