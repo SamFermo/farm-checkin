@@ -1,8 +1,8 @@
 {
   "dinner_date": "2026-06-13",
   "display_date": "Saturday, June 13, 2026",
-  "seated_covers": 26,
-  "party_count": 10,
+  "seated_covers": 24,
+  "party_count": 9,
   "cancelled": [],
   "guests": [
     {
@@ -50,10 +50,12 @@
       "purchaser": "Kelsey Keizur",
       "party_size": 2,
       "email": "Kelseykeizur@gmail.com",
-      "notes": "together",
-      "allergens": [],
+      "notes": "one no pork, will braise shorties, pork demi ok, together",
+      "allergens": [
+        "no pork"
+      ],
       "returning": null,
-      "is_allergen_party": false
+      "is_allergen_party": true
     },
     {
       "id": "g-2026-06-13-006",
@@ -67,16 +69,6 @@
     },
     {
       "id": "g-2026-06-13-007",
-      "purchaser": "Brandon Wood",
-      "party_size": 2,
-      "email": "lunodragon@gmail.com",
-      "notes": "",
-      "allergens": [],
-      "returning": null,
-      "is_allergen_party": false
-    },
-    {
-      "id": "g-2026-06-13-008",
       "purchaser": "Jenifer Sandstrom",
       "party_size": 4,
       "email": "Jeniferb_11@yahoo.com",
@@ -88,7 +80,7 @@
       "is_allergen_party": true
     },
     {
-      "id": "g-2026-06-13-009",
+      "id": "g-2026-06-13-008",
       "purchaser": "Amanda Edris",
       "party_size": 4,
       "email": "AmandaE.020@hotmail.com",
@@ -98,7 +90,7 @@
       "is_allergen_party": false
     },
     {
-      "id": "g-2026-06-13-010",
+      "id": "g-2026-06-13-009",
       "purchaser": "Sahar Banijamali",
       "party_size": 4,
       "email": "Sbanijamali@gmail.com",
