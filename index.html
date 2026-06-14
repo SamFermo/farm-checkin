@@ -333,6 +333,10 @@
     background: #d8c8a8; color: var(--wood);
     border: 1px solid var(--wood);
   }
+  .badge-late {
+    background: #f7e3c0; color: #8a5300;
+    border: 1px solid #d39328;
+  }
 
   .guest-notes {
     margin-top: 6px;
@@ -1275,6 +1279,7 @@
     border: 1px solid var(--border);
   }
   .btn-danger { background: var(--rust); color: var(--card); }
+  .btn-late-on { background: #d39328; color: #fff; }
 
   /* Toast */
   .toast {
@@ -2569,8 +2574,8 @@
   // ====================================================================
   // CONFIG + STATE
   // ====================================================================
-  const VERSION = "v1.37";
-  const BUILD = '1781463098'; // stamped by deploy-to-github.command at every deploy
+  const VERSION = "v1.38";
+  const BUILD = '1781477732'; // stamped by deploy-to-github.command at every deploy
   const DATA_PATH = "data";
   const params = new URLSearchParams(window.location.search);
   const today = new Date().toISOString().split('T')[0];
@@ -3017,6 +3022,7 @@
     const badges = [];
     const _grp = groupOf(g);
     if (_grp) badges.push(`<span class="badge pill-group g-${groupColorMap()[_grp]}">${escape(groupShort(_grp))}</span>`);
+    if (ci.running_late) badges.push(`<span class="badge badge-late">⏱ Running late</span>`);
     if (isCheckedIn) badges.push(`<span class="badge badge-checked-in">✓ Checked in</span>`);
     if (seatedCount > 0) {
       badges.push(`<span class="badge badge-seated">▦ ${seatedCount}/${g.party_size} seated</span>`);
@@ -3349,27 +3355,37 @@
         <div class="gn-hint">Names autocomplete against the master guest list</div>
       </div>` : '';
 
+    const lateToggle = `
+      <div class="modal-section">
+        <button class="btn ${ci.running_late ? 'btn-late-on' : 'btn-secondary'}" id="late-btn" style="width:100%;">
+          ${ci.running_late ? '⏱ Running late — ON (tap to clear)' : '⏱ Mark running late'}
+        </button>
+      </div>`;
+
     const noteInput = `
       <div class="modal-section">
         <h4>Add a quick note (optional)</h4>
         <textarea class="modal-note-input" id="note-input" placeholder="e.g. waiting on +1, parked down road…">${escape(ci.note || '')}</textarea>
       </div>`;
 
+    const saveNoteBtn = `<button class="btn btn-secondary" id="savenote-btn">Save note</button>`;
     const actions = isCheckedIn
-      ? `<button class="btn btn-secondary" id="close-btn">Close</button>
+      ? `<button class="btn btn-secondary" id="close-btn">Close</button>${saveNoteBtn}
          <button class="btn btn-danger" id="undo-btn">Undo check-in</button>`
-      : `<button class="btn btn-secondary" id="close-btn">Cancel</button>
+      : `<button class="btn btn-secondary" id="close-btn">Cancel</button>${saveNoteBtn}
          <button class="btn btn-primary" id="checkin-btn">Check in</button>`;
 
     document.getElementById('modal').innerHTML = `
       <h2 class="modal-title">${escape(g.purchaser)}</h2>
       <p class="modal-sub">Party of ${g.party_size}${g.email ? ` · ${escape(g.email)}` : ''}</p>
-      ${returningSection}${allergenSection}${notesSection}${seatsSection}${guestNamesSection}${noteInput}
+      ${returningSection}${allergenSection}${notesSection}${seatsSection}${guestNamesSection}${lateToggle}${noteInput}
       <div class="modal-actions">${actions}</div>
     `;
     document.getElementById('modal-backdrop').classList.add('open');
 
     document.getElementById('close-btn').onclick = closeModal;
+    document.getElementById('savenote-btn').onclick = () => saveNoteOnly(guestId);
+    document.getElementById('late-btn').onclick = () => toggleLate(guestId);
     if (!isCheckedIn) {
       document.getElementById('checkin-btn').onclick = () => doCheckIn(guestId);
     } else {
@@ -3484,11 +3500,46 @@
 
   function closeModal() { document.getElementById('modal-backdrop').classList.remove('open'); }
 
+  // Drop an empty check-in record so a note/late flag that's been cleared doesn't linger.
+  function cleanupCheckin(guestId) {
+    const ci = state.checkins[guestId];
+    if (ci && !ci.checked_in_at && !ci.note && !ci.running_late) delete state.checkins[guestId];
+  }
+
+  // Toggle "running late" without checking the party in. Persists immediately.
+  async function toggleLate(guestId) {
+    const ci = state.checkins[guestId] || {};
+    ci.running_late = !ci.running_late;
+    const noteEl = document.getElementById('note-input');
+    if (noteEl) ci.note = noteEl.value.trim() || ci.note || null;
+    state.checkins[guestId] = ci;
+    cleanupCheckin(guestId);
+    await pushState();
+    showToast(state.checkins[guestId]?.running_late ? '⏱ Marked running late' : 'Cleared running late');
+    openGuestModal(guestId);
+    refresh();
+  }
+
+  // Commit a note without checking the party in.
+  async function saveNoteOnly(guestId) {
+    const noteEl = document.getElementById('note-input');
+    const note = noteEl ? noteEl.value.trim() : '';
+    const ci = state.checkins[guestId] || {};
+    ci.note = note || null;
+    state.checkins[guestId] = ci;
+    cleanupCheckin(guestId);
+    await pushState();
+    showToast('Note saved');
+    closeModal();
+    refresh();
+  }
+
   async function doCheckIn(guestId) {
     const note = document.getElementById('note-input').value.trim();
     state.checkins[guestId] = {
       checked_in_at: new Date().toISOString(),
       note: note || null,
+      running_late: false,
     };
     // Persist any guest names entered in the modal
     const section = document.querySelector('.guest-names-section');
@@ -3504,8 +3555,9 @@
 
   async function doUndo(guestId) {
     const note = document.getElementById('note-input').value.trim();
-    if (note) {
-      state.checkins[guestId] = { note };
+    const prev = state.checkins[guestId] || {};
+    if (note || prev.running_late) {
+      state.checkins[guestId] = { note: note || null, running_late: prev.running_late || false };
     } else {
       delete state.checkins[guestId];
     }
