@@ -2569,8 +2569,8 @@
   // ====================================================================
   // CONFIG + STATE
   // ====================================================================
-  const VERSION = "v1.36";
-  const BUILD = '1781462382'; // stamped by deploy-to-github.command at every deploy
+  const VERSION = "v1.37";
+  const BUILD = '1781463098'; // stamped by deploy-to-github.command at every deploy
   const DATA_PATH = "data";
   const params = new URLSearchParams(window.location.search);
   const today = new Date().toISOString().split('T')[0];
@@ -2888,8 +2888,13 @@
   // Shared-party groups (e.g. "Anderson Group"): several separate bookings Tim
   // tags as one party. The signal lives in the comma-separated notes field.
   function groupOf(g) {
-    const segs = (g?.notes || '').split(',');
+    const notes = g?.notes || '';
+    const segs = notes.split(',');
+    // Named group wins ("Anderson Group"), and each distinct name is its own group.
     for (const s of segs) { if (/\bgroup\b/i.test(s)) return s.trim(); }
+    // Bare "together" (no named group) = one implicit group for the night.
+    // Tim specifies a named group when there are multiple distinct groups.
+    if (/\btogether\b/i.test(notes)) return 'Together';
     return null;
   }
   // Map each distinct group name -> stable color index 1..6 (by first appearance).
@@ -3010,6 +3015,8 @@
     const isPartial = seatedCount > 0 && !isFull;
 
     const badges = [];
+    const _grp = groupOf(g);
+    if (_grp) badges.push(`<span class="badge pill-group g-${groupColorMap()[_grp]}">${escape(groupShort(_grp))}</span>`);
     if (isCheckedIn) badges.push(`<span class="badge badge-checked-in">✓ Checked in</span>`);
     if (seatedCount > 0) {
       badges.push(`<span class="badge badge-seated">▦ ${seatedCount}/${g.party_size} seated</span>`);
