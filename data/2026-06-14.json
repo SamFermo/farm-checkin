@@ -97,9 +97,11 @@
       "purchaser": "Sophia Houghton",
       "party_size": 4,
       "email": "sophia.houghton@gmail.com",
-      "notes": "fish and shellfish allergies",
+      "notes": "fish, shellfish, and nut allergies",
       "allergens": [
-        "shellfish"
+        "shellfish",
+        "fish",
+        "tree nut"
       ],
       "returning": null,
       "is_allergen_party": true
