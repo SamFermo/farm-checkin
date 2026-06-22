@@ -1,0 +1,231 @@
+{
+  "series_id": "2026-07",
+  "series_label": "July 2026 series",
+  "_pending": "Wines HELD pending Adrian's pairing (direction: bright high-acid coastal Italian white — Vermentino/Friulano/Soave; medium-bodied savory red — Etna Rosso lead, Chianti Classico fallback, slight chill). Cocktails HELD pending Katie (Terramar + Wheelhouse, lemon verbena highlighted). Both arrays stay empty until those land. Beef cut TBD (Tim). Guanciale count TBD (filling leans goat cheese if short).",
+  "header": {
+    "title": "Swan House Farm",
+    "subtitle": "High Summer",
+    "tagline": "thank you so much for joining us on this humble journey through everything skagit and swan house has to offer"
+  },
+  "courses": [
+    {
+      "label": "Antipasti",
+      "subtitle": "passed welcome bites at sit-down",
+      "plateware": "Two bites passed together at sit-down. Per setting: 8\" bread plate and fork only. Cutlery is staggered course-by-course, not all preset at once.",
+      "dishes": [
+        {
+          "name": "Stuffed Squash Blossom",
+          "pronunciation": null,
+          "components": "goat cheese & guanciale, balsamic, garden herbs",
+          "story": "A squash blossom from Kelly's garden, stuffed with a goat cheese and guanciale filling, blistered over live fire on the Big Green Egg, and finished with aged balsamic and garden herbs (thyme leads). Warm, cured, and deep — the savory counterpart to the bright pepper toast it's passed alongside. This started life as a stuffed fig; the blossom is the farm-grown answer using the same filling.",
+          "ingredients": [
+            {
+              "term": "Squash blossom",
+              "pronunciation": null,
+              "note": "the edible golden flower of the summer squash plant; delicate and faintly sweet, picked the morning of service"
+            },
+            {
+              "term": "Guanciale",
+              "pronunciation": "gwahn-CHAH-leh",
+              "note": "Italian cured pork jowl, richer and silkier than pancetta; house-cured by Tim at the farm"
+            },
+            {
+              "term": "Goat cheese",
+              "pronunciation": null,
+              "note": "fresh, tangy chevre that anchors the filling and balances the cured pork"
+            },
+            {
+              "term": "Big Green Egg",
+              "pronunciation": null,
+              "note": "a kamado-style ceramic smoker/grill we use for live-fire cooking at the farm"
+            }
+          ]
+        },
+        {
+          "name": "Sweet Pepper Toast",
+          "pronunciation": null,
+          "components": "whipped ricotta, marinated pepper, mint, preserved lemon, honey",
+          "story": "Grilled Breadfarm focaccia under whipped ricotta, marinated farm sweet peppers, torn mint, a little preserved lemon, and a drizzle of lavender-infused honey. Cool, bright, and sweet-tart, set deliberately against the warm squash blossom so the two bites play off each other.",
+          "ingredients": [
+            {
+              "term": "Preserved lemon",
+              "pronunciation": null,
+              "note": "lemons cured in salt for several weeks until the rind turns silky and intensely citrusy; we cure ours at San Fermo"
+            },
+            {
+              "term": "Whipped ricotta",
+              "pronunciation": null,
+              "note": "fresh Italian whey cheese, soft and milky, whipped light to spread on the toast"
+            },
+            {
+              "term": "Lavender honey",
+              "pronunciation": null,
+              "note": "honey infused with lavender from the farm's flower wall; floral and gently sweet"
+            },
+            {
+              "term": "Marinated sweet pepper",
+              "pronunciation": null,
+              "note": "Kelly's sweet peppers, marinated for brightness and a little acid"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Verdure",
+      "subtitle": "Course 1",
+      "plateware": "Wide shallow bowl or salad plate. Small fork. Butter knife.",
+      "dishes": [
+        {
+          "name": "Charred and Raw Summer Vegetables",
+          "pronunciation": null,
+          "components": "stracciatella, tomato-leaf oil, herbs & flowers",
+          "story": "An antipasto of high-summer vegetables from the farm — cabbage, onions, peppers, eggplant, and summer squash — some charred over coals, some raw and marinated, layered over a pillow of stracciatella. Finished with a tomato-leaf oil pressed from the farm's own tomato vines and a scatter of the herb-and-flower wall. Bright and acidic by design, to set up the richer pasta behind it.",
+          "ingredients": [
+            {
+              "term": "Stracciatella",
+              "pronunciation": "strah-chah-TEL-lah",
+              "note": "the soft, creamy interior of burrata: torn fresh mozzarella curds folded with cream"
+            },
+            {
+              "term": "Tomato-leaf oil",
+              "pronunciation": null,
+              "note": "oil infused with farm tomato leaves; smells green and unmistakably of tomato vine. The one 'tomato' the farm gives us in July (the fruit itself is an August crop)"
+            },
+            {
+              "term": "Eggplant",
+              "pronunciation": null,
+              "note": "from Kelly's garden; charred over coals so the flesh goes silky and smoky"
+            },
+            {
+              "term": "Summer squash",
+              "pronunciation": null,
+              "note": "young squash from the same plants as the blossom bite; sweet and tender off the fire"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Primi",
+      "subtitle": "Course 2",
+      "plateware": "Pasta bowl. Large fork. Spoon.",
+      "dishes": [
+        {
+          "name": "Laminated Pasta",
+          "pronunciation": null,
+          "components": "cultured brown butter, cured egg yolk, focaccia crumb, parmesan",
+          "story": "Fresh pasta sheets with farm herbs and flowers pressed inside the dough and laminated so the petals show through, built by Joe at San Fermo and cut day-of here at the farm. Dressed in cultured brown butter, grated cured egg yolk, a focaccia pangrattato off the same Breadfarm bread as the toast, parmesan, and lemon.",
+          "ingredients": [
+            {
+              "term": "Laminated pasta",
+              "pronunciation": null,
+              "note": "herbs and edible flowers pressed between two thin sheets of dough, then rolled together so the leaves are sealed inside and visible through the pasta"
+            },
+            {
+              "term": "Cured egg yolk",
+              "pronunciation": null,
+              "note": "farm egg yolks cured in salt and sugar, then dried and grated like bottarga (boh-TAR-gah, the Italian cured fish roe); deep and savory, it makes the farm's own eggs the luxury of the plate"
+            },
+            {
+              "term": "Cultured brown butter",
+              "pronunciation": null,
+              "note": "butter churned from cultured cream, then browned; nuttier than regular butter with a slight tang"
+            },
+            {
+              "term": "Pangrattato",
+              "pronunciation": "pahn-grah-TAH-toh",
+              "note": "toasted, seasoned breadcrumbs, sometimes called 'poor man's parmesan'; here off the Breadfarm focaccia, for crunch"
+            },
+            {
+              "term": "Parmigiano",
+              "pronunciation": "par-mee-JAH-noh",
+              "note": "short for Parmigiano-Reggiano, the aged hard Italian cheese from the Parma region"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Secondi",
+      "subtitle": "Course 3",
+      "plateware": "Family-style. Carving board and platters to the table; warm entree plates per guest. Large fork, steak knife.",
+      "dishes": [
+        {
+          "name": "Smoked Swan House Beef, Carved at the Table",
+          "pronunciation": null,
+          "components": "green garlic crust, charred stone-fruit agrodolce, Walla Walla onions, grilled kale",
+          "story": "A whole cut of Tim's beef rubbed in a green garlic and herb crust, smoked low and slow on the Big Green Egg, rested, and carved in front of the room to share family-style. A charred stone-fruit agrodolce is passed alongside, sweet-tart against the smoke, with coal-roasted Walla Walla onions and grilled kale finished with lemon and chili. This is the night's centerpiece, the move off June's plated belly to a shared carve.",
+          "ingredients": [
+            {
+              "term": "Green garlic",
+              "pronunciation": null,
+              "note": "young garlic pulled before the bulb fully forms; mild and grassy, less sharp than mature garlic. It is the crust on the beef"
+            },
+            {
+              "term": "Agrodolce",
+              "pronunciation": "ah-groh-DOHL-cheh",
+              "note": "Italian sweet-and-sour sauce; here summer stone fruit charred and cooked down sweet-tart to cut the richness of the smoked beef"
+            },
+            {
+              "term": "Walla Walla onions",
+              "pronunciation": null,
+              "note": "sweet onions from Walla Walla, Washington; mild enough to roast whole in the coals until jammy"
+            },
+            {
+              "term": "Big Green Egg",
+              "pronunciation": null,
+              "note": "the ceramic smoker the beef cooks on, low and slow, before it's carved at the table"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Dolce",
+      "subtitle": "Course 4",
+      "plateware": "Small bowl. Small spoon.",
+      "dishes": [
+        {
+          "name": "Lemon Verbena Panna Cotta",
+          "pronunciation": "PAH-nah KOH-tah",
+          "components": "macerated stone fruit, farm flowers",
+          "story": "A silky set cream steeped with lemon verbena from Kelly's garden, with macerated summer stone fruit and its own syrup spooned over, and a scatter of farm flowers. Early in the season the fruit is Rainier cherries; later in the run it shifts to apricots. No bake this series, the dessert leans on the fruit's own brightness.",
+          "ingredients": [
+            {
+              "term": "Panna cotta",
+              "pronunciation": "PAH-nah KOH-tah",
+              "note": "Italian for 'cooked cream'; a lightly set custard thickened with a little gelatin rather than eggs, so it stays silky and wobbly"
+            },
+            {
+              "term": "Lemon verbena",
+              "pronunciation": null,
+              "note": "a lemon-scented herb from Kelly's garden, brighter and more perfumed than lemon balm; it steeps into the cream"
+            },
+            {
+              "term": "Macerated stone fruit",
+              "pronunciation": null,
+              "note": "summer cherries or apricots tossed with a little sugar and left to release their juices into a loose syrup"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Caffé",
+      "subtitle": "to close",
+      "plateware": null,
+      "dishes": [
+        {
+          "name": "Cafe Umbria",
+          "pronunciation": null,
+          "components": null,
+          "story": "Locally roasted coffee from Seattle's Cafe Umbria, served to close the meal.",
+          "ingredients": []
+        }
+      ]
+    }
+  ],
+  "wines": [],
+  "cocktails": []
+}
