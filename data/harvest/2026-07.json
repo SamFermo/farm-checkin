@@ -1,0 +1,230 @@
+{
+ "$comment": "Per-series harvest lists for the Harvest tab. One entry per weekend; the app resolves the weekend by dinner date. Checkbox state lives in the per-dinner Firestore doc (state.harvest). DRAFT 2026-06-22: menu-derived first pass for the July build-out. Quantities are estimates pending the R&D pass with Chris and the cover reconcile vs Tim's xlsx; confirm all with Kelly before printing her checklist.",
+ "series": "2026-07",
+ "weekends": [
+  {
+   "label": "July 11-12",
+   "dates": [
+    "2026-07-11",
+    "2026-07-12"
+   ],
+   "intro": "DRAFT pick list, quantities pending R&D + cover reconcile. Pick fresh each morning. Sunday repeats Saturday.",
+   "items": [
+    {
+     "id": "squash-blossoms",
+     "name": "Squash blossoms",
+     "qty": "about 35 per night",
+     "note": "stuffed-blossom bite · pick morning-of, they wilt fast · count covers the bite plus breakage; a few extra if pasta garnish runs"
+    },
+    {
+     "id": "sweet-peppers",
+     "name": "Sweet peppers",
+     "qty": "3-4 lb per night",
+     "note": "marinated for the pepper toast bite + charred in Course 1"
+    },
+    {
+     "id": "eggplant",
+     "name": "Eggplant",
+     "qty": "3-4 lb per night",
+     "note": "Course 1 char"
+    },
+    {
+     "id": "summer-squash",
+     "name": "Summer squash",
+     "qty": "3-4 lb per night",
+     "note": "Course 1 char"
+    },
+    {
+     "id": "cabbage",
+     "name": "Cabbage",
+     "qty": "2 heads per night",
+     "note": "Course 1 char"
+    },
+    {
+     "id": "onions",
+     "name": "Onions",
+     "qty": "a few per night",
+     "note": "Course 1 char"
+    },
+    {
+     "id": "walla-walla",
+     "name": "Walla Walla onions",
+     "qty": "about 10 per night",
+     "note": "Course 3 contorni · coal-roasted whole, shared family-style"
+    },
+    {
+     "id": "kale",
+     "name": "Kale",
+     "qty": "2 bunches per night",
+     "note": "Course 3 contorni · grilled"
+    },
+    {
+     "id": "green-garlic",
+     "name": "Green garlic",
+     "qty": "1 bunch per night",
+     "note": "the crust on the beef · replaces the spring scapes (gone by our dates)"
+    },
+    {
+     "id": "tomato-leaf",
+     "name": "Tomato leaves",
+     "qty": "a couple of handfuls for the weekend",
+     "note": "tomato-leaf oil for Course 1 · the one farm 'tomato' in July"
+    },
+    {
+     "id": "lemon-verbena",
+     "name": "Lemon verbena",
+     "qty": "small bunch per night",
+     "note": "dessert garnish · plus a bunch sent to SF ahead for the panna cotta steep"
+    },
+    {
+     "id": "lavender",
+     "name": "Lavender",
+     "qty": "small bunch for the weekend",
+     "note": "infuses the honey for the pepper toast (honey itself is bought, Kelly is out)"
+    },
+    {
+     "id": "edible-flowers",
+     "name": "Edible flowers",
+     "qty": "2 pints for the weekend",
+     "note": "pasta lamination, dessert scatter, bite garnish · lavender, rose, nasturtium, calendula"
+    },
+    {
+     "id": "soft-herbs",
+     "name": "Tender herbs (herb wall)",
+     "qty": "big handfuls per night",
+     "note": "thyme for the blossom bite + beef, mint for the pepper toast, herbs for Course 1 and the beef crust, soft herbs for the pasta lamination"
+    }
+   ],
+   "confirm": [
+    {
+     "id": "guanciale",
+     "name": "Guanciale (Tim)",
+     "note": "PENDING count · may be short for two dinners · if short, the blossom filling leans goat cheese with guanciale as accent"
+    },
+    {
+     "id": "beef-cut",
+     "name": "Beef cut (Tim)",
+     "note": "PENDING · cut + freezer weights TBD (rib roast vs strip loin) · confirm the new steer landed before 7/11 · lamb loin chop is the fallback"
+    },
+    {
+     "id": "eggs",
+     "name": "Chicken + duck eggs",
+     "note": "already sent to SF ahead for the pasta dough and the cured-yolk cure (started end of June) · just confirm the count held"
+    }
+   ],
+   "footnote": "DRAFT pending Kelly's confirm. Stracciatella, ricotta, goat cheese, parmesan, cultured butter, and stone fruit (Rainier cherries this weekend) come from SF / Franks. SF make-aheads (preserved lemon, cured egg yolk, panna cotta bases, laminated sheets, blossom filling) are built at the restaurant, not picked here."
+  },
+  {
+   "label": "July 18-19",
+   "dates": [
+    "2026-07-18",
+    "2026-07-19"
+   ],
+   "intro": "DRAFT pick list, quantities pending R&D + cover reconcile. Pick fresh each morning. Sunday repeats Saturday. W2 evolves the char rotation and shifts the dessert fruit to apricots.",
+   "items": [
+    {
+     "id": "squash-blossoms",
+     "name": "Squash blossoms",
+     "qty": "about 35 per night",
+     "note": "stuffed-blossom bite · pick morning-of, they wilt fast · count covers the bite plus breakage"
+    },
+    {
+     "id": "sweet-peppers",
+     "name": "Sweet peppers",
+     "qty": "3-4 lb per night",
+     "note": "marinated for the pepper toast bite + charred in Course 1"
+    },
+    {
+     "id": "eggplant",
+     "name": "Eggplant",
+     "qty": "3-4 lb per night",
+     "note": "Course 1 char"
+    },
+    {
+     "id": "summer-squash",
+     "name": "Summer squash",
+     "qty": "3-4 lb per night",
+     "note": "Course 1 char"
+    },
+    {
+     "id": "cabbage",
+     "name": "Cabbage",
+     "qty": "2 heads per night",
+     "note": "Course 1 char"
+    },
+    {
+     "id": "onions",
+     "name": "Onions",
+     "qty": "a few per night",
+     "note": "Course 1 char"
+    },
+    {
+     "id": "walla-walla",
+     "name": "Walla Walla onions",
+     "qty": "about 10 per night",
+     "note": "Course 3 contorni · coal-roasted whole, shared family-style"
+    },
+    {
+     "id": "kale",
+     "name": "Kale",
+     "qty": "2 bunches per night",
+     "note": "Course 3 contorni · grilled"
+    },
+    {
+     "id": "green-garlic",
+     "name": "Green garlic",
+     "qty": "1 bunch per night",
+     "note": "the crust on the beef"
+    },
+    {
+     "id": "tomato-leaf",
+     "name": "Tomato leaves",
+     "qty": "a couple of handfuls for the weekend",
+     "note": "tomato-leaf oil for Course 1"
+    },
+    {
+     "id": "lemon-verbena",
+     "name": "Lemon verbena",
+     "qty": "small bunch per night",
+     "note": "dessert garnish · plus a bunch sent to SF ahead for the panna cotta steep"
+    },
+    {
+     "id": "lavender",
+     "name": "Lavender",
+     "qty": "small bunch for the weekend",
+     "note": "infuses the honey for the pepper toast"
+    },
+    {
+     "id": "edible-flowers",
+     "name": "Edible flowers",
+     "qty": "2 pints for the weekend",
+     "note": "pasta lamination, dessert scatter, bite garnish"
+    },
+    {
+     "id": "soft-herbs",
+     "name": "Tender herbs (herb wall)",
+     "qty": "big handfuls per night",
+     "note": "thyme, mint, and soft herbs for Course 1, the beef crust, and the pasta lamination"
+    }
+   ],
+   "confirm": [
+    {
+     "id": "guanciale",
+     "name": "Guanciale (Tim)",
+     "note": "PENDING count · if short, blossom filling leans goat cheese with guanciale as accent"
+    },
+    {
+     "id": "beef-cut",
+     "name": "Beef cut (Tim)",
+     "note": "PENDING · confirm the cut + that supply held for the second weekend"
+    },
+    {
+     "id": "apricots",
+     "name": "Apricots (Franks/Farmstand)",
+     "note": "dessert fruit shifts to apricots for W2 · bought, not farm"
+    }
+   ],
+   "footnote": "DRAFT pending Kelly's confirm. SF make-aheads (preserved lemon, cured egg yolk, panna cotta bases, laminated sheets, blossom filling) are built at the restaurant identically to W1; the W1-to-W2 evolution lives in the char vegetables, the dessert stone fruit, and the garnish."
+  }
+ ]
+}
