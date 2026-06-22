@@ -112,15 +112,15 @@
       "plateware": "Pasta bowl. Large fork. Spoon.",
       "dishes": [
         {
-          "name": "Laminated Pasta",
-          "pronunciation": null,
+          "name": "Fazzoletti",
+          "pronunciation": "fah-tsoh-LEH-tee",
           "components": "cultured brown butter, cured egg yolk, focaccia crumb, parmesan",
-          "story": "Fresh pasta sheets with farm herbs and flowers pressed inside the dough and laminated so the petals show through, built by Joe at San Fermo and cut day-of here at the farm. Dressed in cultured brown butter, grated cured egg yolk, a focaccia pangrattato off the same Breadfarm bread as the toast, parmesan, and lemon.",
+          "story": "Fazzoletti means 'little handkerchiefs' in Italian: thin squares of fresh pasta with farm herbs and flowers laminated between two sheets so the petals show through. Joe builds and laminates the sheets at San Fermo; they're cut day-of here at the farm. Dressed in cultured brown butter, grated cured egg yolk, a focaccia pangrattato off the same Breadfarm bread as the toast, parmesan, and lemon. The form is Ligurian, traditionally served with light sauces that show off the herbs inside.",
           "ingredients": [
             {
-              "term": "Laminated pasta",
-              "pronunciation": null,
-              "note": "herbs and edible flowers pressed between two thin sheets of dough, then rolled together so the leaves are sealed inside and visible through the pasta"
+              "term": "Fazzoletti",
+              "pronunciation": "fah-tsoh-LEH-tee",
+              "note": "Italian for 'little handkerchiefs'; thin squares of pasta with herbs and edible flowers laminated between two sheets so the leaves show through. A Ligurian form, classically served with pesto or light sauces"
             },
             {
               "term": "Cured egg yolk",
