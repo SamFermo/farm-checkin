@@ -2589,7 +2589,7 @@
   // CONFIG + STATE
   // ====================================================================
   const VERSION = "v1.43";
-  const BUILD = '1782247932'; // stamped by deploy-to-github.command at every deploy
+  const BUILD = '1782326324'; // stamped by deploy-to-github.command at every deploy
   const DATA_PATH = "data";
   const params = new URLSearchParams(window.location.search);
   const today = new Date().toISOString().split('T')[0];
@@ -3628,6 +3628,12 @@
   // Show one view, hide the rest. Toggle the view-toggle-wrap (which carries
   // the Home button + dinner-view tabs) visibility.
   function switchView(viewName) {
+    // ORDER REVIEW CEDED TO REMY (2026-06-24). The in-app Farm Orders view no longer renders;
+    // every entry point (Orders vtab, portal banner, ?view=orders deep-link) forwards to Remy's
+    // farm-side Incoming Orders tab. One live order surface — no dual-write divergence. The
+    // orders snapshot (startOrdersSync) still runs only to drive the "N new" banner/badge that
+    // brings Kelly here; tapping it now opens Remy. Harvest AUTHORING stays in this app.
+    if (viewName === 'orders') { window.location.href = 'https://samfermo.github.io/remy/?view=orders'; return; }
     activeView = viewName;
     const allViews = ['portal','list','seating','freshtalk','service','setup-breakdown','standards','harvest','orders'];
     allViews.forEach(v => {
