@@ -152,30 +152,35 @@
       "plateware": "Family-style. Carving board and platters to the table; warm entree plates per guest. Large fork, steak knife.",
       "dishes": [
         {
-          "name": "Smoked Swan House Beef, Carved at the Table",
+          "name": "Swan House Farm Primal Roast",
           "pronunciation": null,
-          "components": "green garlic crust, charred stone-fruit agrodolce, Walla Walla onions, grilled kale",
-          "story": "A whole cut of Tim's beef rubbed in a green garlic and herb crust, smoked low and slow on the Big Green Egg, rested, and carved in front of the room to share family-style. A charred stone-fruit agrodolce is passed alongside, sweet-tart against the smoke, with coal-roasted Walla Walla onions and grilled kale finished with lemon and chili. This is the night's centerpiece, the move off June's plated belly to a shared carve.",
+          "components": "rib eye, porterhouse & t-bone, green garlic crust, charred stone-fruit agrodolce, Walla Walla onions, grilled kale",
+          "story": "Swan House Farm's primal roast: the prime middle of Tim's steer, the rib and short loin, rubbed in a green garlic and herb crust and grilled over apple wood on the Big Green Egg, rested, then carved in front of the room into the rib eye, porterhouse, and t-bone and plattered family-style. A charred stone-fruit agrodolce is passed alongside, sweet-tart against the apple-wood char, with coal-roasted Walla Walla onions and grilled kale finished with lemon and chili. This is the night's centerpiece, the move off June's plated belly to a shared carve.",
           "ingredients": [
+            {
+              "term": "Primal roast",
+              "pronunciation": null,
+              "note": "instead of a steak per plate, we roast the whole rib-and-short-loin primal and carve it to share; it yields the rib eye (from the rib) and the porterhouse and t-bone (from the short loin, the porterhouse carrying more tenderloin)"
+            },
+            {
+              "term": "Apple wood",
+              "pronunciation": null,
+              "note": "we grill the roast over apple wood on the Big Green Egg; the fruitwood smoke is milder and sweeter than hardwoods like oak or hickory"
+            },
             {
               "term": "Green garlic",
               "pronunciation": null,
-              "note": "young garlic pulled before the bulb fully forms; mild and grassy, less sharp than mature garlic. It is the crust on the beef"
+              "note": "young garlic pulled before the bulb fully forms; mild and grassy, less sharp than mature garlic. It is the crust on the roast"
             },
             {
               "term": "Agrodolce",
               "pronunciation": "ah-groh-DOHL-cheh",
-              "note": "Italian sweet-and-sour sauce; here summer stone fruit charred and cooked down sweet-tart to cut the richness of the smoked beef"
+              "note": "Italian sweet-and-sour sauce; here summer stone fruit charred and cooked down sweet-tart to cut the richness of the beef"
             },
             {
               "term": "Walla Walla onions",
               "pronunciation": null,
               "note": "sweet onions from Walla Walla, Washington; mild enough to roast whole in the coals until jammy"
-            },
-            {
-              "term": "Big Green Egg",
-              "pronunciation": null,
-              "note": "the ceramic smoker the beef cooks on, low and slow, before it's carved at the table"
             }
           ]
         }
