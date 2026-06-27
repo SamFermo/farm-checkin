@@ -2565,14 +2565,25 @@
       await signInAnonymously(auth);
       window._firebase.ready = true;
 
-      // FARM ORDERS REMOVED from this app (2026-06-24). Ordering now flows San Fermo portal → Remy
-      // (and later Remy restaurant side → Remy farm side), so the dinner app no longer connects to
-      // remy-orders at all. The order banner + "Orders" tab self-hide via the `!_remy || !_remy.ready`
-      // guards in updateOrdersBanner()/startOrdersSync(), and nothing here reads or writes
-      // remy-orders — so this app is entirely unaffected by remy-orders App Check enforcement, and
-      // a stale cached copy degrades to a hidden banner (no errors). The upcoming "pack the harvest,
-      // push to Remy for invoicing" feature will add a fresh, App-Check'd remy-orders connection
-      // scoped to that single write. window._remy is intentionally left unset.
+      // remy-orders connection for the harvest push (2026-06-26) — a SECOND Firebase app, named
+      // 'remy-orders', scoped to the single "pack the harvest → Remy for invoicing" WRITE. App-Check'd
+      // with the remy-orders reCAPTCHA Enterprise key (App Check is ENFORCED on remy-orders). The Farm
+      // Orders READ banner/tab stays removed; this is write-only. window._remy is set on success.
+      try {
+        const remyApp = initializeApp(window.REMY_ORDERS_CONFIG, 'remy-orders');
+        try {
+          const { initializeAppCheck, ReCaptchaEnterpriseProvider } =
+            await import('https://www.gstatic.com/firebasejs/10.13.0/firebase-app-check.js');
+          initializeAppCheck(remyApp, {
+            provider: new ReCaptchaEnterpriseProvider('6LcpDDMtAAAAANRyfWfGCd6uPgDsMlIsbFRBiozb'),
+            isTokenAutoRefreshEnabled: true,
+          });
+        } catch (e) { console.error('Remy App Check init failed (non-blocking):', e); }
+        const remyDb = getFirestore(remyApp);
+        const remyAuth = getAuth(remyApp);
+        await signInAnonymously(remyAuth);
+        window._remy = { db: remyDb, ready: true };
+      } catch (e) { console.error('Remy connection init failed (non-blocking):', e); window._remy = { ready: false }; }
     } catch (err) {
       console.error('Firebase init failed, falling back to localStorage:', err);
     }
@@ -2587,7 +2598,7 @@
   // CONFIG + STATE
   // ====================================================================
   const VERSION = "v1.43";
-  const BUILD = '1782360073'; // stamped by deploy-to-github.command at every deploy
+  const BUILD = '1782529274'; // stamped by deploy-to-github.command at every deploy
   const DATA_PATH = "data";
   const params = new URLSearchParams(window.location.search);
   const today = new Date().toISOString().split('T')[0];
@@ -4799,20 +4810,28 @@
     }
     const w = harvestWeekend;
     const hv = state.harvest || {};
+    // Pack capture (2026-06-26): an hv entry is now {done, qty} — packed qty prefilled from the
+    // planned qty, editable inline. Back-compat: an old boolean `true` reads as done, no captured qty.
+    const hvState = (id) => { const v=(state.harvest||{})[id]; if(v===true) return {done:true, qty:null}; if(v&&typeof v==='object') return {done:!!v.done, qty:(v.qty==null?null:v.qty)}; return {done:false, qty:null}; };
     const items = w.items || [];
     const confirms = w.confirm || [];
-    const picked = items.filter(it => hv[it.id]).length;
+    const picked = items.filter(it => hvState(it.id).done).length;
     const meta = availableDinners.find(d => d.date === dinnerDate);
     const isPast = !!(meta && meta.is_past);
 
-    const itemRow = (it) => `
-      <div class="hv-item ${hv[it.id] ? 'done' : ''}" data-hv-id="${escape(it.id)}" role="checkbox" aria-checked="${hv[it.id] ? 'true' : 'false'}" tabindex="0">
-        <span class="hv-box">${hv[it.id] ? '✓' : ''}</span>
+    const itemRow = (it) => {
+      const s = hvState(it.id);
+      const packedVal = s.done ? (s.qty!=null ? s.qty : (it.qty||'')) : '';
+      return `
+      <div class="hv-item ${s.done ? 'done' : ''}" data-hv-id="${escape(it.id)}" role="checkbox" aria-checked="${s.done ? 'true' : 'false'}" tabindex="0">
+        <span class="hv-box">${s.done ? '✓' : ''}</span>
         <span class="hv-text">
           <span class="hv-line"><span class="hv-name">${escape(it.name)}</span>${it.qty ? ` <span class="hv-qty">${escape(it.qty)}</span>` : ''}</span>
           ${it.note ? `<span class="hv-note">${escape(it.note)}</span>` : ''}
+          ${s.done ? `<span class="hv-packed" style="display:inline-flex;align-items:center;gap:6px;margin-top:4px;font-size:12px;color:#5a6b4a">Packed <input class="hv-pq" data-hv-pq="${escape(it.id)}" type="text" value="${escape(packedVal)}" placeholder="${escape(it.qty||'qty')}" style="width:88px;padding:4px 7px;border:1px solid #c2cdb4;border-radius:7px;font-size:13px;font-family:inherit;background:#fff"></span>` : ''}
         </span>
       </div>`;
+    };
 
     container.innerHTML = `
       <div class="hv-header">
@@ -4821,7 +4840,7 @@
         <div class="hv-progress">${picked} of ${items.length} picked${isPast ? ' · past dinner (archived)' : ''}</div>
         <div style="display:flex;gap:8px;margin-top:10px">
           <button class="ps-btn" style="padding:7px 14px;font-size:13px" onclick="harvestHarvestSheet()">🖨 Harvest list</button>
-          <button class="ps-btn" style="padding:7px 14px;font-size:13px;background:#2e4624;color:#fff;border-color:#2e4624" onclick="harvestInvoice()">💲 Invoice → finalize</button>
+          <button class="ps-btn" style="padding:7px 14px;font-size:13px;background:#2e4624;color:#fff;border-color:#2e4624" onclick="harvestSendToRemy()">📤 Send to Remy</button>
         </div>
       </div>
       ${w.intro ? `<div class="hv-intro">${escape(w.intro)}</div>` : ''}
@@ -4831,17 +4850,32 @@
       ${w.footnote ? `<div class="hv-footnote">${escape(w.footnote)}</div>` : ''}
     `;
 
+    const allHv = items.concat(confirms);
     container.querySelectorAll('.hv-item').forEach(el => {
+      const id = el.dataset.hvId;
       const toggle = async () => {
-        const id = el.dataset.hvId;
         if (!state.harvest) state.harvest = {};
-        state.harvest[id] = !state.harvest[id];
+        const cur = hvState(id);
+        if (cur.done) { state.harvest[id] = { done:false }; }
+        else { const it = allHv.find(x => x.id === id); state.harvest[id] = { done:true, qty: (cur.qty!=null ? cur.qty : (it && it.qty ? it.qty : '')) }; }
         await pushState();
         if (stateBackend !== 'firebase') refresh();
       };
-      el.addEventListener('click', toggle);
+      el.addEventListener('click', (e) => { if (e.target.closest('.hv-pq')) return; toggle(); });
       el.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+        if ((e.key === 'Enter' || e.key === ' ') && !e.target.closest('.hv-pq')) { e.preventDefault(); toggle(); }
+      });
+    });
+    // Inline packed-qty edits (don't toggle the row; save on blur)
+    container.querySelectorAll('.hv-pq').forEach(inp => {
+      inp.addEventListener('click', e => e.stopPropagation());
+      inp.addEventListener('keydown', e => e.stopPropagation());
+      inp.addEventListener('change', async () => {
+        const id = inp.dataset.hvPq;
+        if (!state.harvest) state.harvest = {};
+        const cur = hvState(id);
+        state.harvest[id] = { done:true, qty: inp.value };
+        await pushState();
       });
     });
   }
@@ -4908,6 +4942,37 @@
       <div class="ps-sign">Packed by ____________________&nbsp;&nbsp;Date __________</div>`;
     document.body.classList.remove('ps-review');
     document.body.classList.add('print-sheet-open');
+  }
+
+  // Pack the harvest → push the PACKED list to Remy (remy-orders `orders`) as an order-like doc
+  // (source:'farm_dinner'), where Remy's invoice/finalize prices + finalizes it. Packed = billed:
+  // each line carries the packed qty directly (no separate ordered baseline to reconcile against).
+  async function harvestSendToRemy(){
+    const w=harvestWeekend; if(!w) return;
+    if(!(window._remy && window._remy.ready && window._remy.db)){ alert('Not connected to Remy yet — give it a moment and try again.'); return; }
+    const allItems=(w.items||[]).concat(w.confirm||[]);
+    const isDone=(id)=>{ const v=(state.harvest||{})[id]; return v===true || (v&&typeof v==='object'&&v.done); };
+    const packed=allItems.filter(it=>isDone(it.id));
+    if(!packed.length){ alert('Nothing packed yet — check off what went in the box first.'); return; }
+    const lines=packed.map(it=>{
+      const v=(state.harvest||{})[it.id];
+      const pqRaw=(v&&typeof v==='object'&&v.qty!=null&&v.qty!=='')?v.qty:(it.qty||'');
+      const pq=_psParseQty(pqRaw);
+      return { item:it.name, qty:pq.qty, unit:pq.unit, packed:true, farm_note:it.note||'', planned_qty:it.qty||'' };
+    });
+    const labelSlug=String(w.label||'').replace(/\s+/g,'-').toLowerCase().replace(/[^a-z0-9-]/g,'');
+    const orderId='farmdinner-'+(dinnerDate||'')+'-'+labelSlug;
+    const orderDoc={
+      order_id:orderId, source:'farm_dinner', placed_by:'swan_house',
+      placed_at:new Date().toISOString(), requested_date:dinnerDate||'', status:'placed',
+      order_note:'Farm dinner harvest — '+(w.label||''), series_label:w.label||'', dinner_date:dinnerDate||'',
+      lines
+    };
+    try{
+      const fb=window._firebase;
+      await fb.setDoc(fb.doc(window._remy.db,'orders',orderId), orderDoc);
+      alert('Sent to Remy ✓  '+lines.length+' item'+(lines.length===1?'':'s')+' — price & finalize it in Remy.');
+    }catch(e){ console.error('Send to Remy failed:', e); alert('Could not send to Remy — '+((e&&e.code)||'check your connection')+'. Try again.'); }
   }
 
   // Show/hide the Harvest vtab + portal card — needs dinnerData AND a
