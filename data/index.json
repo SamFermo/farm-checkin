@@ -54,7 +54,7 @@
       "display_date": "Sunday, June 14, 2026",
       "seated_covers": 26,
       "party_count": 10,
-      "is_past": false
+      "is_past": true
     },
     {
       "date": "2026-07-11",
@@ -141,6 +141,6 @@
       "is_past": false
     }
   ],
-  "generated_at": "2026-06-14T11:39:42",
-  "build": "1782247932"
+  "generated_at": "2026-06-26T20:01:14",
+  "build": "1782529274"
 }
