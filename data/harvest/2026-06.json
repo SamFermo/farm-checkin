@@ -1,56 +1,205 @@
 {
-  "$comment": "Per-series harvest lists for the Harvest tab. One entry per weekend; the app resolves the weekend by dinner date. Checkbox state lives in the per-dinner Firestore doc (state.harvest), so each date keeps its own picked/unpicked record. Edit items here + redeploy to change the list.",
-  "series": "2026-06",
-  "weekends": [
+ "$comment": "Per-series harvest lists for the Harvest tab. One entry per weekend; the app resolves the weekend by dinner date. Checkbox state lives in the per-dinner Firestore doc (state.harvest), so each date keeps its own picked/unpicked record. Edit items here + redeploy to change the list.",
+ "series": "2026-06",
+ "weekends": [
+  {
+   "label": "June 6-7",
+   "dates": [
+    "2026-06-06",
+    "2026-06-07"
+   ],
+   "pdf": "data/harvest/2026-06-06-07-harvest-checklist.pdf",
+   "intro": "Pick fresh each morning. Sunday is a repeat of Saturday.",
+   "items": [
     {
-      "label": "June 6-7",
-      "dates": ["2026-06-06", "2026-06-07"],
-      "pdf": "data/harvest/2026-06-06-07-harvest-checklist.pdf",
-      "intro": "Pick fresh each morning. Sunday is a repeat of Saturday.",
-      "items": [
-        { "id": "salanova", "name": "Salanova lettuces", "qty": "about 4 lb per night", "note": "salad base · mix of the red and green heads" },
-        { "id": "sorrel", "name": "Young sorrel", "qty": "1 lb for the weekend", "note": "whole leaves for the salad, plus chiffonade for the bites and the pork plate" },
-        { "id": "fennel-fronds", "name": "Fennel fronds", "qty": "a couple of big handfuls per night", "note": "salad" },
-        { "id": "oregano", "name": "Oregano", "qty": "small bunch per night", "note": "pork plate" },
-        { "id": "thyme", "name": "Thyme", "qty": "small bunch per night", "note": "tartare garnish" },
-        { "id": "mint", "name": "Mint", "qty": "small bunch per night", "note": "salad" },
-        { "id": "lemon-balm", "name": "Lemon balm", "qty": "1 lb total", "note": "paccheri chiffonade" },
-        { "id": "snow-peas", "name": "Snow peas", "qty": "2-3 lb for the weekend", "note": "salad" },
-        { "id": "lovage", "name": "Lovage", "qty": "2 lb total", "note": "tartare and salad" },
-        { "id": "chive-blossoms", "name": "Chive blossoms", "qty": "about 30 stems per night", "note": "asparagus bites" },
-        { "id": "edible-flowers", "name": "Edible flowers", "qty": "2 pints for the weekend", "note": "bites plus pavlova" },
-        { "id": "rose-petals", "name": "Rose petals", "qty": "about 1 pint per night", "note": "pavlova garnish · the rose sugar is already made" },
-        { "id": "honeysuckle", "name": "Honeysuckle blossoms", "qty": "2 pints for the weekend", "note": "pavlova garnish, plus extra if we steep syrup at the farm" }
-      ],
-      "confirm": [
-        { "id": "fire-cider", "name": "Fire cider", "note": "about 2 cups a night, strained · this weekend and next, covered through June 14" }
-      ],
-      "footnote": "No spring onions needed this weekend, they come up from the restaurant. Any you have can go down for next week."
+     "id": "salanova",
+     "name": "Salanova lettuces",
+     "qty": "about 4 lb per night",
+     "note": "salad base · mix of the red and green heads"
     },
     {
-      "label": "June 13-14",
-      "dates": ["2026-06-13", "2026-06-14"],
-      "pdf": "data/harvest/2026-06-13-14-harvest-checklist.pdf",
-      "intro": "Pick fresh each morning. Sunday is a repeat of Saturday.",
-      "items": [
-        { "id": "salanova", "name": "Salanova lettuces", "qty": "about 4 lb per night", "note": "salad base · mix of the red and green heads" },
-        { "id": "sorrel", "name": "Young sorrel", "qty": "1 lb for the weekend", "note": "whole leaves for the salad, plus chiffonade for the bites and the pork plate" },
-        { "id": "fennel-fronds", "name": "Fennel fronds", "qty": "a couple of big handfuls per night", "note": "salad" },
-        { "id": "oregano", "name": "Oregano", "qty": "small bunch per night", "note": "pork plate" },
-        { "id": "thyme", "name": "Thyme", "qty": "small bunch per night", "note": "tartare garnish" },
-        { "id": "mint", "name": "Mint", "qty": "small bunch per night", "note": "salad" },
-        { "id": "lemon-balm", "name": "Lemon balm", "qty": "1 lb total", "note": "paccheri chiffonade" },
-        { "id": "snow-peas", "name": "Snow peas", "qty": "2-3 lb for the weekend", "note": "salad" },
-        { "id": "lovage", "name": "Lovage", "qty": "2 lb total", "note": "tartare and salad" },
-        { "id": "chive-blossoms", "name": "Chive blossoms", "qty": "about 30 stems per night", "note": "asparagus bites" },
-        { "id": "edible-flowers", "name": "Edible flowers", "qty": "2 pints for the weekend", "note": "bites plus pavlova" },
-        { "id": "rose-petals", "name": "Rose petals", "qty": "about 1 pint per night", "note": "pavlova garnish · the rose sugar is already made" },
-        { "id": "honeysuckle", "name": "Honeysuckle blossoms", "qty": "2 pints for the weekend", "note": "pavlova garnish, plus extra if we steep syrup at the farm" }
-      ],
-      "confirm": [
-        { "id": "fire-cider", "name": "Fire cider", "note": "about 2 cups a night, strained" }
-      ],
-      "footnote": "Spring onions come up from the restaurant again (including any of yours that went down this week)."
+     "id": "sorrel",
+     "name": "Young sorrel",
+     "qty": "1 lb for the weekend",
+     "note": "whole leaves for the salad, plus chiffonade for the bites and the pork plate"
+    },
+    {
+     "id": "fennel-fronds",
+     "name": "Fennel fronds",
+     "qty": "a couple of big handfuls per night",
+     "note": "salad"
+    },
+    {
+     "id": "oregano",
+     "name": "Oregano",
+     "qty": "small bunch per night",
+     "note": "pork plate"
+    },
+    {
+     "id": "thyme",
+     "name": "Thyme",
+     "qty": "small bunch per night",
+     "note": "tartare garnish"
+    },
+    {
+     "id": "mint",
+     "name": "Mint",
+     "qty": "small bunch per night",
+     "note": "salad"
+    },
+    {
+     "id": "lemon-balm",
+     "name": "Lemon balm",
+     "qty": "1 lb total",
+     "note": "paccheri chiffonade"
+    },
+    {
+     "id": "snow-peas",
+     "name": "Snow peas",
+     "qty": "2-3 lb for the weekend",
+     "note": "salad"
+    },
+    {
+     "id": "lovage",
+     "name": "Lovage",
+     "qty": "2 lb total",
+     "note": "tartare and salad"
+    },
+    {
+     "id": "chive-blossoms",
+     "name": "Chive blossoms",
+     "qty": "about 30 stems per night",
+     "note": "asparagus bites"
+    },
+    {
+     "id": "edible-flowers",
+     "name": "Edible flowers",
+     "qty": "2 pints for the weekend",
+     "note": "bites plus pavlova"
+    },
+    {
+     "id": "rose-petals",
+     "name": "Rose petals",
+     "qty": "about 1 pint per night",
+     "note": "pavlova garnish · the rose sugar is already made"
+    },
+    {
+     "id": "honeysuckle",
+     "name": "Honeysuckle blossoms",
+     "qty": "2 pints for the weekend",
+     "note": "pavlova garnish, plus extra if we steep syrup at the farm"
     }
-  ]
+   ],
+   "confirm": [
+    {
+     "id": "fire-cider",
+     "name": "Fire cider",
+     "note": "about 2 cups a night, strained · this weekend and next, covered through June 14"
+    }
+   ],
+   "footnote": "No spring onions needed this weekend, they come up from the restaurant. Any you have can go down for next week."
+  },
+  {
+   "label": "June 13-14",
+   "dates": [
+    "2026-06-13",
+    "2026-06-14"
+   ],
+   "pdf": "data/harvest/2026-06-13-14-harvest-checklist.pdf",
+   "intro": "Pick fresh each morning. Sunday is a repeat of Saturday.",
+   "items": [
+    {
+     "id": "salanova",
+     "name": "Salanova lettuces",
+     "qty": "about 4 lb per night",
+     "note": "salad base · mix of the red and green heads"
+    },
+    {
+     "id": "sorrel",
+     "name": "Young sorrel",
+     "qty": "3 lb for the weekend",
+     "note": "whole leaves for the salad, plus chiffonade for the bites and the pork plate"
+    },
+    {
+     "id": "fennel-fronds",
+     "name": "Fennel fronds",
+     "qty": "a couple of big handfuls per night",
+     "note": "salad"
+    },
+    {
+     "id": "oregano",
+     "name": "Oregano",
+     "qty": "small bunch per night",
+     "note": "pork plate"
+    },
+    {
+     "id": "thyme",
+     "name": "Thyme",
+     "qty": "small bunch per night",
+     "note": "tartare garnish"
+    },
+    {
+     "id": "mint",
+     "name": "Mint",
+     "qty": "small bunch per night",
+     "note": "salad"
+    },
+    {
+     "id": "lemon-balm",
+     "name": "Lemon balm",
+     "qty": "1 lb total",
+     "note": "paccheri chiffonade"
+    },
+    {
+     "id": "snow-peas",
+     "name": "Snow peas",
+     "qty": "2-3 lb for the weekend",
+     "note": "salad"
+    },
+    {
+     "id": "lovage",
+     "name": "Lovage",
+     "qty": "2 lb total",
+     "note": "tartare and salad"
+    },
+    {
+     "id": "chive-blossoms",
+     "name": "Chive blossoms",
+     "qty": "15 stems per night",
+     "note": "asparagus bites"
+    },
+    {
+     "id": "edible-flowers",
+     "name": "Edible flowers",
+     "qty": "2 pints for the weekend",
+     "note": "bites plus pavlova"
+    },
+    {
+     "id": "rose-petals",
+     "name": "Rose petals",
+     "qty": "about 1 pint per night",
+     "note": "pavlova garnish · the rose sugar is already made"
+    },
+    {
+     "id": "honeysuckle",
+     "name": "Honeysuckle blossoms",
+     "qty": "2 pints for the weekend",
+     "note": "pavlova garnish, plus extra if we steep syrup at the farm"
+    }
+   ],
+   "confirm": [
+    {
+     "id": "fire-cider",
+     "name": "Fire cider",
+     "note": "about 2 cups a night, strained"
+    },
+    {
+     "id": "turnip",
+     "name": "Turnips",
+     "note": "turnip batons on the asparagus bite (in for radishes) · a small bunch if you have them, else from the restaurant"
+    }
+   ],
+   "footnote": "Grilled cabbage comes up from the restaurant with Sam (Chris has it) — no onion harvest needed this weekend."
+  }
+ ]
 }
